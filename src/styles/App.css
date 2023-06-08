@@ -27,24 +27,28 @@
 
 /* -------- Footer -------- */
 
-footer{
+.footer-container{
   padding-top: 20px;
   padding-bottom: 10px;
-  background-color: #ECECEC;
+  background-color: #EEEEEE;
   bottom: 0;
   width: 100%;
+  position: fixed;
 
 }
-
-footer div{
+footer p{
+  color: rgb(121, 121, 121);
+}
+.footer-div{
   padding-left: 4%;
   padding-right: 4%;
   justify-content: space-between;
-  
+  display: flex;
 }
+
 @media (min-width: 600px) {
   footer div {
-    padding-left: 15%;
-    padding-right: 15%;
+    padding-left: 16%;
+    padding-right: 16%;
   }
 }

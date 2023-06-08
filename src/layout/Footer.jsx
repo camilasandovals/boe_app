@@ -1,7 +1,7 @@
 export default function Footer() {
     return(
-        <footer style={{ position: "fixed"}}>
-        <div style={{  display: "flex" }}>
+        <footer className="footer-container">
+        <div className="footer-div">
             <div>
                 <p><strong>Contact us</strong></p>
                 <p>305-903-2980</p>
