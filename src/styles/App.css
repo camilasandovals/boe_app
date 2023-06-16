@@ -1,4 +1,5 @@
-.form{
+
+.form {
     padding: 60px;
     text-align: center;
 }
@@ -33,11 +34,12 @@
   background-color: #EEEEEE;
   bottom: 0;
   width: 100%;
-  position: fixed;
-
+  
 }
 footer p{
   color: rgb(121, 121, 121);
+  
+
 }
 .footer-div{
   padding-left: 4%;

@@ -11,7 +11,7 @@ export default function Home() {
                             <video autoPlay muted loop>
                             <source src="./images/video.mp4" type="video/mp4" /> 
                             </video>
-                        </div>s
+                        </div>
                 </div>
                 <Row>
                     <SchoolListing />
