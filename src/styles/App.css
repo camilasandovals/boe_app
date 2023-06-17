@@ -68,16 +68,16 @@ button:active {
 
 
 .video-container {
-    left: 0;
+    padding-top: 60px;
     width: 100%;
-    height: 100%;
+    height: 400px;
     overflow: hidden;
     z-index: -1;
   }
   
   .video-container video {
     width: 100%;
-    height: 60%;
+    height: 100%;
     object-fit: cover;
   }
   
@@ -87,19 +87,23 @@ button:active {
     color: rgb(255, 255, 255)
   }
 
+/* ------------------------------ SCHOOLS ------------------------------ */
 
+.schools{
+  background-color: #23c483;
+}
+@media (max-width: 776px) {
+  /* Hide the content in mobile view */
+  .tab-content {
+    display: none;
+  }
+}
 
-/* -------- Footer -------- */
-/* 
+/* ------------------------------ FOOTER ------------------------------ */
 footer{
   padding-top: 20px;
   padding-bottom: 10px;
   background-color: #EEEEEE;
   color: rgb(121, 121, 121);
-  bottom: 0;
-  width: 100%;
-  padding-left: 20%;
-  
-  justify-content: space-between;
-  display: flex;
-} */
+  padding-left: 27%;
+} 

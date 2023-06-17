@@ -1,22 +1,18 @@
 import { Col, Container, Row } from "react-bootstrap";
 import AppLayout from "../layout/AppLayout";
 import SchoolListing from "../components/SchoolListing";
+import Hero from "../components/Hero";
 
 export default function Home() {
     return(
         <AppLayout>
-            <header> 
-                <div className="d-flex justify-content-center">
-                        <div className="video-container">
-                            <video autoPlay muted loop>
-                            <source src="./images/video.mp4" type="video/mp4" /> 
-                            </video>
-                        </div>
-                </div>
-            </header>
+            <Hero />
+            <Container className="bg-warning">
                 <Row>
                     <SchoolListing />
+                    
                 </Row>
+            </Container>
         </AppLayout>
     )
 }
