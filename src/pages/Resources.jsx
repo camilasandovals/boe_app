@@ -22,7 +22,7 @@ export default function Resources() {
                     </Col>
                     <Col>
                         <h2>Exclusive content</h2>
-                        <button>Create account</button>
+                        <button className="button-class">Create account</button>
                     </Col>
                 </Row>
             </Container>

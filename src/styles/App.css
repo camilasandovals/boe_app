@@ -9,12 +9,12 @@
 
 }
 
-.about, .resources, .profile {
+.about, .resources, .profile, .login {
   padding-top: 5em;
 }
 
 /* ------------------------------ BUTTON ------------------------------ */
-button {
+.button-class {
   padding: 0.8em 1.5em;
   color: #000;
   background-color: #fff;
@@ -26,7 +26,7 @@ button {
   outline: none;
 }
 
-button:hover {
+.button-class:hover {
   background-color:  rgb(101, 155, 120);
   box-shadow: rgba(67,126,88,1);
   color: #fff;
@@ -40,15 +40,32 @@ button:active {
 /* ------------------------------ NAV ------------------------------ */
 .nav {
   background: rgb(67,126,88);
-  background: linear-gradient(126deg, rgba(67,126,88,1) 15%, rgba(144,222,171,1)40%, rgba(67,126,88,1) 70%);
+  background: linear-gradient(126deg, rgba(67,126,88,1) 25%, rgba(144,222,171,1)40%, rgba(67,126,88,1) 70%);
 }
 .nav a {
   color: var(--bg-color-light);
 }
-.form {
-    padding: 60px;
-    text-align: center;
+
+.nav a:hover{
+  color: var(--logo-color-hover);
 }
+
+/* ------------------------------ FORM ------------------------------ */
+
+.form {
+  padding-top: 1em;
+  max-width: 400px;
+}
+
+/* ------------------------------ LOGIN ------------------------------ */
+
+.login {
+  justify-content: center;
+  text-align: center;
+}
+
+/* ------------------------------ VIDEO CONTAINER ------------------------------ */
+
 
 .video-container {
     left: 0;

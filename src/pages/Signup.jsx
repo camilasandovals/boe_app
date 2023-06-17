@@ -5,8 +5,10 @@ import Login from "../components/LoginForm";
 export default function Signup() {
     return(
         <AppLayout>
-            <h1 style={{color:"black"}}>Sign up</h1>
-            <Login />
+            <Row className="login">
+                <h1>Sign up</h1>
+                <Login />
+            </Row>
         </AppLayout>
     )
 }
