@@ -7,12 +7,7 @@ export default function Home() {
     return(
         <AppLayout>
             <Hero />
-            <Container className="bg-warning">
-                <Row>
-                    <SchoolListing />
-                    
-                </Row>
-            </Container>
+                <SchoolListing />
         </AppLayout>
     )
 }
