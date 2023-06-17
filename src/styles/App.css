@@ -105,6 +105,36 @@ button:active {
   }
 }
 
+/* ------------------------------ SCHOOLS CAROUSEL ------------------------------ */
+
+.slider {
+  margin: 40px;
+	background: white;
+	
+	height: 100px;
+	margin: auto;
+	overflow:hidden;
+	position: relative;
+	width: auto;
+	
+
+  .slide-track {
+	animation: scroll 100s linear infinite;
+	display: flex;
+	width: calc(250px * 14);
+}
+	
+	.slide {
+		height: 100px;
+		width: 120px;
+	}
+}
+
+@keyframes scroll {
+	0% { transform: translateX(0); }
+	100% { transform: translateX(calc(-250px * 7))}
+}
+
 /* ------------------------------ FOOTER ------------------------------ */
 footer{
   padding-top: 20px;
