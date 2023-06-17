@@ -1,5 +1,6 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
 import AppLayout from "../layout/AppLayout";
+import CarouselEvents from "../components/CarouselEvents";
 
 export default function Resources() {
     return(
@@ -9,7 +10,7 @@ export default function Resources() {
                 <Row>
                     <Col>
                         <h2>Upcoming events</h2>
-                        <p>carousel</p>
+                        <CarouselEvents />
                     </Col>
                     <Col>
                         <h2>Visit our blog</h2>

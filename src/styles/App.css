@@ -90,13 +90,16 @@ button:active {
 /* ------------------------------ SCHOOLS ------------------------------ */
 
 .schools-container{
-  background-color: #23c483;
+  background-color: #f1f1f1;
   text-align: center;
   margin: 7%;
-  
 }
+
+
 @media (max-width: 776px) {
-  /* Hide the content in mobile view */
+  .schools-container {
+    margin: 0;
+  }
   .tab-content {
     display: none;
   }

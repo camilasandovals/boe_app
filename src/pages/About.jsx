@@ -20,16 +20,7 @@ export default function About() {
                     Create a free user account for access to exclusive BOE content including interviews withour partner schools, up-to-date cost information, and research about the best local opportunities throughout South Florida. If you are an organization that would like to partner with BOE for an event, feel free to contact us!
                     </p>
                 </Row>
-                <Row>
-                    <h2>What we do</h2>
-                    <p>BOE is your one-stop shop for becoming a skilled trade employee. We connect people withincredible training programs by partnering with over 25 vocational schools and apprenticeship programs. The best part? Everything we offer is free of charge.</p>
-                </Row>
-                <Row>
-                    <h2>Get involved</h2>
-                    <p>
-                    Create a free user account for access to exclusive BOE content including interviews withour partner schools, up-to-date cost information, and research about the best local opportunities throughout South Florida. If you are an organization that would like to partner with BOE for an event, feel free to contact us!
-                    </p>
-                </Row>
+                
             </Container>
         </AppLayout>
     )

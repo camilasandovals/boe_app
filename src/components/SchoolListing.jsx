@@ -1,5 +1,5 @@
 import { Col, Tab, Row, ListGroup } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function SchoolListing() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -24,17 +24,38 @@ export default function SchoolListing() {
     return tabs.filter((tab) => tab.name.toLowerCase().includes(searchTerm.toLowerCase()));
   };
 
+  const tabRef = useRef(null);
+
+  const handleTabClick = (eventKey) => {
+    if (tabRef.current && window.innerWidth < 576) {
+      const selectedTab = tabRef.current.querySelector(`[data-rb-event-key="${eventKey}"]`);
+      if (selectedTab) {
+        selectedTab.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <Tab.Container id="list-group-tabs-example" defaultActiveKey='63c00d7afbff54dd5e32ef6e'>
       <Row className="schools-container">
-        <Col className="p-0 border-0" md={4} sm={12}>
+        <Col className="p-0 overflow-auto" style={{ maxHeight: "650px" }} md={4} sm={12}>
           <ListGroup>
             <ListGroup.Item>Find South Florida Training Programs</ListGroup.Item>
             <input type="text" placeholder="Search" value={searchTerm} onChange={handleSearch} />
             {(!schools)
               ? <p>Loading...</p>
               : filterTabs(schools).map((tab) => (
-                <ListGroup.Item action eventKey={tab._id} key={tab._id}>
+                <ListGroup.Item
+                  action
+                  eventKey={tab._id}
+                  key={tab._id}
+                  ref={(el) => {
+                    if (tab._id === '63c00d7afbff54dd5e32ef6e') {
+                      tabRef.current = el;
+                    }
+                  }}
+                  onClick={() => handleTabClick(tab._id)}
+                >
                   {tab.name}
                 </ListGroup.Item>
               ))}
