@@ -4,7 +4,7 @@ import AppLayout from "../layout/AppLayout";
 export default function Profile() {
     return(
         <AppLayout>
-            <Container>
+            <Container className="profile">
                 <Row>
                     <Col>
                         <h1>this is profile</h1>

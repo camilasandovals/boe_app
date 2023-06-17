@@ -13,10 +13,10 @@ export default function Home() {
                             </video>
                         </div>
                 </div>
+            </header>
                 <Row>
                     <SchoolListing />
                 </Row>
-            </header>
         </AppLayout>
     )
 }

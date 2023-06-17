@@ -2,7 +2,7 @@ import { Navbar, Container, Nav } from "react-bootstrap"
 import { Link } from "react-router-dom"
 export default function NavMenu() {
     return(
-        <Navbar fixed='top' className="p-0"bg="success" variant="dark" expand="md">
+        <Navbar fixed='top' className="p-0 nav" variant="dark" expand="md">
         <Container>
           <Navbar.Brand href="#home"><img src="./images/boe.png" alt="BOE logo" height="50"/>
           </Navbar.Brand>

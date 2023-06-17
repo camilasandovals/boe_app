@@ -1,7 +1,7 @@
 export default function Footer() {
     return(
-        <footer className="footer-container">
-        <div className="footer-div">
+        <footer style={{ position: "fixed"}}>
+        <div style={{ paddingLeft: "8%", paddingRight:"8%", display: "flex", justifyContent: "space-between"  }}>
             <div>
                 <p><strong>Contact us</strong></p>
                 <p>305-903-2980</p>

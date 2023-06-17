@@ -4,7 +4,7 @@ import AppLayout from "../layout/AppLayout";
 export default function Resources() {
     return(
         <AppLayout>
-            <Container>
+            <Container className="resources">
                 <h1>Resources</h1>
                 <Row>
                     <Col>
@@ -22,7 +22,7 @@ export default function Resources() {
                     </Col>
                     <Col>
                         <h2>Exclusive content</h2>
-                        <Button>Create account</Button>
+                        <button>Create account</button>
                     </Col>
                 </Row>
             </Container>
