@@ -61,7 +61,7 @@ export default function SchoolListing() {
                         <img src={tab.logoUrl} alt="School logo"/>
                     </div>
                     <div style={{textAlign:"left", marginLeft: 30}}>
-                      {tab.name}
+                      <strong>{tab.name}</strong>
                       <div><small>{tab.type}</small></div>
                       <div><small>{tab.program}</small></div>
                       <div><small>{tab.location.city}</small></div>
@@ -72,16 +72,39 @@ export default function SchoolListing() {
           </ListGroup>
         </Col>
         <Col sm={8}>
-          <Tab.Content>
+          <Tab.Content style={{padding:40, textAlign:"left"}}>
             {(!schools)
               ? <p>Loading...</p>
               : schools.map((tab) => (
                 <Tab.Pane eventKey={tab._id} key={tab._id}>
-                  <h2>{tab.name}</h2>
-                  <p>{tab.type}</p>
-                  <p>{tab.location.city}</p>
-                  <p>{tab.description}</p>
-                  {/* Add other desired information from the 'tab' object */}
+                  <div style={{display:"flex"}}>
+                    <div className="logo-wrapper-depth">
+                        <img src={tab.logoUrl} alt="School logo"/>
+                    </div>
+                    <div style={{textAlign:"left", marginLeft: 30}}>
+                      <h2> <strong>{tab.name}</strong></h2>
+                      <div><small>{tab.type}</small></div>
+                      <div><small>{tab.location.city}</small></div>
+                    </div>
+                  </div>
+                  <div style={{marginTop:30}}>
+                    <div>
+                      <h3>Description</h3>
+                      <p>{tab.description}</p>
+                    </div>
+                    <div>
+                      <h3>Program</h3>
+                      <p>{tab.type}</p>
+                    </div>
+                    <div>
+                      <h3>Contact</h3>
+                      <p>{tab.pointOfContact.number}</p>
+                      <p><a href={tab.pointOfContact.contactUrl} target="_blank">Request information</a></p>
+                    </div>
+                    <div style={{textAlign:"center"}}>
+                    <button className="button-class">Apply now</button>
+                    </div>
+                  </div>
                 </Tab.Pane>
               ))}
           </Tab.Content>
