@@ -11,7 +11,7 @@ export default function Resources() {
                 <h1>Resources</h1>
                 <CarouselSchools />
                 <Row>
-                    <Col>
+                    <Col sm={12} md={6}>
                         <h2>Upcoming events</h2>
                         <CarouselEvents />
                     </Col>

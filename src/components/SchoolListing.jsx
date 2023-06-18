@@ -40,7 +40,7 @@ export default function SchoolListing() {
       <Row className="schools-container">
         <Col className="p-0 overflow-auto" style={{ maxHeight: "650px" }} md={4} sm={12}>
           <ListGroup>
-            <ListGroup.Item>Find South Florida Training Programs</ListGroup.Item>
+            <ListGroup.Item><h3>Find South Florida Training Programs</h3></ListGroup.Item>
             <input type="text" placeholder="Search" value={searchTerm} onChange={handleSearch} />
             {(!schools)
               ? <p>Loading...</p>
@@ -56,7 +56,17 @@ export default function SchoolListing() {
                   }}
                   onClick={() => handleTabClick(tab._id)}
                 >
-                  {tab.name}
+                  <div style={{display:"flex"}}>
+                    <div className="logo-wrapper">
+                        <img src={tab.logoUrl} alt="School logo"/>
+                    </div>
+                    <div style={{textAlign:"left", marginLeft: 30}}>
+                      {tab.name}
+                      <div><small>{tab.type}</small></div>
+                      <div><small>{tab.program}</small></div>
+                      <div><small>{tab.location.city}</small></div>
+                    </div>
+                  </div>
                 </ListGroup.Item>
               ))}
           </ListGroup>
@@ -67,7 +77,9 @@ export default function SchoolListing() {
               ? <p>Loading...</p>
               : schools.map((tab) => (
                 <Tab.Pane eventKey={tab._id} key={tab._id}>
-                  <h4>{tab.name}</h4>
+                  <h2>{tab.name}</h2>
+                  <p>{tab.type}</p>
+                  <p>{tab.location.city}</p>
                   <p>{tab.description}</p>
                   {/* Add other desired information from the 'tab' object */}
                 </Tab.Pane>
