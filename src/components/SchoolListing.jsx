@@ -38,7 +38,7 @@ export default function SchoolListing() {
   return (
     <Tab.Container id="list-group-tabs-example" defaultActiveKey='63c00d7afbff54dd5e32ef6e'>
       <Row className="schools-container">
-        <Col className="p-0 overflow-auto" style={{ maxHeight: "650px" }} md={4} sm={12}>
+        <Col className="p-0 overflow-auto" style={{ maxHeight: "700px" }} md={4} sm={12}>
           <ListGroup>
             <ListGroup.Item><h3>Find South Florida Training Programs</h3></ListGroup.Item>
             <input type="text" placeholder="Search" value={searchTerm} onChange={handleSearch} />

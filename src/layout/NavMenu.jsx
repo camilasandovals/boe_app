@@ -13,6 +13,7 @@ export default function NavMenu() {
               <Nav.Link as={Link}to="/about">About us</Nav.Link>
               <Nav.Link as={Link}to="/resources">Resources</Nav.Link>
               <Nav.Link as={Link}to="/profile">Profile</Nav.Link>
+              <Nav.Link as={Link}to="/login">Logout</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

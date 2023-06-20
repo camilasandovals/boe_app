@@ -13,6 +13,9 @@ export default function Login() {
 
                 <Form.Group className="mb-4" controlId="formBasicPassword">
                     <Form.Control type="password" placeholder="Password" />
+                    <Form.Text className="text-muted">
+                    Your password must be minimun 8 characters.
+                    </Form.Text>
                 </Form.Group>
                 <button className="button-class" type="submit">
                     Submit

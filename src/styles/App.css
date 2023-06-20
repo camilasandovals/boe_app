@@ -44,6 +44,7 @@ small {
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
+  margin: 20px;
 }
 
 .button-class:hover {
@@ -80,6 +81,8 @@ button:active {
 /* ------------------------------ LOGIN ------------------------------ */
 
 .login {
+  padding-top: 160px;
+  padding-bottom: 100px;
   justify-content: center;
   text-align: center;
 }
@@ -101,8 +104,6 @@ button:active {
     object-fit: cover;
   }
   
-
-  
   .video-content h1 {
     color: rgb(255, 255, 255)
   }
@@ -110,9 +111,12 @@ button:active {
 /* ------------------------------ SCHOOLS ------------------------------ */
 
 .schools-container{
-  background-color: #f1f1f1;
+  background-color: #f1f1f1b2;
   text-align: center;
-  margin: 7%;
+  margin-left: 5%;
+  margin-right: 3%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .logo-wrapper{
@@ -174,9 +178,15 @@ button:active {
 
 /* ------------------------------ FOOTER ------------------------------ */
 footer{
+  margin-top: 50px;
   padding-top: 20px;
-  padding-bottom: 10px;
   background-color: #EEEEEE;
   color: rgb(121, 121, 121);
   padding-left: 27%;
 } 
+
+@media (max-width: 776px) {
+  footer {
+    padding-left: 15%;
+  }
+}
