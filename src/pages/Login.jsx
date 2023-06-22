@@ -13,6 +13,7 @@ export default function Login() {
         <AppLayout>
             <Row className="login">
                 <h1>Login</h1>
+                <p>Already have an account? <a href="/signup">Sign up</a></p>
                 <LoginForm endpoint= {endpoint} setUser ={setUser}/>
             </Row>
         </AppLayout>

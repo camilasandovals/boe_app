@@ -8,17 +8,24 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 export const UserContext = createContext(null);
 
 function App() {
   const [user, setUser] = useState();
 
-  // useEffect(() => {
-  //   const oldUser = localStorage.getItem("user");
-  //   console.log({oldUser})
-  // })
+  useEffect(() => {
+    const oldUser = localStorage.getItem("user");
+    console.log({ oldUser });
+    const parsedUser = JSON.parse(oldUser);
+    if (parsedUser) {
+      setUser(parsedUser);
+      console.log(user);
+    }
+  
+  }, [setUser]);
+
   return (
     <UserContext.Provider value={[user, setUser]}>
       <BrowserRouter>

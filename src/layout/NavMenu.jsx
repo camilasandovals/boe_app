@@ -5,9 +5,10 @@ import { UserContext } from "../App"
 
 export default function NavMenu() {
   const [user, setUser] = useContext(UserContext)
-  
+
   const handleLogout = () => {
     setUser(null)
+    localStorage.removeItem("user")
   }
     return(
         <Navbar fixed='top' className="p-0 nav" variant="dark" expand="md">
@@ -19,7 +20,7 @@ export default function NavMenu() {
           <Navbar.Collapse id="navbar-nav">
             <Nav className="ms-auto"> 
               <Nav.Link as={Link}to="/">Home</Nav.Link>
-              <Nav.Link as={Link}to="/about">About us</Nav.Link>
+              <Nav.Link as={Link}to="/about">About</Nav.Link>
               <Nav.Link as={Link}to="/resources">Resources</Nav.Link>
               <Nav.Link as={Link}to="/profile">Profile</Nav.Link>
               {user ? (
