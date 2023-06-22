@@ -1,20 +1,55 @@
-import { Form, Button} from "react-bootstrap";
-import AppLayout from "../layout/AppLayout";
+import { Form } from "react-bootstrap";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login({endpoint, setUser}) {
+    const navigate = useNavigate()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+ 
+    const handleGetUser = async(e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(`http://localhost:3000/${endpoint}`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ email, password }),
+            });
+        
+            const data = await response.json();
+        
+            if (data.message) {
+              alert(data.message);
+              return;
+            }
+        
+            setUser(data);
+            localStorage.setItem("user", JSON.stringify(data))
+            navigate('/')
+            
+          } catch (err) {
+            alert(err);
+          }
+        };
+    
     return(
-            <Form className="form" >
+            <Form className="form" onSubmit={handleGetUser}>
+
                 <Form.Group className="mb-4" controlId="formBasicEmail">
-                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Control type="email" value={email} required={true} placeholder="Enter email"
+                     onChange={(e) => {setEmail(e.target.value)}}/>
                     <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
                     </Form.Text>
                 </Form.Group>
 
                 <Form.Group className="mb-4" controlId="formBasicPassword">
-                    <Form.Control type="password" placeholder="Password" />
+                    <Form.Control type="password" value={password} placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)} />
                     <Form.Text className="text-muted">
-                    Your password must be minimun 8 characters.
+                    Your password must be minimun 8 characters long.
                     </Form.Text>
                 </Form.Group>
                 <button className="button-class" type="submit">

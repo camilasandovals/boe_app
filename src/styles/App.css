@@ -119,6 +119,13 @@ button:active {
   margin-bottom: 10px;
 }
 
+.list-group-item.active {
+  /* background-color: #f0f2f5; */
+  background-color: #23c48411;
+  border-color: #437e582f;
+  color: black
+}
+
 .logo-wrapper{
   width: 75px;
   height: 75px;
@@ -151,9 +158,8 @@ button:active {
 .slider {
   margin: 40px;
 	background: white;
+	height: 150px;
 	
-	height: 100px;
-	margin: auto;
 	overflow:hidden;
 	position: relative;
 	width: auto;
@@ -166,9 +172,16 @@ button:active {
 }
 	
 	.slide {
-		height: 100px;
-		width: 120px;
+		height: 150px;
+		width: 100px;
+    margin: 30px;
+    
 	}
+
+  .slide img {
+    height: 50%;
+    filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.338));
+  }
 }
 
 @keyframes scroll {
@@ -176,10 +189,49 @@ button:active {
 	100% { transform: translateX(calc(-250px * 7))}
 }
 
+
+/* ------------------------------ BLOGS ------------------------------ */
+
+.blogs-container {
+  height: 80vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card-wrapper {
+  height: 19rem;
+  width: 20rem;
+  border-radius: 20px;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.338);
+  overflow: hidden;
+  text-align: center;
+  margin: 20px
+}
+
+.card-blog-image{
+  height: 70%;
+  width: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.text-container {
+  padding: 20px;
+}
+
+.text-container p {
+  font-weight: 600;
+}
+
 /* ------------------------------ FOOTER ------------------------------ */
-footer{
+
+footer {
   margin-top: 50px;
   padding-top: 20px;
+  position: fixed;
+  bottom: 0;
   background-color: #EEEEEE;
   color: rgb(121, 121, 121);
   padding-left: 27%;
@@ -190,3 +242,6 @@ footer{
     padding-left: 15%;
   }
 }
+
+
+

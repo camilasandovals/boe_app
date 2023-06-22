@@ -1,13 +1,19 @@
-import { Form, Button, Container, Row, Col} from "react-bootstrap";
+import { Row} from "react-bootstrap";
 import AppLayout from "../layout/AppLayout";
-import Login from "../components/LoginForm";
+import LoginForm from "../components/LoginForm"
+import { useContext } from "react";
+import { UserContext } from "../App";
 
-export default function Signup() {
+
+export default function Login() {
+   const [user, setUser] = useContext(UserContext)
+   
+   const endpoint = "signup"
     return(
         <AppLayout>
             <Row className="login">
                 <h1>Sign up</h1>
-                <Login />
+                <LoginForm endpoint= {endpoint} setUser ={setUser}/>
             </Row>
         </AppLayout>
     )

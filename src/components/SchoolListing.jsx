@@ -36,7 +36,7 @@ export default function SchoolListing() {
   };
 
   return (
-    <Tab.Container id="list-group-tabs-example" defaultActiveKey='63c00d7afbff54dd5e32ef6e'>
+    <Tab.Container  defaultActiveKey='63c00d7afbff54dd5e32ef6e'>
       <Row className="schools-container">
         <Col className="p-0 overflow-auto" style={{ maxHeight: "700px" }} md={4} sm={12}>
           <ListGroup>
@@ -45,7 +45,7 @@ export default function SchoolListing() {
             {(!schools)
               ? <p>Loading...</p>
               : filterTabs(schools).map((tab) => (
-                <ListGroup.Item
+                <ListGroup.Item className="tab"
                   action
                   eventKey={tab._id}
                   key={tab._id}
