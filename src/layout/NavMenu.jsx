@@ -14,7 +14,7 @@ export default function NavMenu() {
         <Navbar fixed='top' className="p-0 nav" variant="dark" expand="md">
         <Container>
           <Navbar.Brand href="/"><img src="./images/boe.png" alt="BOE logo" height="50"/>
-            <span className="m-5">Bringing opportunities everywhere</span>
+            <span className="company-name">Bringing opportunities everywhere</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar-nav" />
           <Navbar.Collapse id="navbar-nav">
@@ -22,7 +22,8 @@ export default function NavMenu() {
               <Nav.Link as={Link}to="/">Home</Nav.Link>
               <Nav.Link as={Link}to="/about">About</Nav.Link>
               <Nav.Link as={Link}to="/resources">Resources</Nav.Link>
-              <Nav.Link as={Link}to="/profile">Profile</Nav.Link>
+              {user ? (
+                <Nav.Link as={Link}to="/profile">Profile</Nav.Link>) : ""}
               {user ? (
                 <Nav.Link as={Link} to="/login" onClick={handleLogout}>Logout</Nav.Link>
                 ): (

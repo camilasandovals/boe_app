@@ -6,9 +6,18 @@
   --bg-color-dark: #5d5e5e;
   --bg-color-mid: #f0f2f5;
   --bg-color-light: #f8f9fa;
+  --black-a08: rgba(0,0,0,0.08);
+  --black-a30: rgba(0,0,0,0.3);
+  --color-shadow: var(--black-a30);
+  --color-border-faint: var(--black-a08);
+  --elevation-lined: 0px 0px 0px 1px var(--color-border-faint);
+  --elevation-raised: var(--elevation-lined),0px 4px 4px var(--color-shadow);
 
 }
-
+body {
+  background-color: var(--bg-color-light);
+  margin: 0;
+}
 h1 {
   margin-top: 100px;
   margin-bottom: 1em;
@@ -36,8 +45,9 @@ small {
 /* ------------------------------ BUTTON ------------------------------ */
 .button-class {
   padding: 0.8em 1.5em;
-  color: #000;
-  background-color: #fff;
+  color: #fff;
+  background-color:  rgb(101, 155, 120);
+  box-shadow: rgba(67,126,88,1);
   border: none;
   border-radius: 45px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -48,10 +58,8 @@ small {
 }
 
 .button-class:hover {
-  background-color:  rgb(101, 155, 120);
-  box-shadow: rgba(67,126,88,1);
+  background-color: var(--logo-color);
   color: #fff;
-  transform: translateY(-7px);
 }
 
 button:active {
@@ -62,6 +70,7 @@ button:active {
 .nav {
   background: rgb(67,126,88);
   background: linear-gradient(126deg, rgba(67,126,88,1) 25%, rgba(144,222,171,1)40%, rgba(67,126,88,1) 70%);
+  box-shadow: var(--elevation-raised);
 }
 .nav a {
   color: var(--bg-color-light);
@@ -69,6 +78,16 @@ button:active {
 
 .nav a:hover{
   color: var(--logo-color-hover);
+}
+
+.company-name {
+  margin-left: 30px;
+}
+
+@media (max-width: 990px) {
+  .company-name{
+    display: none;
+  }
 }
 
 /* ------------------------------ FORM ------------------------------ */
@@ -91,32 +110,57 @@ button:active {
 
 
 .video-container {
+    display: flex;
     padding-top: 60px;
     width: 100%;
     height: 500px;
     overflow: hidden;
     z-index: -1;
+    
   }
   
   .video-container video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-  
-  .video-content h1 {
-    color: rgb(255, 255, 255)
+   
   }
 
+
+.video-content {
+  position: absolute;
+  left: 49%;
+  top: 35%;
+  background-color: rgba(144, 144, 144, 0.166);
+  margin-top: 40px;
+  padding: 15px;
+  border-radius: 6px;
+  /* transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),0 0  0 3px rgb(190, 190, 190), 0.3em 0.3em 1em rgba(0,0,0,0.3); */
+  border: 1px solid #a6a6a6;
+  box-shadow: 1px 1px 1px #dddddd;
+} 
+  
+  .video-content h1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 1px #3a3a3a;
+  }
+
+
+  
 /* ------------------------------ SCHOOLS ------------------------------ */
 
 .schools-container{
-  background-color: #f1f1f1b2;
+  background-color: white;
   text-align: center;
-  margin-left: 5%;
-  margin-right: 3%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 0px;
+}
+.list-group{
+  border-radius: 0;
 }
 
 .list-group-item.active {
@@ -124,6 +168,11 @@ button:active {
   background-color: #23c48411;
   border-color: #437e582f;
   color: black
+}
+
+.depth-listing {
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  overflow: scroll;
 }
 
 .logo-wrapper{
@@ -152,6 +201,7 @@ button:active {
     display: none;
   }
 }
+
 
 /* ------------------------------ SCHOOLS CAROUSEL ------------------------------ */
 
@@ -204,7 +254,8 @@ button:active {
   height: 19rem;
   width: 20rem;
   border-radius: 20px;
-  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.338);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.179);
+  border: 1px solid rgba(0, 0, 0, 0.179);
   overflow: hidden;
   text-align: center;
   margin: 20px

@@ -5,6 +5,9 @@ export default function Hero () {
                     <video autoPlay muted loop>
                     <source src="./images/video.mp4" type="video/mp4" /> 
                     </video>
+                    <div className="video-content">
+                    <h1>No college degree? No problem</h1>
+                    </div>
                 </div>
         </header>
     )

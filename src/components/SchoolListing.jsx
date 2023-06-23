@@ -1,5 +1,7 @@
-import { Col, Tab, Row, ListGroup } from "react-bootstrap";
+import { Col, Tab, Row, ListGroup, Accordion, Stack, Form } from "react-bootstrap";
 import { useEffect, useRef, useState } from "react";
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 export default function SchoolListing() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -38,10 +40,47 @@ export default function SchoolListing() {
   return (
     <Tab.Container  defaultActiveKey='63c00d7afbff54dd5e32ef6e'>
       <Row className="schools-container">
-        <Col className="p-0 overflow-auto" style={{ maxHeight: "700px" }} md={4} sm={12}>
+        <Col className="p-0 overflow-auto" style={{ maxHeight: "704px" }} md={5} sm={12}>
           <ListGroup>
             <ListGroup.Item><h3>Find South Florida Training Programs</h3></ListGroup.Item>
             <input type="text" placeholder="Search" value={searchTerm} onChange={handleSearch} />
+            <Stack direction="horizontal" gap={1}>
+              <DropdownButton
+                id="dropdown-button-dark-example2"
+                variant="secondary"
+                title="Type of program"
+                className="mt-2"
+                data-bs-theme="light">
+                <Dropdown.Item >
+                <Form.Check type="radio" aria-label="radio 1" />
+                <small>Vocational school</small></Dropdown.Item>
+                <Dropdown.Item >
+                <Form.Check type="radio" aria-label="radio 1" />
+                Apprenteship</Dropdown.Item>
+              
+              </DropdownButton>
+              <DropdownButton
+                id="dropdown-button-dark-example2"
+                variant="secondary"
+                title="Location"
+                className="mt-2"
+                data-bs-theme="light">
+                <Dropdown.Item href="#/action-1" >Action</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              </DropdownButton>
+
+              <DropdownButton
+                id="dropdown-button-dark-example2"
+                variant="secondary"
+                title="Industry"
+                className="mt-2"
+                data-bs-theme="light">
+                <Dropdown.Item href="#/action-1" >Action</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              </DropdownButton>
+            </Stack>
             {(!schools)
               ? <p>Loading...</p>
               : filterTabs(schools).map((tab) => (
@@ -71,7 +110,7 @@ export default function SchoolListing() {
               ))}
           </ListGroup>
         </Col>
-        <Col sm={8}>
+        <Col  className="depth-listing" style={{ maxHeight: "704px" }} md={7} sm={8}>
           <Tab.Content style={{padding:40, textAlign:"left"}}>
             {(!schools)
               ? <p>Loading...</p>

@@ -52,7 +52,7 @@ export default function Login({endpoint, setUser}) {
                     </Form.Text>
                 </Form.Group>
                 <button className="button-class" type="submit">
-                    Submit
+                    {endpoint === "signup"? "Sign up" : "Login"}
                 </button>
             </Form>
     )

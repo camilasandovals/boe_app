@@ -1,4 +1,5 @@
 import { Col, Row } from "react-bootstrap";
+import { Facebook, Instagram, Linkedin } from "react-bootstrap-icons";
 
 export default function Footer() {
     return(
@@ -13,9 +14,9 @@ export default function Footer() {
             </div>
             <div className="col">
                 <p><strong>Social media</strong></p>
-                <p>Instagram</p>
-                <p>786-281-8944</p>
-                <p>Facebook</p>
+                <Instagram />
+                <Facebook />
+                <Linkedin />
             </div>
             </div>
         </div>
