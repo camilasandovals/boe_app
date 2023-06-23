@@ -6,7 +6,7 @@ export default function AppLayout({children}) {
         <>
             <NavMenu />
             {children}
-            {/* <Footer /> */}
+            <Footer />
         </>
     )
 }

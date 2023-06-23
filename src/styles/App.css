@@ -279,15 +279,22 @@ button:active {
 /* ------------------------------ FOOTER ------------------------------ */
 
 footer {
-  margin-top: 50px;
-  padding-top: 20px;
-  position: fixed;
-  bottom: 0;
+  margin-top: 30px;
+  height: 190px;
+  width: 100%;
   background-color: #EEEEEE;
   color: rgb(121, 121, 121);
-  padding-left: 27%;
+  display: grid;
+  place-items: center;
+  position: relative;
+  bottom: 0;
 } 
 
+.footer-container{
+  width: 70%;
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr;
+}
 @media (max-width: 776px) {
   footer {
     padding-left: 15%;
