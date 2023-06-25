@@ -11,7 +11,7 @@ export default function Resources() {
                 <h1>Resources</h1>
                 <CarouselSchools />
                 <Row>
-                    <Col sm={12} md={6}>
+                    <Col sm={12} md={12} lg={6}>
                         <h2>Upcoming events</h2>
                         <CarouselEvents />
                     </Col>
@@ -21,10 +21,8 @@ export default function Resources() {
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
                         <h2>Visit our blog</h2>
                         <CardBlog />
-                    </Col>
                 </Row>
             </Container>
         </AppLayout>

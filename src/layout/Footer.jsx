@@ -1,4 +1,4 @@
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Form } from "react-bootstrap";
 import { Facebook, Instagram, Linkedin } from "react-bootstrap-icons";
 
 export default function Footer() {
@@ -18,7 +18,9 @@ export default function Footer() {
                 <Linkedin size={30} />
             </div>
             <div>
-                <h3>Subscribe to our newsletter</h3>
+                <h3>Never miss a moment with us</h3>
+                <Form.Control className="me-auto" placeholder="Add your email here..." />
+                <button className="button-class">Subscribe</button>
             </div>
             </div>
         </footer>

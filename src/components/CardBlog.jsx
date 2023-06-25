@@ -15,6 +15,7 @@ function CardBlog() {
 
 
   return (
+    
     <section className='blogs-container'>
       {!blogs? "Loading" : blogs.slice(0,6).map((blog) => (      
         <div key ={blog.id} className = 'card-wrapper'>
@@ -27,6 +28,7 @@ function CardBlog() {
       </div>
       ))}
     </section>
+
     
 
   );

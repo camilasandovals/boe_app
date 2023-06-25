@@ -1,45 +1,31 @@
+import { useEffect, useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 
 function CarouselEvents() {
+const [events, setEvents] = useState('')
+
+  useEffect (() => {
+    fetch("http://localhost:3000/api/events")
+    .then(response => response.json())
+    .then(setEvents)
+    .catch(e => alert(e))
+  } ,[])
+
   return (
     <Carousel fade>
+      {!events? "loading" : events.map((event) => (
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="/images/boe.png"
+          src={event.image}
           alt="First slide"
         />
-        <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
+        <div className='carousel-content'>
+          <h3>{event.title}</h3>
+          <p>{event.description}</p>
+        </div>
       </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src="/images/boe.png"
-          alt="Second slide"
-        />
-
-        <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src="/images/boe.png"
-          alt="Third slide"
-        />
-
-        <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
-        </Carousel.Caption>
-      </Carousel.Item>
+      ))}
     </Carousel>
   );
 }
