@@ -7,7 +7,7 @@ export default function Profile() {
             <Container className="profile">
                 <Row>
                     <Col>
-                        <h1>this is profile</h1>
+                        <h1>Account</h1>
                     </Col>
                 </Row>
             </Container>

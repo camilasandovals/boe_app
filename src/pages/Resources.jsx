@@ -16,12 +16,26 @@ export default function Resources() {
                         <CarouselEvents />
                     </Col>
                     <Col>
-                        <h2>Exclusive content</h2>
-                        <button className="button-class">Create account</button>
+                        <h2>Exclusive Content</h2>
+                        <div className="exclusive-container">
+                            <div className="exclusive-text-container">
+                            <div>
+                                <h3>Benefits</h3>
+                                <p>Exclusive content</p>
+                                <p>Exclusive content</p>
+                                <p>Exclusive content</p>
+                            </div>
+                            <div>
+                                <p><strong>Create account to unlock</strong></p>
+                                <button className="button-class">Create Account</button>
+                            </div>
+                            </div>
+                            <img src="/images/Guidecover.png" alt="A guide to careers in the skilled trades" />
+                        </div>
                     </Col>
                 </Row>
                 <Row>
-                        <h2>Visit our blog</h2>
+                        <h2>Visit Our Blog</h2>
                         <CardBlog />
                 </Row>
             </Container>

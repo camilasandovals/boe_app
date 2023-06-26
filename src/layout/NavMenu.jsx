@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { Navbar, Container, Nav, NavLink } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { UserContext } from "../App"
+import { House } from "react-bootstrap-icons"
 
 export default function NavMenu() {
   const [user, setUser] = useContext(UserContext)
@@ -19,11 +20,13 @@ export default function NavMenu() {
           <Navbar.Toggle aria-controls="navbar-nav" />
           <Navbar.Collapse id="navbar-nav">
             <Nav className="ms-auto"> 
+              <House />
               <Nav.Link as={Link}to="/">Home</Nav.Link>
+              
               <Nav.Link as={Link}to="/about">About</Nav.Link>
               <Nav.Link as={Link}to="/resources">Resources</Nav.Link>
               {user ? (
-                <Nav.Link as={Link}to="/profile">Profile</Nav.Link>) : ""}
+                <Nav.Link as={Link}to="/profile">Account</Nav.Link>) : ""}
               {user ? (
                 <Nav.Link as={Link} to="/login" onClick={handleLogout}>Logout</Nav.Link>
                 ): (
