@@ -37,7 +37,7 @@ export default function Login({endpoint, setUser}) {
     return(
             <Form className="form" onSubmit={handleGetUser}>
                 <Form.Group className="mb-4" controlId="formBasicEmail">
-                    <Form.Control type="email" value={email} required={true} placeholder="Enter email"
+                    <Form.Control type="email" value={email} required={true} placeholder="Email"
                      onChange={(e) => {setEmail(e.target.value)}}/>
                     <Form.Text className="text-muted">
                     We'll never share your email with anyone else.

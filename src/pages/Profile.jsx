@@ -13,10 +13,13 @@ export default function Profile() {
                 <Row>
                     <Col>
                         <h1>Account</h1>
-                        <p>{user?.email}</p>
-                        {user.image? <img src={user.image} alt="User profile" /> : <img src="/images/user-avatar.png" alt="Default user image" />}
-                        <SubscribeModal />
+                        
                     </Col>
+                </Row>
+                <Row>
+                    <p>{user?.email}</p>
+                    {user.image? <img src={user.image} alt="User profile" /> : <img src="/images/user-avatar.png" alt="Default user image" />}
+                    <SubscribeModal />
                 </Row>
             </Container>
         </AppLayout>

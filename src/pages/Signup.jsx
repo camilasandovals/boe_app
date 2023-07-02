@@ -12,8 +12,8 @@ export default function Login() {
     return(
         <AppLayout>
             <Row className="login">
-                <h1>Sign up</h1>
-                <p>Already a member? <a href="/login">Login</a></p>
+                <h2>Looking to start a career in a skilled trade?</h2>
+                <p>Already a member? <a href="/login"><strong>Login</strong></a></p>
                 <LoginForm endpoint= {endpoint} setUser ={setUser}/>
             </Row>
         </AppLayout>
