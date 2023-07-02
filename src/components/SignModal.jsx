@@ -16,16 +16,16 @@ function SignModal() {
 
   return (
     <>
-      <Modal show={show} onHide={handleClose} className='d-flex sign-modal'>
+      <Modal show={show} onHide={handleClose} className='sign-modal'>
         <Modal.Header closeButton>
         </Modal.Header>
         <h3 className='text-center'>You're signed out</h3>
-        <Modal.Body><p>Sign in for the full experience</p></Modal.Body>
-        <div className='text-center'>
-          <button className='button-class m-2 mb-3' onClick={() => navigate("/login")}>
+        <Modal.Body><p className='text-center'>Sign in for the full experience</p></Modal.Body>
+        <div className='text-center mb-4'>
+          <button className='button-class m-2 ' onClick={() => navigate("/login")}>
             Sign in
           </button>
-          <button className='button-class m-2 mb-3' onClick={() => navigate("/signup")}>
+          <button className='button-class m-2' onClick={() => navigate("/signup")}>
             Sign up
           </button>
         </div>
