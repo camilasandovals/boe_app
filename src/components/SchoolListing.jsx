@@ -77,7 +77,7 @@ export default function SchoolListing() {
     <Tab.Container  defaultActiveKey='63c00d7afbff54dd5e32ef6e'>
       <Row className="schools-container">
         <Col className="p-0 overflow-auto" style={{ maxHeight: "704px" }} md={5} sm={12}>
-          <ListGroup>
+          <ListGroup className="border-list-group">
             <ListGroup.Item><h3>Find South Florida Training Programs</h3></ListGroup.Item>
             <InputGroup >
             <InputGroup.Text>
@@ -157,7 +157,7 @@ export default function SchoolListing() {
                     </div>
                   </ListGroup.Item>
                 ))
-                : <p>No schools found for your criteria.</p>
+                : <p className="m-5">No schools found for your criteria.</p>
             }
 
           </ListGroup>

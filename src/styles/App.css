@@ -452,6 +452,9 @@ footer {
   
 }
 
+.footer a {
+  color: var(--bg-color-dark);
+}
 .subscription-container {
   width: 400px;
   display: flex;
