@@ -2,7 +2,8 @@ import { useContext } from "react"
 import { Navbar, Container, Nav, NavLink } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { UserContext } from "../App"
-import { House } from "react-bootstrap-icons"
+import { DoorClosedFill, DoorOpenFill, FileEarmarkTextFill, HouseDoorFill, PersonFill } from "react-bootstrap-icons"
+
 
 export default function NavMenu() {
   const [user, setUser] = useContext(UserContext)
@@ -19,18 +20,15 @@ export default function NavMenu() {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar-nav" />
           <Navbar.Collapse id="navbar-nav">
-            <Nav className="ms-auto"> 
-              <House />
-              <Nav.Link as={Link}to="/">Home</Nav.Link>
-              
-              <Nav.Link as={Link}to="/about">About</Nav.Link>
-              <Nav.Link as={Link}to="/resources">Resources</Nav.Link>
+            <Nav className="ms-auto">             
+              <Nav.Link as={Link}to="/about"><div className="text-center"><HouseDoorFill /></div><div>Home</div></Nav.Link>
+              <Nav.Link as={Link}to="/resources"><div className="text-center"><FileEarmarkTextFill /></div><div>Resources</div></Nav.Link>
               {user ? (
-                <Nav.Link as={Link}to="/profile">Account</Nav.Link>) : ""}
+                <Nav.Link as={Link}to="/profile"><div className="text-center"><PersonFill size={19}/></div><div>Profile</div></Nav.Link>) : ""}
               {user ? (
-                <Nav.Link as={Link} to="/login" onClick={handleLogout}>Logout</Nav.Link>
+                <Nav.Link as={Link} to="/login" onClick={handleLogout}><div className="text-center"><DoorOpenFill /></div><div>Logout</div></Nav.Link>
                 ): (
-                  <NavLink as={Link} to="/login">Login</NavLink>
+                  <NavLink as={Link} to="/login"><div className="text-center"><DoorClosedFill /></div><div>Login</div></NavLink>
                 )
               }
             </Nav>

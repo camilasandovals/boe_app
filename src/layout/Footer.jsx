@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="footer-container">
             <div>
                 
-                <h3>Never miss a moment with us...</h3>
+                <h4>Never miss a moment with us...</h4>
                 <div className="subscription-container">
                 <Form.Control className="me-auto" placeholder="Add your email here..." />
                 <button className="button-class">Subscribe</button>
