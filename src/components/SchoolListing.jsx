@@ -1,4 +1,5 @@
-import { Col, Tab, Row, ListGroup, Accordion, Stack, Form, Modal, Button } from "react-bootstrap";
+import { Col, Tab, Row, ListGroup, Accordion, Stack, Form, Modal, Button, InputGroup } from "react-bootstrap";
+import { Search } from 'react-bootstrap-icons';
 import { useEffect, useRef, useState } from "react";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -78,14 +79,23 @@ export default function SchoolListing() {
         <Col className="p-0 overflow-auto" style={{ maxHeight: "704px" }} md={5} sm={12}>
           <ListGroup>
             <ListGroup.Item><h3>Find South Florida Training Programs</h3></ListGroup.Item>
-            <input type="text" placeholder="Search" value={searchTerm} onChange={handleSearch} />
-            
-            <Stack direction="horizontal" gap={1}>
+            <InputGroup >
+            <InputGroup.Text>
+              <Search />
+            </InputGroup.Text>
+            <Form.Control 
+              type="text" 
+              placeholder="Search" 
+              value={searchTerm} 
+              onChange={handleSearch} 
+            />
+          </InputGroup>
+            <Stack direction="horizontal" gap={1} className=" justify-content-center m-3">
             <DropdownButton
               id="dropdown-button-dark-example1"
               variant="secondary"
               title="Location"
-              className="mt-2">
+              >
               {(!schools)
                 ? <p>Loading...</p>
                 : Array.from(new Set(schools.map((school) => school.location.city))).map((city) => (
@@ -97,7 +107,7 @@ export default function SchoolListing() {
               id="dropdown-button-dark-example1"
               variant="secondary"
               title="Type of program"
-              className="mt-2">
+              >
               {(!schools)
                 ? <p>Loading...</p>
                 : Array.from(new Set(schools.map((school) => school.type))).map((type) => (
@@ -109,7 +119,7 @@ export default function SchoolListing() {
               id="dropdown-button-dark-example1"
               variant="secondary"
               title="Industry"
-              className="mt-2">
+              >
               {(!schools)
                 ? <p>Loading...</p>
                 : Array.from(new Set(schools.map((school) => school.industry))).map((industry) => (

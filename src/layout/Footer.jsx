@@ -5,25 +5,24 @@ export default function Footer() {
     return(
         <footer className="footer">
         <div className="footer-container">
-            <div>
-                
-                <h4>Never miss a moment with us...</h4>
+            <div className="footer-subscribe">
+                <p><strong>Never miss a moment with us...</strong></p>
                 <div className="subscription-container">
                 <Form.Control className="me-auto" placeholder="Add your email here..." />
                 <button className="button-class">Subscribe</button>
                 </div>
             </div>
             <div >
-                {/* <p><strong>Social media</strong></p> */}
-                <Instagram size={30} style={{marginRight:20}}/> 
-                <Facebook size={30} style={{marginRight:20}}/> 
-                <Linkedin size={30} />
+                
+                <Instagram size={20} style={{marginRight:20}}/> 
+                <Facebook size={20} style={{marginRight:20}}/> 
+                <Linkedin size={20} />
             </div>
             <div >
-                <p><strong>Contact us</strong></p>
-                <p>305-903-2980</p>
-                <p>786-281-8944</p>
-                <p>info@boepartners.com</p>
+                <small><strong>Contact us</strong></small>
+                <small>305-903-2980</small>
+                <small>786-281-8944</small>
+                <small>info@boepartners.com</small>
             </div>
             </div>
         </footer>

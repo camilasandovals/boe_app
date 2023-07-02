@@ -36,7 +36,7 @@ export default function Login({endpoint, setUser}) {
     
     return(
             <Form className="form" onSubmit={handleGetUser}>
-                <Form.Group className="mb-4" controlId="formBasicEmail">
+                <Form.Group className="m-2" controlId="formBasicEmail">
                     <Form.Control type="email" value={email} required={true} placeholder="Email"
                      onChange={(e) => {setEmail(e.target.value)}}/>
                     <Form.Text className="text-muted">
@@ -44,7 +44,7 @@ export default function Login({endpoint, setUser}) {
                     </Form.Text>
                 </Form.Group>
 
-                <Form.Group className="mb-4" controlId="formBasicPassword">
+                <Form.Group className="m-2" controlId="formBasicPassword">
                     <Form.Control type="password" value={password} placeholder="Password"
                     onChange={(e) => setPassword(e.target.value)} />
                     <Form.Text className="text-muted">
@@ -52,7 +52,7 @@ export default function Login({endpoint, setUser}) {
                     </Form.Text>
                 </Form.Group>
                 <button className="button-class" type="submit">
-                    {endpoint === "signup"? "Sign up" : "Login"}
+                    <strong>{endpoint === "signup"? "Sign up" : "Login"}</strong>
                 </button>
             </Form>
     )
