@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { Navbar, Container, Nav, NavLink } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { UserContext } from "../App"
-import { DoorClosedFill, DoorOpenFill, FileEarmarkTextFill, HouseDoorFill, PersonFill } from "react-bootstrap-icons"
+import { DoorClosedFill, DoorOpenFill, FileEarmarkTextFill, HouseDoorFill, PeopleFill, PersonFill } from "react-bootstrap-icons"
 
 
 export default function NavMenu() {
@@ -21,7 +21,8 @@ export default function NavMenu() {
           <Navbar.Toggle aria-controls="navbar-nav" />
           <Navbar.Collapse id="navbar-nav">
             <Nav className="ms-auto">             
-              <Nav.Link as={Link}to="/about"><div className="text-center"><HouseDoorFill /></div><div>Home</div></Nav.Link>
+              <Nav.Link as={Link}to="/"><div className="text-center"><HouseDoorFill /></div><div>Home</div></Nav.Link>
+              <Nav.Link as={Link}to="/about"><div className="text-center"><PeopleFill /></div><div>About</div></Nav.Link>
               <Nav.Link as={Link}to="/resources"><div className="text-center"><FileEarmarkTextFill /></div><div>Resources</div></Nav.Link>
               {user ? (
                 <Nav.Link as={Link}to="/profile"><div className="text-center"><PersonFill size={19}/></div><div>Profile</div></Nav.Link>) : ""}

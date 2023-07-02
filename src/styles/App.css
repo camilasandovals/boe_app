@@ -93,6 +93,15 @@ button:active {
   
 }
 
+
+.about-image {
+  width: 90%;
+  box-shadow: var(--elevation-raised);
+  height: 300px;
+  object-fit: cover;
+  object-position: top;
+}
+
 /* ------------------------------ RESOURCES ------------------------------ */
 
 .resources {
