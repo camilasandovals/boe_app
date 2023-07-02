@@ -199,7 +199,7 @@ button:active {
   position: absolute;
   left: 55%;
   top: 30%;
-  background-color: rgba(68, 68, 68, 0.089);
+  background-color: rgba(68, 68, 68, 0.337);
   margin-top: 40px;
   padding: 15px;
   border-radius: 6px;
@@ -336,9 +336,11 @@ button:active {
   overflow: hidden ;
   height: 500px;
   width: 100%;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.179);
   border: 1px solid rgba(0, 0, 0, 0.179);
   margin-bottom: 25px;
+  margin-top: 40px;
+  margin-bottom: 80px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 
@@ -362,40 +364,43 @@ button:active {
   border-radius: 20px;
   overflow: hidden;
   background-color: var(--white);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.179);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   border: 1px solid rgba(0, 0, 0, 0.179);
-  display: flex;
+  margin-top: 40px;
+  margin-bottom: 80px;
 }
 
 .exclusive-text-container {
-  width: 50%;
-  display: flex;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  flex-direction: column;
-  justify-content: space-between;
+  margin-top: 20px;
 }
 
 
+.exclusive-image-container {
+  height: 70%;
+  width: auto;
+}
+
 .exclusive-container img {
-  width: 50%;
+  height: 100%;
+  
 }
 
 /* ------------------------------ BLOGS ------------------------------ */
 
 .blogs-container {
-  height: 80vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 40px;
 }
 
 .card-wrapper {
-  height: 19rem;
+  height: 18rem;
   width: 20rem;
   border-radius: 20px;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.179);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   border: 1px solid rgba(0, 0, 0, 0.179);
   overflow: hidden;
   margin: 35px;
