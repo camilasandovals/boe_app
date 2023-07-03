@@ -9,6 +9,7 @@ import Signup from './pages/Signup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 import { createContext, useState, useEffect } from 'react';
+import Account from './pages/Account';
 
 export const UserContext = createContext(null);
 
@@ -36,6 +37,7 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
+          <Route path='/account' element={<Account />} />
           <Route path='*' element={<Error404 />} />
         </Routes>
       </BrowserRouter>

@@ -1,6 +1,7 @@
 import { Form } from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import UserInfo from "./UserInfo";
 
 export default function Login({endpoint, setUser}) {
     const navigate = useNavigate()
@@ -27,7 +28,7 @@ export default function Login({endpoint, setUser}) {
         
             setUser(data);
             localStorage.setItem("user", JSON.stringify(data))
-            navigate('/')
+            endpoint === "signup"? navigate('/account') : navigate('/')
             
           } catch (err) {
             alert(err);

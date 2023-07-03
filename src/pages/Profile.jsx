@@ -13,7 +13,7 @@ export default function Profile() {
                 <Row>
                     <Col>
                         <h1>Account</h1>
-                        
+                        <p>Subscribe to our newsletter for free entry to BOE's next event and updates on vocational training programs in South Florida!</p>
                     </Col>
                 </Row>
                 <Row>
