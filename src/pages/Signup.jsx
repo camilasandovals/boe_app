@@ -1,4 +1,4 @@
-import { Row} from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import AppLayout from "../layout/AppLayout";
 import LoginForm from "../components/LoginForm"
 import { useContext } from "react";
@@ -12,7 +12,8 @@ export default function Login() {
     return(
         <AppLayout>
             <Row className="login">
-                <h2>Looking to start a career in a skilled trade?</h2>
+                <h3>Looking to start a career in a skilled trade?</h3>
+                <h2>Sign up</h2>
                 <p>Already a member? <a href="/login"><strong>Login</strong></a></p>
                 <LoginForm endpoint= {endpoint} setUser ={setUser}/>
             </Row>

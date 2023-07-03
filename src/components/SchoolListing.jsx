@@ -1,10 +1,11 @@
 import { Col, Tab, Row, ListGroup, Accordion, Stack, Form, Modal, Button, InputGroup } from "react-bootstrap";
-import { Search } from 'react-bootstrap-icons';
+import { HeartFill, Search } from 'react-bootstrap-icons';
 import { useEffect, useRef, useState } from "react";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import "../styles/SchoolsModal.css"
 import Apply from "./Apply";
+import Favorites from "./Favorites";
 
 
 export default function SchoolListing() {
@@ -155,6 +156,7 @@ export default function SchoolListing() {
                         <div><small>{tab.program}</small></div>
                         <div><small>{tab.location.city}</small></div>
                       </div>
+                      <Favorites />
                     </div>
                   </ListGroup.Item>
                 ))
@@ -179,6 +181,7 @@ export default function SchoolListing() {
                       <div><small>{tab.type}</small></div>
                       <div><small>{tab.location.city}</small></div>
                     </div>
+                    <Favorites />
                   </div>
                   <div style={{marginTop:30}}>
                     <div>

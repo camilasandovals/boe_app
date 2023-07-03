@@ -22,6 +22,8 @@ function Subscribe() {
       alert(data.message);
       return;
     }
+
+    
     
   } catch (err) {
     alert(err);
