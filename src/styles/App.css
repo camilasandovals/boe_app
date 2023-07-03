@@ -90,10 +90,22 @@ button:active {
   transform: translateY(-1px);
 }
 
-/* ------------------------------ SIGN MODAL ------------------------------ */
+/* ------------------------------ ACCONT ------------------------------ */
 
+.form-account {
+  height: 430px;
+  padding-top: 1em;
+  width: 500px;
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: 0px 0px 1px 1px var(--bg-color-mid);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  margin-top: 10px;
+}
 
-
+.checkbox-container{
+  height: 20px;
+}
 /* ------------------------------ ABOUT ------------------------------ */
 
 .about {
@@ -168,7 +180,7 @@ button:active {
 
 .login {
   height: 80vh;
-  padding-top: 120px;
+  padding-top: 110px;
   padding-bottom: 50px;
   justify-content: center;
   text-align: center;

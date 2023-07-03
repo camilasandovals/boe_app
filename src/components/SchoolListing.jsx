@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import "../styles/SchoolsModal.css"
+import Apply from "./Apply";
 
 
 export default function SchoolListing() {
@@ -194,7 +195,8 @@ export default function SchoolListing() {
                       <p><a href={tab.pointOfContact.contactUrl} target="_blank">Request information</a></p>
                     </div>
                     <div style={{textAlign:"center"}}>
-                    <button className="button-class">Apply now</button>
+                    <Apply />
+                    
                     </div>
                   </div>
                 </Tab.Pane>
