@@ -2,7 +2,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import AppLayout from "../layout/AppLayout";
 import { useContext } from "react";
 import { UserContext } from "../App";
-import SubscribeModal from "../components/SubscribeModal";
+import Subscribe from "../components/Subscribe";
 
 export default function Profile() {
     const [user, setUser] = useContext(UserContext)
@@ -19,7 +19,7 @@ export default function Profile() {
                 <Row>
                     <p>{user?.email}</p>
                     {user.image? <img src={user.image} alt="User profile" /> : <img src="/images/user-avatar.png" alt="Default user image" />}
-                    <SubscribeModal />
+                    <Subscribe />
                 </Row>
             </Container>
         </AppLayout>

@@ -1,16 +1,13 @@
 import { Col, Row, Form } from "react-bootstrap";
 import { Facebook, Instagram, Linkedin } from "react-bootstrap-icons";
+import Subscribe from "../components/Subscribe";
 
 export default function Footer() {
     return(
         <footer className="footer">
         <div className="footer-container">
             <div className="footer-subscribe">
-                <p><strong>Never miss a moment with us...</strong></p>
-                <div className="subscription-container">
-                <Form.Control className="me-auto" placeholder="Add your email here..." />
-                <button className="button-class">Subscribe</button>
-                </div>
+                <Subscribe />
             </div>
             <div >
                 

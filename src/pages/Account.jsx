@@ -6,7 +6,6 @@ export default function Account() {
         <AppLayout>
             <Row className="login">
                 <h2>Complete your profile</h2>
-                
                 <UserInfo />
             </Row>
         </AppLayout>
