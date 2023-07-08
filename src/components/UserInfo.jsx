@@ -80,9 +80,9 @@ const handleCheckboxChange = (event) => {
         <Form className="form-account" onSubmit={handleUpdateUser}>
             <Form.Group className="m-2">
                 <div className="d-flex">
-                    <Form.Control type="text" value={firstName} required={true} placeholder="Firstname"
+                    <Form.Control type="text" value={firstName}  placeholder="Firstname"
                     onChange={(e) => {setFirstName(e.target.value)}}/>
-                    <Form.Control type="text" value={lastName} required={true} placeholder="Lastname"
+                    <Form.Control type="text" value={lastName} placeholder="Lastname"
                     onChange={(e) => {setLastName(e.target.value)}}/>
                 </div>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
@@ -90,7 +90,7 @@ const handleCheckboxChange = (event) => {
                 onChange={(e) => {setBio(e.target.value)}}/>
                 </Form.Group>
                 <div className="d-flex">
-                <Form.Control type="text" value={city} required={true} placeholder="City"
+                <Form.Control type="text" value={city}  placeholder="City"
                 onChange={(e) => {setCity(e.target.value)}}/>
                 <Form.Select aria-label="Default select example" onChange={(e) => setState(e.target.value)}>
                 <option value="">Select state</option>
