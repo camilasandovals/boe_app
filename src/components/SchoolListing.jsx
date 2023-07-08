@@ -210,7 +210,7 @@ export default function SchoolListing() {
                       <p><a href={tab.pointOfContact.contactUrl} target="_blank">Request information</a></p>
                     </div>
                     <div style={{textAlign:"center"}}>
-                    <Apply />
+                    <Apply school={tab.name} program={tab.program}/>
                     
                     </div>
                   </div>

@@ -3,25 +3,40 @@ import { Form } from "react-bootstrap";
 import SignModal from "./SignModal";
 import { UserContext } from "../App";
 import { useNavigate } from "react-router-dom";
-export default function Apply() {
+
+export default function Apply({school, program}) {
     const [user, setUser] = useContext(UserContext)
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [email, setEmail] = useState('')
-    const [state, setState] = useState('')
+    const [firstName, setFirstName] = useState(user && user.firstName ? user.firstName : '')
+    const [lastName, setLastName] = useState(user && user.lastName ? user.lastName : '')
+    const [email, setEmail] = useState(user && user.email ? user.email : '')
+    const [additionalComments, setAdditionalComments] = useState('')
+    const [resume, setResume] = useState('')
     const navigate = useNavigate('')
 
     const premiumApplication = async(e) => {
         e.preventDefault()
+    
         try{
            if(!user) {
-            
             navigate('/signup')
+            return
            }
+              const response = await fetch('http://localhost:3000/premiumApplication', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({school, program, firstName, lastName, email, additionalComments, resume})
+            })
+            const data = await response.json()
+            if(data.message) {
+                alert(data.message)
+                return
+            }
+            alert('Application submitted')
         }
-        catch {
-
-        }
+        catch (error) {
+            console.error(error);
+            alert('An error occurred while submitting the application.');
+          }          
     }
     return(
         <Form onSubmit={premiumApplication}>
@@ -43,8 +58,10 @@ export default function Apply() {
             />
             </div>
             <Form.Label>Resume *pdf</Form.Label>
-            <Form.Control type="file" />
-            <Form.Control as="textarea" rows={3} placeholder="Additional comments.."/>
+            <Form.Control type="file" onChange={(e) => setResume(e.target.files[0])} />
+
+            <Form.Control as="textarea" rows={3} placeholder="Additional comments.."
+            onChange={(e) => {setAdditionalComments(e.target.value)}}/>
         </Form.Group>
         <button className="button-class" type="submit">
             <strong>Apply</strong>
