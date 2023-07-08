@@ -21,7 +21,7 @@ const [events, setEvents] = useState('')
           alt="First slide"
         />
         <div className='carousel-content'>
-          <h3>{event.title}</h3>
+          <p><strong>{event.title}</strong></p>
           <p>{event.description}</p>
         </div>
       </Carousel.Item>

@@ -20,7 +20,7 @@ function SignModal() {
         <Modal.Header closeButton>
         </Modal.Header>
         <h3 className='text-center'>You're signed out</h3>
-        <Modal.Body><p className='text-center'>Sign in for the full experience</p></Modal.Body>
+        <Modal.Body><p className='text-center'> Whether you're looking for a career path or know someone who is, becoming a BOE user will make it easy to connect with these incredible opportunities!</p></Modal.Body>
         <div className='text-center mb-4'>
           <button className='button-class m-2 ' onClick={() => navigate("/login")}>
             Sign in
