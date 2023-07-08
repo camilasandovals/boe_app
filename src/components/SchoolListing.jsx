@@ -156,7 +156,7 @@ export default function SchoolListing() {
                         <div><small>{tab.program}</small></div>
                         <div><small>{tab.location.city}</small></div>
                       </div>
-                      <Favorites />
+                      <Favorites school={tab.name} program={tab.program}/>
                     </div>
                   </ListGroup.Item>
                 ))
@@ -181,7 +181,7 @@ export default function SchoolListing() {
                       <div><small>{tab.type}</small></div>
                       <div><small>{tab.location.city}</small></div>
                     </div>
-                    <Favorites />
+                    <Favorites school = {tab.name} program={tab.program}/>
                   </div>
                   <div style={{marginTop:30}}>
                     <div>

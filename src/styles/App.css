@@ -509,3 +509,7 @@ footer {
 .hover-heart:hover {
   color: var(--logo-color)
 }
+
+.hover-heart.liked {
+  color: var(--logo-color)
+}
