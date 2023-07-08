@@ -1,11 +1,16 @@
 import { Col, Container, Row } from "react-bootstrap";
 import AppLayout from "../layout/AppLayout";
-
+import Subscribe from "../components/Subscribe";
 export default function About() {
     return(
         <AppLayout>
             <Container className= "about">
                 <h1>About us</h1>
+                <Row className="justify-content-center pb-2">
+                    <div className="subscribe-container">
+                        <Subscribe subscribeMessage={"Subscribe to our newsletter for free entry to BOE's next event and updates on vocational training programs in South Florida!"}/>
+                    </div>
+                </Row>
                 <Row className="pb-5">
                     <Col lg={6}>
                     <h2>Who we are</h2>

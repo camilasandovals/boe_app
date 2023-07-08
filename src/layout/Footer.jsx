@@ -7,7 +7,7 @@ export default function Footer() {
         <footer className="footer">
         <div className="footer-container">
             <div className="footer-subscribe">
-                <Subscribe />
+                <Subscribe subscribeMessage={"Never miss a moment with us..."}/>
             </div>
             <div >
                 

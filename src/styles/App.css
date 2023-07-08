@@ -113,6 +113,27 @@ button:active {
   
 }
 
+.subscribe-container {
+  margin-bottom: 30px;
+  height: 200px;
+  width: 750px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.subscribe-container p {
+  margin-bottom: 30px
+}
+
+.subscribe-container .subscription-container button {
+  padding: 15px;
+  margin-bottom: 0;
+}
+
+
 .about-image {
   width: 90%;
   box-shadow: var(--elevation-raised);
@@ -444,6 +465,45 @@ button:active {
   }
 }
 
+/* ------------------------------ PROFILE INFO ------------------------------ */
+
+.profile-container {
+  background-color: var(--white);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  height: 38rem;
+  width: 480px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.image-container {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background-color: var(--bg-color-mid);
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+}
+
+.favorites-container {
+  background-color: var(--white);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  height: 35rem;
+  width: 480px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 /* ------------------------------ FOOTER ------------------------------ */
 
 footer {
@@ -476,9 +536,11 @@ footer {
 .footer a {
   color: var(--bg-color-dark);
 }
+
 .subscription-container {
   width: 400px;
   display: flex;
+
 }
 
 .subscription-container button {

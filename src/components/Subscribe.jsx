@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Col, Row, Form } from "react-bootstrap";
 import "../styles/SubscribeModal.css"
 
-function Subscribe() {
+function Subscribe({subscribeMessage}) {
  const [email, setEmail] = useState('')
 
  const handleAddSubscriber = async(e) => {
@@ -32,7 +32,7 @@ function Subscribe() {
 
    return (
     <>
-      <p><strong>Never miss a moment with us...</strong></p>
+      <p><strong>{subscribeMessage}</strong></p>
       <Form  className="subscription-container" onSubmit={handleAddSubscriber}>
       <Form.Control type="email" value={email} required={true} placeholder="Add your email here.."
       onChange={(e) => {setEmail(e.target.value)}}/>
