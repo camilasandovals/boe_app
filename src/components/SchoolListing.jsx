@@ -24,6 +24,14 @@ export default function SchoolListing() {
       .catch(alert)
   }, []);
 
+  const handleClearFilters = () => {
+    setSearchTerm('');
+    setSelectedCity('');
+    setSelectedType('');
+    setSelectedIndustry('');
+  };
+  
+
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -128,6 +136,10 @@ export default function SchoolListing() {
                   <Dropdown.Item onClick={() => handleTypeIndustry(industry)}>{industry}</Dropdown.Item>
                 ))}
             </DropdownButton>
+
+            <Button variant="secondary" onClick={handleClearFilters}>
+            Clear Filters
+          </Button>
             </Stack>
 
             {
