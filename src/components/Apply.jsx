@@ -15,7 +15,7 @@ export default function Apply() {
         e.preventDefault()
         try{
            if(!user) {
-            alert('Please sign up to apply')
+            
             navigate('/signup')
            }
         }
@@ -27,13 +27,13 @@ export default function Apply() {
         <Form onSubmit={premiumApplication}>
         <Form.Group className="m-2" >
             <div className="d-flex">
-                <Form.Control type="text" value={firstName} required={true} placeholder="Firstname"
+                <Form.Control type="text" value={firstName} placeholder="Firstname"
                 onChange={(e) => {setFirstName(e.target.value)}}/>
-                <Form.Control type="text" value={lastName} required={true} placeholder="Lastname"
+                <Form.Control type="text" value={lastName} placeholder="Lastname"
                 onChange={(e) => {setLastName(e.target.value)}}/>
             </div>
             <div className="d-flex">
-            <Form.Control type="text" value={email} required={true} placeholder="Email"
+            <Form.Control type="text" value={email} placeholder="Email"
             onChange={(e) => {setEmail(e.target.value)}}/>
             </div>
             <Form.Label>Resume *pdf</Form.Label>

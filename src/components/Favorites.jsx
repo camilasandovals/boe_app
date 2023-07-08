@@ -15,7 +15,8 @@ useEffect(() => {
         fetch(`http://localhost:3000/userlikes?user=${user.email}`)
             .then((response) => response.json())
             .then((data) => {
-                const liked = data.some(like => like.school === school && like.program === program);
+                const liked = data.some(like => like.school === school && like.program === program && like.is_liked === true);
+
                 setIsLiked(liked);
             })
             .catch(console.error);
@@ -47,7 +48,7 @@ const handleFavorites = () => {
     return(
         <>
             <div className="right-align">
-                <HeartFill className={`hover-heart ${isLiked ? "liked" : ""}`} onClick={handleFavorites} />
+                <HeartFill className={`hover-heart ${isLiked===true ? "liked" : ""}`} onClick={handleFavorites} />
             </div>
         </>
     )

@@ -11,7 +11,7 @@ const [bio, setBio] = useState('')
 const [city, setCity] = useState('')
 const [state, setState] = useState('')
 const [category, setCategory] = useState('')
-const [skills, setSkills] = useState('')
+const [skills, setSkills] = useState([])
 const navigate = useNavigate()
 
 const array = ["Technology", "Contruction", "Healthcare", "Aviation", "Fashion", "Automotive"]
@@ -27,18 +27,27 @@ const handleUpdateUser = (e) => {
     if (lastName) {
       updatedFields.lastName = lastName;
     }
-    if (city) {
-      updatedFields.city = city;
-    }
-
+    
     if (bio) {
       updatedFields.bio = bio;
+    }
+    
+    if (city) {
+      updatedFields.city = city;
     }
 
     if (state) {
       updatedFields.state = state;
     }
   
+    if (category) {
+      updatedFields.category = category;
+    }
+
+    if (skills) {
+      updatedFields.skills = skills;
+    }
+
     fetch(`http://localhost:3000/api/users?email=${user.email}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -58,6 +67,15 @@ const handleUpdateUser = (e) => {
   };
 
 
+const handleCheckboxChange = (event) => {
+  if (event.target.checked) {
+      setSkills([...skills, event.target.value]);
+  } else {
+      setSkills(skills.filter(skill => skill !== event.target.value));
+  }
+};
+
+
     return (
         <Form className="form-account" onSubmit={handleUpdateUser}>
             <Form.Group className="m-2">
@@ -68,7 +86,8 @@ const handleUpdateUser = (e) => {
                     onChange={(e) => {setLastName(e.target.value)}}/>
                 </div>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Control as="textarea" rows={3} placeholder="Tell us about yourself..."/>
+                <Form.Control as="textarea" rows={3} placeholder="Tell us about yourself..."
+                onChange={(e) => {setBio(e.target.value)}}/>
                 </Form.Group>
                 <div className="d-flex">
                 <Form.Control type="text" value={city} required={true} placeholder="City"
@@ -91,11 +110,13 @@ const handleUpdateUser = (e) => {
                     {array.map((type, index) => (
                     <Col xs={4} key={index}>
                         <Form.Check
-                        inline
-                        label={type}
-                        name="group1"
-                        type="checkbox"
-                        id={`inline-checkbox-${index}`}
+                          inline
+                          label={type}
+                          name="group1"
+                          type="checkbox"
+                          id={`inline-checkbox-${index}`}
+                          value={type}
+                          onChange={handleCheckboxChange}
                         />
                     </Col>
                     ))}
