@@ -190,11 +190,33 @@ button:active {
   margin-left: 30px;
 }
 
+.nav-icon {
+  text-align: center;
+}
+
+.nav-link {
+  text-align: center;
+}
+
 @media (max-width: 990px) {
   .company-name{
     display: none;
   }
+
+  .nav-link {
+    padding: 5px;
+    padding-bottom: 20px;
+    font-weight: 600;
+  }
+  .nav-icon {
+    display: none;
+  }
+
+  .nav a:hover{
+    color: white
+  }
 }
+
 
 /* ------------------------------ FORM ------------------------------ */
 
