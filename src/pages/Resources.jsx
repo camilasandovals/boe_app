@@ -22,8 +22,8 @@ export default function Resources() {
     return(
         <AppLayout>
             <Container className="resources">
-                <h1>Resources</h1>
                 <CarouselSchools />
+        
                 <Row>
                     <Col sm={12} md={12} lg={6}>
                         <h2>Upcoming events</h2>
