@@ -322,6 +322,18 @@ button:active {
   margin-bottom: 0px;
  
 }
+
+.responsive-stack {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.responsive-stack .btn {
+  padding: 0.5rem 0.5rem; /* decrease button size */
+  font-size: 0.8rem; /* decrease font size */
+ 
+}
+
 .list-group{
   border-radius: 0;
 }

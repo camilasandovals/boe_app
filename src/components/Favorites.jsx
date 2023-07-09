@@ -47,9 +47,7 @@ const handleFavorites = () => {
 
     return(
         <>
-            <div className="right-align">
-                <HeartFill className={`hover-heart ${isLiked===true ? "liked" : ""}`} onClick={handleFavorites} />
-            </div>
+                <HeartFill className={`hover-heart ${isLiked===true ? "liked" : ""}`} onClick={handleFavorites} />  
         </>
     )
 }

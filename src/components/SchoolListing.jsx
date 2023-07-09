@@ -100,7 +100,7 @@ export default function SchoolListing() {
               onChange={handleSearch} 
             />
           </InputGroup>
-            <Stack direction="horizontal" gap={1} className=" justify-content-center m-3">
+            <Stack direction="horizontal" gap={2} className="justify-content-center m-2 responsive-stack">
             <DropdownButton
               id="dropdown-button-dark-example1"
               variant="secondary"
@@ -138,7 +138,7 @@ export default function SchoolListing() {
             </DropdownButton>
 
             <Button variant="secondary" onClick={handleClearFilters}>
-            Clear Filters
+            Clear
           </Button>
             </Stack>
 
@@ -158,17 +158,21 @@ export default function SchoolListing() {
                     }}
                     onClick={() => {if(window.innerWidth <= 767) {handleShow(tab)} else {handleTabClick(tab._id)}}}
                   >
-                    <div style={{display:"flex"}}>
-                      <div className="logo-wrapper">
-                          <img src={tab.logoUrl} alt="School logo"/>
+                    <div style={{display:"flex", justifyContent:"space-between"}}>
+                      <div className="d-flex">
+                        <div className="logo-wrapper" >
+                            <img src={tab.logoUrl} alt="School logo"/>
+                        </div>
+                        <div style={{textAlign:"left", marginLeft: 30}}>
+                          <strong>{tab.name}</strong>
+                          <div><small>{tab.type}</small></div>
+                          <div><small>{tab.program}</small></div>
+                          <div><small>{tab.location.city}</small></div>
+                        </div>
                       </div>
-                      <div style={{textAlign:"left", marginLeft: 30}}>
-                        <strong>{tab.name}</strong>
-                        <div><small>{tab.type}</small></div>
-                        <div><small>{tab.program}</small></div>
-                        <div><small>{tab.location.city}</small></div>
-                      </div>
+                     
                       <Favorites school={tab.name} program={tab.program}/>
+                      
                     </div>
                   </ListGroup.Item>
                 ))
@@ -184,7 +188,8 @@ export default function SchoolListing() {
               ? <p>Loading...</p>
               : schools.map((tab) => (
                 <Tab.Pane eventKey={tab._id} key={tab._id}>
-                  <div style={{display:"flex"}}>
+                  <div style={{display:"flex" , justifyContent:"space-between"}}>
+                  <div className="d-flex">
                     <div className="logo-wrapper-depth">
                         <img src={tab.logoUrl} alt="School logo"/>
                     </div>
@@ -192,6 +197,7 @@ export default function SchoolListing() {
                       <h3> <strong>{tab.name}</strong></h3>
                       <div><small>{tab.type}</small></div>
                       <div><small>{tab.location.city}</small></div>
+                    </div>
                     </div>
                     <Favorites school = {tab.name} program={tab.program}/>
                   </div>
