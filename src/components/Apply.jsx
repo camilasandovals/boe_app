@@ -40,16 +40,16 @@ export default function Apply({school, program}) {
     }
     return(
         <Form onSubmit={premiumApplication}>
-        <Form.Group className="m-2" >
-            <div className="d-flex">
-                <Form.Control type="text" value={firstName} 
+        <Form.Group className="m-2">
+            <div className="d-flex mb-3">
+                <Form.Control className="me-2" type="text" value={firstName} 
                 placeholder={user && user.firstName ? user.firstName : "Firstname"}
                 onChange={(e) => {setFirstName(e.target.value)}}/>
                 <Form.Control type="text" value={lastName} 
                 placeholder={user && user.lastName ? user.lastName : "Lastname"}
                 onChange={(e) => {setLastName(e.target.value)}}/>
             </div>
-            <div className="d-flex">
+            <div className="mb-3">
             <Form.Control 
                 type="text" 
                 value={email} 
@@ -57,13 +57,12 @@ export default function Apply({school, program}) {
                 onChange={(e) => {setEmail(e.target.value)}}
             />
             </div>
-            <Form.Label>Resume *pdf</Form.Label>
-            <Form.Control type="file" onChange={(e) => setResume(e.target.files[0])} />
-
+            <Form.Label className="text-start d-block">Resume *pdf</Form.Label>
+            <Form.Control className="mb-3" type="file" onChange={(e) => setResume(e.target.files[0])} />
             <Form.Control as="textarea" rows={3} placeholder="Additional comments.."
             onChange={(e) => {setAdditionalComments(e.target.value)}}/>
         </Form.Group>
-        <button className="button-class" type="submit">
+        <button className="button-class mt-3" type="submit">
             <strong>Apply</strong>
         </button>
     </Form>
