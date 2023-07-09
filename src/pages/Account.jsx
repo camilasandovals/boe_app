@@ -14,7 +14,7 @@ export default function Account() {
     return (
         <AppLayout>
             <Row className="account">
-                <h2>Complete your profile</h2>
+                <h2>Update your profile</h2>
                 <UserInfo />
             </Row>
         </AppLayout>
