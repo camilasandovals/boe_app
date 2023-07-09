@@ -16,6 +16,19 @@ export default function UserInfo() {
 
 const array = ["Technology", "Contruction", "Healthcare", "Aviation", "Fashion", "Automotive"]
 
+const handleBioChange = (event) => {
+  const words = event.target.value.split(' ');
+
+  if (words.length <= 100) {
+    setBio(event.target.value);
+  } else { 
+    const shortenedBio = words.slice(0, 100).join(' ');
+    setBio(shortenedBio);
+    alert('Bio must be less than 100 words')
+  }
+};
+
+
 const handleUpdateUser = (e) => {
     e.preventDefault();
   
@@ -87,8 +100,8 @@ const handleCheckboxChange = (event) => {
             </div>
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Control as="textarea" value={bio} rows={3} placeholder="Tell us about yourself..."
-            onChange={(e) => {setBio(e.target.value)}}/>
+          <Form.Control as="textarea" rows={3} placeholder="Tell us about yourself..." 
+          onChange={handleBioChange} value={bio} />
         </Form.Group>
         <Form.Group className="mb-3">
             <div className="d-flex justify-content-between">

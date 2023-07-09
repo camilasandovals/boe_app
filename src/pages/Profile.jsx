@@ -13,8 +13,10 @@ export default function Profile() {
     const [favorites, setFavorites] = useState([])
     const [isBioExpanded, setIsBioExpanded] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const shortBio = `${user?.bio?.substring(0, 100)}...`; // Change 100 to whatever length you prefer
+    const wordCount = user?.bio ? user.bio.split(' ').length : 0;
+    const shortBio = `${user?.bio?.split(' ').slice(0, 40).join(' ')}${wordCount > 40 ? '...' : ''}`;
     const fullBio = user?.bio;
+
 
     const navigate = useNavigate()
 
@@ -43,9 +45,9 @@ export default function Profile() {
             <Container >
                     <h1></h1>
                 <Row>
-                    <Col sm={12} md={6}>
+                    <Col sm={12} md={12} lg={6}>
                         <div className="profile-container">
-                        <div style={{alignSelf: 'flex-end', padding:10}} onClick={() => {navigate("/account")}}>
+                        <div style={{alignSelf: 'flex-end'}} onClick={() => {navigate("/account")}}>
                             <PencilFill color="grey" size={30}/>
                         </div>
                             <div className="image-container"> 
@@ -55,8 +57,8 @@ export default function Profile() {
                                 <h2>{user?.firstName} {user?.lastName}</h2>
                                 <p>{user?.email}</p>
                                 <p onClick={() => setIsBioExpanded(!isBioExpanded)}>
-                                {isBioExpanded ? fullBio : shortBio}
-                                <span style={{color: 'green', cursor: 'pointer'}}> {isBioExpanded ? 'Read Less' : 'Read More'}</span>
+                                    {isBioExpanded ? fullBio : shortBio}
+                                    {wordCount > 40 && <span style={{color: 'green', cursor: 'pointer'}}> {isBioExpanded ? 'Read Less' : 'Read More'}</span>}
                                 </p>
                                 <p>{user?.city}, {user?.state}</p>
                                 <p>{user?.category}</p>
@@ -66,7 +68,7 @@ export default function Profile() {
                             </div>
                         
                     </Col>
-                    <Col sm={12} md={6}>
+                    <Col sm={12} md={12} lg={6}>
                     <div className="profile-container">
                         <h3>Favorites</h3>
                         <div className="favorites-container" style={isLoading || favorites.filter(favorite => favorite.is_liked).length === 0 ? {overflow: 'hidden'} : {}}>
@@ -79,7 +81,7 @@ export default function Profile() {
                                 <div key={index} className="favorite">
                                     <div className="favorite-info">
                                     <p><strong>{favorite.school}</strong></p>
-                                    <p>{favorite.program}</p>
+                                    <small>{favorite.program}</small>
                                     </div>
                                 </div>
                                 ))) : 
