@@ -36,7 +36,7 @@ export default function Resources() {
                                 <img src="/images/Guidecover.png" alt="A guide to careers in the skilled trades" />
                             </div>
                             <div style={{marginLeft:20, marginRight:20, marginTop:32}}>
-                                <p><strong>Create your account</strong> </p>
+                                <p><strong>Create Your Account</strong> </p>
                                 <p>For free access to our exclusive content, updates on all our upcoming events, and to get in touch with representatives from our partner schools.</p>
                             </div>
                         </div>

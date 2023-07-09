@@ -63,7 +63,7 @@ const handleUpdateUser = (e) => {
         localStorage.setItem("user", JSON.stringify(data))
       })
       .catch(alert);
-      navigate('/')
+      navigate('/profile')
   };
 
 

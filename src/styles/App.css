@@ -539,7 +539,15 @@ button:active {
   align-items: center;
   text-align: center;
   margin-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
+
+.profile-container p {
+  overflow-wrap: anywhere;
+  
+}
+
 
 .image-container {
   height: 200px;
@@ -552,6 +560,8 @@ button:active {
 .image-container img {
   width: 100%;
 }
+
+
 .skills {
   display: flex;
   flex-direction: row;
@@ -567,7 +577,8 @@ button:active {
     align-items: start;
     text-align: center;
     overflow: scroll;
-    margin: 15px;
+    margin-top: 10px;
+    
 }
 
 .favorite {
@@ -576,7 +587,7 @@ button:active {
   margin: 5px;
   padding: 10px;
   text-align: start;
-  height: 140px;
+  height: 150px;
   flex: 1 0 30%;
   border-radius: 10px;
 }
