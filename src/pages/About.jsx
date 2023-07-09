@@ -21,12 +21,12 @@ export default function About() {
                     </Col>
                 </Row>
                 <Row className="pb-5">
-                    <Col lg={6} className="d-flex justify-content-center align-items-center">
-                        <img className="about-image" src="/images/BocaCode2.png" alt="Boca code members" />
-                    </Col>
                     <Col>
                     <h2>What we do</h2>
                     <p>BOE is your one-stop shop for becoming a skilled trade employee. We connect people withincredible training programs by partnering with over 25 vocational schools and apprenticeship programs. The best part? Everything we offer is free of charge.</p>
+                    </Col>
+                    <Col lg={6} className="d-flex justify-content-center align-items-center">
+                        <img className="about-image" src="/images/BocaCode2.png" alt="Boca code members" />
                     </Col>
                 </Row>
                 <Row className="pb-5">

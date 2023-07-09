@@ -11,7 +11,7 @@ export default function Account() {
     
     useEffect(() => {
         if (!user) {
-            navigate('/signup');
+            navigate('/');
             return;
         }
     } , [user])

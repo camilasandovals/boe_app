@@ -22,11 +22,8 @@ export default function Profile() {
 
     const navigate = useNavigate()
 
-    useEffect(() => {
-        if (!user) {
-          navigate('/signup');
-          return;
-        }
+    useEffect(() => {   
+        if (user) {
         setIsLoading(true);  // Start loading
         fetch(`http://localhost:3000/userlikes?user=${user.email}`)
           .then((response) => response.json())
@@ -38,7 +35,8 @@ export default function Profile() {
             console.error(err);
             setIsLoading(false);  // End loading
           });
-      }, []);
+      }
+        }, []);
       
       function convertFile(files) {
         if (files) {
