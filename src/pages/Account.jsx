@@ -13,7 +13,7 @@ export default function Account() {
 
     return (
         <AppLayout>
-            <Row className="login">
+            <Row className="account">
                 <h2>Complete your profile</h2>
                 <UserInfo />
             </Row>

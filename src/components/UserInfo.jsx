@@ -101,7 +101,7 @@ const handleCheckboxChange = (event) => {
             </div>
         </Form.Group>
         <Form.Group className="mb-3">
-            Select the reason that best describes why you're creating a BOE account
+            <p>Select the reason that best describes why you're creating a BOE account</p>
             <Form.Select aria-label="Default select example" onChange={(e) => setCategory(e.target.value)}>
             <option value="">Select category</option>
             <option value="I'm seeking a job">I'm seeking a job</option>
@@ -111,7 +111,7 @@ const handleCheckboxChange = (event) => {
             </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3">
-            Areas of interest
+            <p>Areas of interest</p>
             <Row>
                 {array.map((type, index) => (
                 <Col xs={4} key={index}>

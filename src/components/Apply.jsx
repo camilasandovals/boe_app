@@ -57,7 +57,7 @@ export default function Apply({school, program}) {
                 onChange={(e) => {setEmail(e.target.value)}}
             />
             </div>
-            <Form.Label className="text-start d-block">Resume *pdf</Form.Label>
+            <Form.Label className="text-start d-block"><p>Resume *pdf</p></Form.Label>
             <Form.Control className="mb-3" type="file" onChange={(e) => setResume(e.target.files[0])} />
             <Form.Control as="textarea" rows={3} placeholder="Additional comments.."
             onChange={(e) => {setAdditionalComments(e.target.value)}}/>
