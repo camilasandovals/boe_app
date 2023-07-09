@@ -9,12 +9,7 @@ export default function Account() {
     const [user, setUser] = useContext(UserContext)
     const navigate = useNavigate()
     
-    useEffect(() => {
-        if (!user) {
-            navigate('/signup');
-            return;
-        }
-    } , [])
+    
 
     return (
         <AppLayout>

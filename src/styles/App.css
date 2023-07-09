@@ -333,17 +333,18 @@ button:active {
 
 .list-group{
   border-radius: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .list-group-item.active {
-  /* background-color: #f0f2f5; */
+ 
   background-color: #23c48411;
   border-color: #437e582f;
   color: black
 }
 
 .depth-listing {
-  border: 2px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   overflow: scroll;
 }
 
