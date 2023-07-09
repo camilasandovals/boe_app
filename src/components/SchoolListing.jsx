@@ -171,7 +171,7 @@ export default function SchoolListing() {
                         </div>
                       </div>
                      
-                      <Favorites school={tab.name} program={tab.program}/>
+                      {/* <Favorites school={tab.name} program={tab.program}/> */}
                       
                     </div>
                   </ListGroup.Item>
@@ -228,7 +228,8 @@ export default function SchoolListing() {
         
       <Modal className="schools-modal" show={showModal} onHide={handleClose} >
         <div className="modal-container" >
-        <div style={{display:"flex"}}>
+        <div style={{display:"flex" , justifyContent:"space-between"}}>
+                  <div className="d-flex">
                     <div className="logo-wrapper-depth">
                         <img src={selectedSchool?.logoUrl} alt="School logo"/>
                     </div>
@@ -238,6 +239,8 @@ export default function SchoolListing() {
                       <div><small>{selectedSchool?.type}</small></div>
                       <div><small>{selectedSchool?.location.city}</small></div>
                     </div>
+                    </div>
+                  <Favorites />
                   </div>
                   <div style={{marginTop:30}}>
                     <div>

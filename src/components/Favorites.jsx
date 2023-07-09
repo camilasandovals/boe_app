@@ -47,7 +47,7 @@ const handleFavorites = () => {
 
     return(
         <>
-                <HeartFill className={`hover-heart ${isLiked===true ? "liked" : ""}`} onClick={handleFavorites} />  
+                <HeartFill className={`hover-heart ${isLiked===true ? "liked" : ""}`} onClick={handleFavorites} size={20} style={{marginTop: 30}}/>  
         </>
     )
 }
