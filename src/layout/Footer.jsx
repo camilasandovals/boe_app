@@ -9,7 +9,7 @@ export default function Footer() {
             <div className="footer-subscribe">
                 <Subscribe subscribeMessage={"Never miss a moment with us..."}/>
             </div>
-            <div >
+            <div style={{paddingLeft: 10}}>
                 
             <a href="https://www.instagram.com/boepartners/" target="_blank" rel="noreferrer">
                 <Instagram size={20} style={{marginRight:20}}/>
@@ -21,7 +21,7 @@ export default function Footer() {
                 <Linkedin size={20} />
             </a>
             </div>
-            <div >
+            <div style={{paddingLeft: 20}}>
                 <small><strong>Contact us</strong></small>
                 <small>305-903-2980</small>
                 <small>786-281-8944</small>

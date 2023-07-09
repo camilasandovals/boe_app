@@ -5,13 +5,13 @@ import { useNavigate } from "react-router-dom";
 
 export default function UserInfo() {
   const [user, setUser] = useContext(UserContext)
-  const [firstName, setFirstName] = useState(user.firstName || '')
-  const [lastName, setLastName] = useState(user.lastName || '')
-  const [bio, setBio] = useState(user.bio || '')
-  const [city, setCity] = useState(user.city || '')
-  const [state, setState] = useState(user.state || '')
-  const [category, setCategory] = useState(user.category || '')
-  const [skills, setSkills] = useState(user.skills || [])
+  const [firstName, setFirstName] = useState(user?.firstName || '')
+  const [lastName, setLastName] = useState(user?.lastName || '')
+  const [bio, setBio] = useState(user?.bio || '')
+  const [city, setCity] = useState(user?.city || '')
+  const [state, setState] = useState(user?.state || '')
+  const [category, setCategory] = useState(user?.category || '')
+  const [skills, setSkills] = useState(user?.skills || [])
   const navigate = useNavigate()
 
 const array = ["Technology", "Contruction", "Healthcare", "Aviation", "Fashion", "Automotive"]

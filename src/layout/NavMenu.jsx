@@ -21,15 +21,15 @@ export default function NavMenu() {
           <Navbar.Toggle aria-controls="navbar-nav" />
           <Navbar.Collapse id="navbar-nav">
             <Nav className="ms-auto">             
-              <Nav.Link as={Link}to="/"><div className="nav-icon"><HouseDoorFill /></div><div>Home</div></Nav.Link>
-              <Nav.Link as={Link}to="/about"><div className="nav-icon"><PeopleFill /></div><div>About</div></Nav.Link>
-              <Nav.Link as={Link}to="/resources"><div className="nav-icon"><FileEarmarkTextFill /></div><div>Resources</div></Nav.Link>
+              <Nav.Link as={Link}to="/"><HouseDoorFill /><div>Home</div></Nav.Link>
+              <Nav.Link as={Link}to="/about"><PeopleFill /><div>About</div></Nav.Link>
+              <Nav.Link as={Link}to="/resources"><FileEarmarkTextFill /><div>Resources</div></Nav.Link>
               {user ? (
-                <Nav.Link as={Link}to="/profile"><div className="nav-icon"><PersonFill size={19}/></div><div>Profile</div></Nav.Link>) : ""}
+                <Nav.Link as={Link}to="/profile"><PersonFill size={19}/><div>Profile</div></Nav.Link>) : ""}
               {user ? (
-                <Nav.Link as={Link} to="/login" onClick={handleLogout}><div className="nav-icon"><DoorOpenFill /></div><div>Logout</div></Nav.Link>
+                <Nav.Link as={Link} to="/login" onClick={handleLogout}><DoorOpenFill /><div>Logout</div></Nav.Link>
                 ): (
-                  <NavLink as={Link} to="/login"><div className="nav-icon"><DoorClosedFill /></div><div>Login</div></NavLink>
+                  <NavLink as={Link} to="/login"><DoorClosedFill /><div>Login</div></NavLink>
                 )
               }
             </Nav>

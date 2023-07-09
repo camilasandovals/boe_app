@@ -144,6 +144,7 @@ button:active {
   background: linear-gradient(136deg, rgba(127, 185, 147, 0.368) 40%, rgba(170, 245, 196, 0.368)50%, rgba(124, 184, 145, 0.368) 75%);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   border-radius: 20px;
+  align-items: center;
   margin-bottom: 70px;
   
 }
@@ -154,7 +155,7 @@ button:active {
 }
 
 .subscribe-container input {
-  width: 250px;
+  width: 300px;
 }
 
 .subscribe-container .subscription-container button {
@@ -174,13 +175,19 @@ button:active {
   border-radius: 20px;
 }
 
-@media (min-width: 900px) {
+@media (max-width: 900px) {
   .subscribe-container {
-    align-items: center;
+    width: 300px;
+    height: 280px;
+    
   }
 
   .subscribe-container input {
-    width: 350px;
+    width: 200px;
+  }
+
+  .about {
+    width: 95%;
   }
 }
 /* ------------------------------ RESOURCES ------------------------------ */
@@ -216,7 +223,7 @@ button:active {
   text-align: center;
 }
 
-@media (max-width: 990px) {
+@media (max-width: 750px) {
   .company-name{
     display: none;
   }
@@ -225,9 +232,6 @@ button:active {
     padding: 5px;
     padding-bottom: 20px;
     font-weight: 600;
-  }
-  .nav-icon {
-    display: none;
   }
 
   .nav a:hover{
@@ -297,7 +301,7 @@ button:active {
 
 .video-content {
   position: absolute;
-  left: 15%;
+  left: 13%;
   top: 20%;
   margin-top: 40px;
   padding: 15px;
@@ -317,7 +321,11 @@ button:active {
     font-size: 28px;
   }
 
-  
+@media (max-width: 800px) {
+  .video-content {
+    left: 8%;
+  }
+}
 /* ------------------------------ SCHOOLS ------------------------------ */
 
 .schools-container{
@@ -445,7 +453,7 @@ button:active {
   background-color: var(--white);
   border-radius: 20px;
   overflow: hidden ;
-  height: 500px;
+  height: 520px;
   width: 100%;
   margin-bottom: 25px;
   margin-top: 40px;
@@ -469,7 +477,7 @@ button:active {
 /* ------------------------------ EXCLUSIVE CONTENT------------------------------ */
 
 .exclusive-container {
-  height: 500px;
+  height: 520px;
   width: 100%;
   border-radius: 20px;
   overflow: hidden;
@@ -649,9 +657,7 @@ footer {
 }
 
 .subscription-container {
-  width: 400px;
   display: flex;
-
 }
 
 .subscription-container button {
@@ -667,8 +673,18 @@ footer {
     height: 120px;
   }
 
+  .footer-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
   .footer-subscribe {
     display: none;
+  }
+
+  .subscription-container {
+    flex-wrap: wrap;
+  
   }
 
 }

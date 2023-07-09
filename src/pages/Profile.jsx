@@ -6,12 +6,14 @@ import { UserContext } from "../App";
 import Subscribe from "../components/Subscribe";
 import { PencilFill } from "react-bootstrap-icons";
 import { Spinner } from 'react-bootstrap';
-
+import { useRef } from 'react';
 
 export default function Profile() {
+    const fileInputRef = useRef(null);
     const [user, setUser] = useContext(UserContext)
     const [favorites, setFavorites] = useState([])
     const [isBioExpanded, setIsBioExpanded] = useState(false);
+    const [img, setImg] = useState("")
     const [isLoading, setIsLoading] = useState(false);
     const wordCount = user?.bio ? user.bio.split(' ').length : 0;
     const shortBio = `${user?.bio?.split(' ').slice(0, 40).join(' ')}${wordCount > 40 ? '...' : ''}`;
@@ -38,7 +40,32 @@ export default function Profile() {
           });
       }, []);
       
+      function convertFile(files) {
+        if (files) {
+          // picks the first file from all the files selected
+          const fileRef = files[0] || "";
+          // picks the type so that it can send the right one to the database
+          const fileType = fileRef.type || "";
+          // sets reader as a new FileReader instance
+          const reader = new FileReader();
+          // converts fileref (the File) to a binary string
+          reader.readAsBinaryString(fileRef);
+          reader.onload = (ev) => {
+            // convert it to base64
+            const newImage = `data:${fileType};base64,${window.btoa(ev.target.result)}`;
+            setImg(newImage);
+            setUser({...user, image: newImage}); // Update the user object with the new image
+          };
+        }
+    }
 
+    const handleImageClick = () => {
+        fileInputRef.current.click();
+    };
+
+    const handleFileChange = (event) => {
+        convertFile(event.target.files);
+    };
 
     return(
         <AppLayout>
@@ -50,10 +77,10 @@ export default function Profile() {
                         <div style={{alignSelf: 'flex-end'}} onClick={() => {navigate("/account")}}>
                             <PencilFill color="grey" size={30}/>
                         </div>
-                            <div className="image-container"> 
-                                {user?.image? <img src={user.image} alt="User profile" /> : <img src="/images/user-avatar.png" alt="Default user image" />}
-                            </div>
-                            
+                        <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} />
+                        <div className="image-container" onClick={handleImageClick}>
+                            {user?.image? <img src={user.image} alt="User profile" /> : <img src="/images/user-avatar.png" alt="Default user image" />}
+                        </div>             
                                 <h2>{user?.firstName} {user?.lastName}</h2>
                                 <p>{user?.email}</p>
                                 <p onClick={() => setIsBioExpanded(!isBioExpanded)}>
@@ -65,7 +92,7 @@ export default function Profile() {
                             <div className="skills">
                                 {user?.skills?.map((skill, index) => (<span key={index} style={{paddingLeft:10, fontWeight:200}}>{skill}</span>))}
                             </div>
-                            </div>
+                        </div>
                         
                     </Col>
                     <Col sm={12} md={12} lg={6}>

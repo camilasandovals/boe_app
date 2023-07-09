@@ -5,9 +5,11 @@ import CarouselSchools from "../components/CarouselSchools";
 import CardBlog from "../components/CardBlog";
 import { useNavigate } from "react-router-dom";
 import SignModal from "../components/SignModal";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../App";
 
 export default function Resources() {
+    const [user, setUser] = useContext(UserContext) 
     const navigate = useNavigate()
     const [modalVisible, setModalVisible] = useState(false);
     
@@ -36,8 +38,8 @@ export default function Resources() {
                                 <img src="/images/Guidecover.png" alt="A guide to careers in the skilled trades" />
                             </div>
                             <div style={{marginLeft:20, marginRight:20, marginTop:32}}>
-                                <p><strong>Create Your Account</strong> </p>
-                                <p>For free access to our exclusive content, updates on all our upcoming events, and to get in touch with representatives from our partner schools.</p>
+                                {user? <p><strong>Download the guide</strong> </p> : <p><strong>Sign up to download</strong> </p> }
+                                <p>BOE users have free access to exclusive content, updates on all our upcoming events, and get in touch with representatives from partner schools.</p>
                             </div>
                         </div>
 
