@@ -7,7 +7,7 @@ function CardBlog() {
   const [blogs, setBlogs] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/blogs')
+    fetch('https://api.boepartners/api/blogs')
       .then(response => response.json())
       .then(data => setBlogs(data))
       .catch(alert)

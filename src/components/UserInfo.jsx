@@ -61,7 +61,7 @@ const handleUpdateUser = (e) => {
       updatedFields.skills = skills;
     }
 
-    fetch(`http://localhost:3000/api/users?email=${user.email}`, {
+    fetch(`https://api.boepartners/api/users?email=${user.email}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedFields),

@@ -30,7 +30,7 @@ export default function Profile() {
                 setUser(user => ({...user, image: storedImage})); // Update the user object with the stored image
             }
             setIsLoading(true);  // Start loading
-            fetch(`http://localhost:3000/userlikes?user=${user.email}`)
+            fetch(`https://api.boepartners/userlikes?user=${user.email}`)
               .then((response) => response.json())
               .then(data => {
                 setFavorites(data);

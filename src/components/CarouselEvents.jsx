@@ -5,7 +5,7 @@ function CarouselEvents() {
 const [events, setEvents] = useState('')
 
   useEffect (() => {
-    fetch("http://localhost:3000/api/events")
+    fetch("https://api.boepartners/api/events")
     .then(response => response.json())
     .then(setEvents)
     .catch(e => alert(e))

@@ -18,7 +18,7 @@ export default function SchoolListing() {
   const [selectedIndustry, setSelectedIndustry] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/schools')
+    fetch('https://api.boepartners/api/schools')
       .then(response => response.json())
       .then(data => setSchools(data))
       .catch(alert)

@@ -12,7 +12,7 @@ const navigate = useNavigate()
 
 useEffect(() => {
     if (user) {
-        fetch(`http://localhost:3000/userlikes?user=${user.email}`)
+        fetch(`https://api.boepartners/userlikes?user=${user.email}`)
             .then((response) => response.json())
             .then((data) => {
                 const liked = data.some(like => like.school === school && like.program === program && like.is_liked === true);
@@ -30,7 +30,7 @@ const handleFavorites = () => {
     }
     setIsLiked(!isLiked);
 
-    fetch("http://localhost:3000/userlikes", {
+    fetch("https://api.boepartners/userlikes", {
         method: "POST",
         headers: {"Content-Type": "application/json"},   
         body: JSON.stringify({ user: user.email, school, program, is_liked: !isLiked })
