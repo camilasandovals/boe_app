@@ -11,12 +11,12 @@ export default function Login() {
    const endpoint = "signup"
     return(
         <AppLayout>
-            <Row className="login">
+            <div className="login">
                 <h3>Looking to start a career in a skilled trade?</h3>
                 <h2>Sign up</h2>
                 <p>Already a member? <a href="/login"><strong>Login</strong></a></p>
                 <LoginForm endpoint= {endpoint} setUser ={setUser}/>
-            </Row>
+            </div>
         </AppLayout>
     )
 }

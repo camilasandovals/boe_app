@@ -13,6 +13,14 @@ export default function Resources() {
     const navigate = useNavigate()
     const [modalVisible, setModalVisible] = useState(false);
     
+    const handleExclusiveContent = () => {
+        if (!user) {
+            showModal();
+            return;
+        }
+        window.open("https://www.canva.com/design/DAFhOV5lswg/F01wp29lRxiILr2cgjes7g/view?utm_content=DAFhOV5lswg&utm_campaign=designshare&utm_medium=link&utm_source=homepage_design_menu", "_blank");
+    };
+
     const showModal = () => {
         setModalVisible(true);
     };
@@ -33,7 +41,7 @@ export default function Resources() {
                     </Col>
                     <Col>
                         <h2>Exclusive Content</h2>
-                        <div className="exclusive-container" onClick={showModal}>
+                        <div className="exclusive-container" onClick={handleExclusiveContent}>
                             <div className="exclusive-image-container" >
                                 <img src="/images/Guidecover.png" alt="A guide to careers in the skilled trades" />
                             </div>

@@ -18,10 +18,10 @@ export default function Account() {
 
     return (
         <AppLayout>
-            <Row className="account">
+            <div className="account">
                 <h2>Update your profile</h2>
                 <UserInfo />
-            </Row>
+            </div>
         </AppLayout>
     )
 }

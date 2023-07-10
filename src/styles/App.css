@@ -267,10 +267,13 @@ button:active {
 /* ------------------------------ LOGIN ------------------------------ */
 
 .login {
+  display: flex;
+  flex-direction: column;
   height: 80vh;
   padding-top: 110px;
   padding-bottom: 50px;
   justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
