@@ -24,19 +24,25 @@ export default function Profile() {
 
     useEffect(() => {   
         if (user) {
-        setIsLoading(true);  // Start loading
-        fetch(`http://localhost:3000/userlikes?user=${user.email}`)
-          .then((response) => response.json())
-          .then(data => {
-            setFavorites(data);
-            setIsLoading(false);  // End loading
-          })
-          .catch(err => {
-            console.error(err);
-            setIsLoading(false);  // End loading
-          });
-      }
-        }, []);
+            const storedImage = localStorage.getItem('userImage');
+            if (storedImage) {
+                setImg(storedImage);
+                setUser(user => ({...user, image: storedImage})); // Update the user object with the stored image
+            }
+            setIsLoading(true);  // Start loading
+            fetch(`http://localhost:3000/userlikes?user=${user.email}`)
+              .then((response) => response.json())
+              .then(data => {
+                setFavorites(data);
+                setIsLoading(false);  // End loading
+              })
+              .catch(err => {
+                console.error(err);
+                setIsLoading(false);  // End loading
+              });
+        }
+    }, [user]); // Add user as a dependency so the hook runs when user changes
+    
       
       function convertFile(files) {
         if (files) {
@@ -53,6 +59,7 @@ export default function Profile() {
             const newImage = `data:${fileType};base64,${window.btoa(ev.target.result)}`;
             setImg(newImage);
             setUser({...user, image: newImage}); // Update the user object with the new image
+            localStorage.setItem('userImage', newImage);
           };
         }
     }

@@ -62,9 +62,11 @@ export default function Apply({school, program}) {
             <Form.Control as="textarea" rows={3} placeholder="Additional comments.."
             onChange={(e) => {setAdditionalComments(e.target.value)}}/>
         </Form.Group>
-        <button className="button-class mt-3" type="submit">
-            <strong>Apply</strong>
-        </button>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <button className="button-class mt-3" type="submit">
+                <strong>Apply</strong>
+            </button>
+        </div>
     </Form>
     )
 }

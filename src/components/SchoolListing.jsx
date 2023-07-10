@@ -256,9 +256,7 @@ export default function SchoolListing() {
                       <p>{selectedSchool?.pointOfContact.number}</p>
                       <p><a href={selectedSchool?.pointOfContact.contactUrl} target="_blank">Request information</a></p>
                     </div>
-                    <div style={{textAlign:"center"}}>
-                    <button className="button-class">Apply now</button>
-                    </div>
+                    <Apply school={selectedSchool?.name} program={selectedSchool?.program}/>
                   </div>
                 </div>
       </Modal>
