@@ -21,7 +21,7 @@ export default function Apply({school, program}) {
             navigate('/signup')
             return
            }
-              const response = await fetch('https://api.boepartners/premiumApplication', {
+              const response = await fetch('https://boepartners-api.web.app/premiumApplication', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({school, program, firstName, lastName, email, additionalComments, resume})

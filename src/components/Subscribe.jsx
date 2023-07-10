@@ -8,7 +8,7 @@ function Subscribe({subscribeMessage}) {
  const handleAddSubscriber = async(e) => {
   e.preventDefault();
   try {
-    const response = await fetch(`https://api.boepartners/subscribe`, {
+    const response = await fetch(`https://boepartners-api.web.app/subscribe`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

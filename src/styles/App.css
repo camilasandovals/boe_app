@@ -127,7 +127,7 @@ button:active {
   .form-account {
     box-shadow: none;
     background-color: var(--bg-color-light);
-  
+    width: 400px;
   }
 }
 /* ------------------------------ ABOUT ------------------------------ */
@@ -201,6 +201,12 @@ button:active {
 .resources {
   text-align: center;
   
+}
+
+@media (max-width: 800px) {
+  .resources {
+    padding-top: 100px;
+  }
 }
 
 /* ------------------------------ NAV ------------------------------ */
@@ -458,6 +464,12 @@ button:active {
   100% { transform: translateX(calc(-250px * 11))}
 }
 
+
+@media (max-width: 800px) {
+  .slider {
+    display: none;
+  }
+}
 /* ------------------------------ EVENTS ------------------------------ */
 
 .carousel {
@@ -484,6 +496,7 @@ button:active {
 .carousel-content {
   padding: 20px;
 }
+
 
 /* ------------------------------ EXCLUSIVE CONTENT------------------------------ */
 
