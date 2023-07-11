@@ -80,22 +80,22 @@ export default function Profile() {
                     <Col sm={12} md={12} lg={6}>
                         <div className="profile-container">
                         <div style={{alignSelf: 'flex-end'}} onClick={() => {navigate("/account")}}>
-                            <PencilFill color="grey" size={30}/>
+                            <PencilFill color="grey" size={30} onClick={() => {navigate("/account")}}/>
                         </div>
                         <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} />
                         <div className="image-container" onClick={handleImageClick}>
                             {user?.image? <img src={user.image} alt="User profile" /> : <img src="/images/user-avatar.png" alt="Default user image" />}
                         </div>             
                                 <h2>{user?.firstName} {user?.lastName}</h2>
-                                <p>{user?.email}</p>
+                                <p>{user? user?.email : "Email"}</p>
                                 <p onClick={() => setIsBioExpanded(!isBioExpanded)}>
                                     {isBioExpanded ? fullBio : shortBio}
                                     {wordCount > 40 && <span style={{color: 'green', cursor: 'pointer'}}> {isBioExpanded ? 'Read Less' : 'Read More'}</span>}
                                 </p>
-                                <p>{user?.city}, {user?.state}</p>
-                                <p>{user?.category}</p>
+                                <p>{user? user?.city : "City"}, {user? user?.state : "State"}</p>
+                                <p>{user? user?.category : "Category"}</p>
                             <div className="skills">
-                                {user?.skills?.map((skill, index) => (<span key={index} style={{paddingLeft:10, fontWeight:200}}>{skill}</span>))}
+                                {user? user?.skills?.map((skill, index) => (<span key={index} style={{paddingLeft:10, fontWeight:200}}>{skill}</span>)) : "Skills"}
                             </div>
                         </div>
                         
