@@ -3,7 +3,6 @@ import AppLayout from "../layout/AppLayout";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
-import Subscribe from "../components/Subscribe";
 import { PencilFill } from "react-bootstrap-icons";
 import { Spinner } from 'react-bootstrap';
 import { useRef } from 'react';
@@ -13,38 +12,41 @@ export default function Profile() {
     const [user, setUser] = useContext(UserContext)
     const [favorites, setFavorites] = useState([])
     const [isBioExpanded, setIsBioExpanded] = useState(false);
-    const [img, setImg] = useState("")
     const [isLoading, setIsLoading] = useState(false);
+    const [image, setImage] = useState("");
     const wordCount = user?.bio ? user.bio.split(' ').length : 0;
-    const shortBio = `${user?.bio?.split(' ').slice(0, 40).join(' ')}${wordCount > 40 ? '...' : ''}`;
+    const shortBio = user?.bio? `${user?.bio?.split(' ').slice(0, 40).join(' ')}${wordCount > 40 ? '...' : ''}` : "Click on edit to update your information";
     const fullBio = user?.bio;
 
 
     const navigate = useNavigate()
 
-    useEffect(() => {   
+    useEffect(() => {
+        const oldUser = localStorage.getItem("user");
         if (user) {
             const storedImage = localStorage.getItem('userImage');
             if (storedImage) {
-                setImg(storedImage);
-                setUser(user => ({...user, image: storedImage})); // Update the user object with the stored image
+                setImage(storedImage);
             }
-            setIsLoading(true);  // Start loading
-            fetch(`https://boepartners-api.web.app/userlikes?user=${user.email}`)
-              .then((response) => response.json())
-              .then(data => {
-                setFavorites(data);
-                setIsLoading(false);  // End loading
-              })
-              .catch(err => {
-                console.error(err);
-                setIsLoading(false);  // End loading
-              });
+
+            setIsLoading(true);
+            fetch(`https://boepartners-api.web.app/userlikes?user=${user?.email}`)
+                .then((response) => response.json())
+                .then(data => {
+                    setFavorites(data);
+                    setIsLoading(false);
+                })
+                .catch(err => {
+                    console.error(err);
+                    setIsLoading(false);
+                });
         }
-    }, [user]); // Add user as a dependency so the hook runs when user changes
+
+        
+    }, [user, image]);
     
-      
-      function convertFile(files) {
+    
+    function convertFile(files) {
         if (files) {
           // picks the first file from all the files selected
           const fileRef = files[0] || "";
@@ -57,7 +59,7 @@ export default function Profile() {
           reader.onload = (ev) => {
             // convert it to base64
             const newImage = `data:${fileType};base64,${window.btoa(ev.target.result)}`;
-            setImg(newImage);
+            setImage(newImage);
             setUser({...user, image: newImage}); // Update the user object with the new image
             localStorage.setItem('userImage', newImage);
           };
@@ -72,6 +74,8 @@ export default function Profile() {
         convertFile(event.target.files);
     };
 
+   
+
     return(
         <AppLayout>
             <Container >
@@ -84,19 +88,19 @@ export default function Profile() {
                         </div>
                         <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} />
                         <div className="image-container" onClick={handleImageClick}>
-                            {user?.image? <img src={user.image} alt="User profile" /> : <img src="/images/user-avatar.png" alt="Default user image" />}
-                        </div>             
-                                <h2>{user?.firstName} {user?.lastName}</h2>
-                                <p>{user? user?.email : "Email"}</p>
-                                <p onClick={() => setIsBioExpanded(!isBioExpanded)}>
+                            {image? <img src={image} alt="User profile" /> : <img src="/images/user-avatar.png" alt="Default user image" />}
+                        </div> 
+                                <h2>{user?.firstName?  user.firstName : "Name"} {user?.lastName? user.lastName : ""}</h2>
+                                <p>{user?.email? user?.email : "Email"}</p>
+                                <p>{user?.city?  user.city : "City"}, {user?.state? user.state : "State"}</p>
+                                <p>{user?.category? user.category : "Category"}</p>
+                            <div className="skills">
+                                {user?.skills? user.skills.map((skill, index) => (<span key={index} style={{paddingLeft:10, fontWeight:200}}>{skill}</span>)) : "Skills"}
+                            </div>
+                            <p onClick={() => setIsBioExpanded(!isBioExpanded)}>
                                     {isBioExpanded ? fullBio : shortBio}
                                     {wordCount > 40 && <span style={{color: 'green', cursor: 'pointer'}}> {isBioExpanded ? 'Read Less' : 'Read More'}</span>}
-                                </p>
-                                <p>{user? user?.city : "City"}, {user? user?.state : "State"}</p>
-                                <p>{user? user?.category : "Category"}</p>
-                            <div className="skills">
-                                {user? user?.skills?.map((skill, index) => (<span key={index} style={{paddingLeft:10, fontWeight:200}}>{skill}</span>)) : "Skills"}
-                            </div>
+                            </p>
                         </div>
                         
                     </Col>

@@ -427,37 +427,33 @@ button:active {
 
 
 /* ------------------------------ SCHOOLS CAROUSEL ------------------------------ */
-
 .slider {
   margin-top: 80px;
-	background: var(--white);
+  background: #fff; /* replace this with your own color */
   border-radius: 20px;
-	height: 150px;
-	overflow:hidden;
-	position: relative;
-	width: auto;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+  width: auto;
   margin-bottom: 25px;
-	
-
-  .slide-track {
-    animation: scroll 200s linear infinite;
-    display: flex;
-    width: calc(250px * 11);
-  }
-  
-	
-	.slide {
-		height: 150px;
-		width: 100px;
-    margin: 30px;
-    
-	}
-
-  .slide img {
-    height: 50%;
-    
-  }
 }
+
+.slider .slide-track {
+  animation: scroll 200s linear infinite;
+  display: flex;
+  width: 2750px; /* replace calc with fixed value, adjust according to your needs */
+}
+  
+.slider .slide {
+  height: 150px;
+  width: 100px;
+  margin: 30px;
+}
+
+.slider .slide img {
+  height: 50%;
+}
+
 
 @keyframes scroll {
   0% { transform: translateX(0); }
@@ -649,7 +645,7 @@ button:active {
 
 @media (max-width: 1000px) {
   .favorite {
-    height: 120px;
+    height: 110px;
     flex: 1 0 50%;
   }
 }

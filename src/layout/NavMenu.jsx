@@ -2,15 +2,17 @@ import { useContext } from "react"
 import { Navbar, Container, Nav, NavLink } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { UserContext } from "../App"
+import { useNavigate } from "react-router-dom"
 import { DoorClosedFill, DoorOpenFill, FileEarmarkTextFill, HouseDoorFill, PeopleFill, PersonFill } from "react-bootstrap-icons"
 
 
 export default function NavMenu() {
   const [user, setUser] = useContext(UserContext)
-
+  const navigate = useNavigate()
   const handleLogout = () => {
     setUser(null)
     localStorage.removeItem("user")
+    navigate('/')
   }
     return(
         <Navbar fixed='top' className="p-0 nav" variant="dark" expand="md">
@@ -26,6 +28,8 @@ export default function NavMenu() {
               <Nav.Link as={Link}to="/resources"><FileEarmarkTextFill /><div>Resources</div></Nav.Link>
               {user ? (
                 <Nav.Link as={Link}to="/profile"><PersonFill size={19}/><div>Profile</div></Nav.Link>) : ""}
+              {/* {user ? (
+                <Nav.Link as={Link}to="/edit"><PencilFill size={19}/><div>Edit</div></Nav.Link>) : ""} */}
               {user ? (
                 <Nav.Link as={Link} to="/login" onClick={handleLogout}><DoorOpenFill /><div>Logout</div></Nav.Link>
                 ): (
