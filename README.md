@@ -1,3 +1,4 @@
 # BOE SITE
 
-<img width="1328" alt="Screenshot 2023-07-18 at 2 44 13 PM" src="https://github.com/camilasandovals/boe_app/assets/83136741/c55dcc1f-e692-4ec2-b526-887b39c88c89">
+
+<img width="1299" alt="Screenshot 2023-07-19 at 7 30 11 PM" src="https://github.com/camilasandovals/boe_app/assets/83136741/9eb9dd95-d2a3-41b7-877f-33d25e158d42">
