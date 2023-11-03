@@ -13,6 +13,7 @@ export default function Apply({school, program}) {
     const [resume, setResume] = useState('')
     const navigate = useNavigate('')
 
+    
     const premiumApplication = async(e) => {
         e.preventDefault()
     
