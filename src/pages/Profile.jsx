@@ -83,7 +83,7 @@ export default function Profile() {
                 <Row>
                     <Col sm={12} md={12} lg={6}>
                         <div className="profile-container">
-                        <div style={{alignSelf: 'flex-end'}} onClick={() => {navigate("/account")}}>
+                        <div style={{alignSelf: 'flex-end', cursor: 'pointer'}} onClick={() => {navigate("/account")}}>
                             <PencilFill color="grey" size={30} onClick={() => {navigate("/account")}}/>
                         </div>
                         <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} />

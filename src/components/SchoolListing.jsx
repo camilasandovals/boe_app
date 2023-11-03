@@ -196,6 +196,7 @@ export default function SchoolListing() {
                     <div style={{textAlign:"left", marginLeft: 30}}>
                       <h3> <strong>{tab.name}</strong></h3>
                       <div><small>{tab.type}</small></div>
+                      <div><small>{tab.program}</small></div>
                       <div><small>{tab.location.city}</small></div>
                     </div>
                     </div>
@@ -212,8 +213,16 @@ export default function SchoolListing() {
                     </div>
                     <div>
                       <h4>Contact</h4>
-                      <p>{tab.pointOfContact.number}</p>
-                      <p><a href={tab.pointOfContact.contactUrl} target="_blank">Request information</a></p>
+                      <p>{selectedSchool?.pointOfContact.number}</p>
+                    </div>
+                    <div>
+                      <h4>Cost</h4>
+                      <p>{selectedSchool?.cost}</p>
+                    </div>
+                    <div>
+                      <h4>Duration</h4>
+                      <p>{selectedSchool?.duration}</p>
+                      <p><a href={selectedSchool?.pointOfContact.contactUrl} target="_blank">Request information</a></p>
                     </div>
                     <div style={{textAlign:"center" , marginTop:35}}>
                     <Apply school={tab.name} program={tab.program}/>
@@ -237,6 +246,7 @@ export default function SchoolListing() {
                     <div style={{textAlign:"left", marginLeft: 30}}>
                       <h3> <strong>{selectedSchool?.name}</strong></h3>
                       <div><small>{selectedSchool?.type}</small></div>
+                      <div><small>{selectedSchool?.program}</small></div>
                       <div><small>{selectedSchool?.location.city}</small></div>
                     </div>
                     </div>
@@ -254,6 +264,14 @@ export default function SchoolListing() {
                     <div>
                       <h4>Contact</h4>
                       <p>{selectedSchool?.pointOfContact.number}</p>
+                    </div>
+                    <div>
+                      <h4>Cost</h4>
+                      <p>{selectedSchool?.cost}</p>
+                    </div>
+                    <div>
+                      <h4>Duration</h4>
+                      <p>{selectedSchool?.duration}</p>
                       <p><a href={selectedSchool?.pointOfContact.contactUrl} target="_blank">Request information</a></p>
                     </div>
                     <Apply school={selectedSchool?.name} program={selectedSchool?.program}/>

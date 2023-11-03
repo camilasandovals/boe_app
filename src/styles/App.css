@@ -408,6 +408,10 @@ button:active {
   width: 100%;
 }
 
+.hover{
+  cursor: pointer;
+}
+
 @media (max-width: 1100px) {
   .schools-container {
     margin: 0;
@@ -505,6 +509,7 @@ button:active {
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   margin-top: 40px;
   margin-bottom: 80px;
+  cursor: pointer;
 }
 
 .exclusive-text-container {
@@ -609,6 +614,7 @@ button:active {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  cursor: pointer;
 }
 
 
