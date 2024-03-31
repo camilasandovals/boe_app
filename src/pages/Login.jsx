@@ -8,14 +8,14 @@ import { UserContext } from "../App";
 export default function Login() {
    const [user, setUser] = useContext(UserContext)
    
-   const endpoint = "login"
+   const endpoint = "api/login"
     return(
         <AppLayout>
             <div className="login">
-                <h3>Kickstart a career in a skilled trade.</h3>
-                <h2>Login</h2>
-                <p>Don't have an account? <a href="/signup"><strong>Sign up</strong></a></p>
+                <h1>Login</h1>
+                <p>Welcome Back!</p>
                 <LoginForm endpoint= {endpoint} setUser ={setUser}/>
+                <p>Don't have an account? <a href="/signup"><strong>Sign up</strong></a></p>
             </div>
         </AppLayout>
     )

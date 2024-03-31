@@ -10,6 +10,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 import { createContext, useState, useEffect } from 'react';
 import Account from './pages/Account';
+import SignUpMembers from './pages/SignupMembers';
+import NavMenu from './layout/NavMenu';
+import VerificationPage from './pages/Verification';
+import AddEntry from './pages/AddEntry';
 
 export const UserContext = createContext(null);
 
@@ -36,9 +40,11 @@ function App() {
           <Route path='/resources' element={<Resources />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/members/signup' element={<SignUpMembers />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/account' element={<Account />} />
-          {/* <Route path='/edit' element={<Account />} /> */}
+          <Route path='/verify' element={<VerificationPage />} />
+          <Route path='/programs' element= {<AddEntry />} />
           <Route path='*' element={<Error404 />} />
         </Routes>
       </BrowserRouter>

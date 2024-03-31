@@ -8,8 +8,8 @@ export default function Home() {
     return(
         <AppLayout>
             <Hero />
-                <SignModal />
-                <SchoolListing />
+            <SignModal />
+            <SchoolListing />
         </AppLayout>
     )
 }

@@ -14,16 +14,17 @@
   --elevation-raised: var(--elevation-lined),0px 4px 4px var(--color-shadow);
 }
 
-body {
+body, html {
   background-color: var(--bg-color-light);
   margin: 0;
+  padding: 0;
 }
 
 h1 {
   color: var(--logo-color2);
-  font-weight: 800;
+  font-weight: 700;
   text-shadow: 1px 3px 4px rgba(0, 0, 0, 0.015);
-  margin-top: 2.5em;
+  margin-top: 1em;
   margin-bottom: 1em;
 }
 
@@ -31,7 +32,6 @@ h2 {
   color: var(--logo-color2);
   font-weight: 600;
   text-shadow: 1px 2px 2px rgba(30, 30, 30, 0.066);
-
   margin-bottom: 0.5em;
 }
 
@@ -40,8 +40,7 @@ h3 {
   color: var(--logo-color2);
   font-weight: 500;
   text-shadow: 1px 2px 2px rgba(30, 30, 30, 0.066);
-  margin-top: 0.5em;
-  margin-bottom: 0.2em;
+  margin: 0.3em;
 }
 
 h4 {
@@ -50,6 +49,7 @@ h4 {
 p {
   color: var(--bg-color-dark);
   font-weight: 300;
+  margin: 0;
 }
 
 p strong {
@@ -63,6 +63,21 @@ p a {
 small {
   color:  #797979
 }
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  margin-top: 3.7rem
+}
+
+
 
 
 /* ------------------------------ BUTTON ------------------------------ */
@@ -90,13 +105,12 @@ button:active {
   transform: translateY(-1px);
 }
 
+
 /* ------------------------------ FORM ACCOUNT ------------------------------ */
 .account{
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 110px;
   padding-bottom: 50px;
   justify-content: center;
   text-align: center;
@@ -104,7 +118,6 @@ button:active {
 }
 
 .form-account {
-  height: 600px;
   width: 500px;
   background-color: var(--white);
   border-radius: 10px;
@@ -123,6 +136,15 @@ button:active {
   margin: 0;
 }
 
+.text-muted {
+  display: none;
+}
+
+.text-danger {
+  font-size: 0.8rem;
+  text-align: right;
+}
+
 @media (max-width: 800px) {
   .form-account {
     box-shadow: none;
@@ -134,7 +156,6 @@ button:active {
 
 .about {
   width: 80%;
-  
 }
 
 .subscribe-container {
@@ -227,6 +248,20 @@ button:active {
   margin-left: 30px;
 }
 
+.dropdown-menu {
+  background-color: var(--logo-color);
+  border: none;
+}
+
+.dropdown-menu a:hover {
+  background-color: transparent;
+  color: var(--logo-color-hover);
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
 .nav-icon {
   text-align: center;
 }
@@ -249,14 +284,16 @@ button:active {
   .nav a:hover{
     color: white
   }
+
+  nav .navbar-collapse .dropdown-menu {
+    display: none
+  }
 }
 
 
 /* ------------------------------ FORM ------------------------------ */
 
 .form {
-  height: 290px;
-  width: 320px;
   background-color: var(--white);
   border-radius: 10px;
   box-shadow: 0px 0px 1px 1px var(--bg-color-mid);
@@ -267,8 +304,10 @@ button:active {
   margin-top: 20px;
   margin-bottom: 40px;
   padding: 20px;
-  padding-top: 3em;
-  padding-bottom: 2em;
+}
+
+.form input {
+  min-width: 300px;
 }
 
 @media (max-width: 800px) {
@@ -283,12 +322,10 @@ button:active {
 .login {
   display: flex;
   flex-direction: column;
-  height: 80vh;
-  padding-top: 110px;
-  padding-bottom: 50px;
   justify-content: center;
   align-items: center;
   text-align: center;
+  max-width: 40rem;
 }
 
 .login h2 {
@@ -300,9 +337,8 @@ button:active {
 
 .video-container {
     display: flex;
-    padding-top: 60px;
     width: 100%;
-    height: 500px;
+    height: 320px;
     overflow: hidden;
     z-index: -1;
     
@@ -320,8 +356,6 @@ button:active {
   position: absolute;
   left: 13%;
   top: 20%;
-  margin-top: 40px;
-  padding: 15px;
   border-radius: 6px;
   background: rgb(0, 0, 0);
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
@@ -585,19 +619,30 @@ button:active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  text-align: center;
   margin-bottom: 40px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 30px;
+  padding: 2.5rem;
+  overflow-y: auto;
+  min-width: 18rem;
+}
+
+.profile-container-member {
+  background-color: var(--white);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  height: 40rem;
+  width: 100%;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 2.5rem;
+  overflow-y: auto;
+  min-width: 35rem
 }
 
 .profile-container p {
   overflow-wrap: anywhere;
-  
 }
-
 
 .image-container {
   height: 150px;
@@ -608,13 +653,14 @@ button:active {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 1rem;
+  position: relative;
 }
 
 .image-container img {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  cursor: pointer;
 }
 
 
@@ -626,35 +672,21 @@ button:active {
   justify-content: center;
 }
 
-.favorites-container {
-    display: flex;
-    flex-direction: row; 
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: start;
-    text-align: center;
-    overflow: scroll;
-    margin-top: 10px;
-    
-}
 
 .favorite {
   background-color: var(--bg-color-light);
   border: 1px solid var(--bg-color-mid);
-  margin: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   padding: 10px;
   text-align: start;
-  height: 120px;
-  flex: 1 0 40%;
   border-radius: 10px;
+  width: 18rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-@media (max-width: 1000px) {
-  .favorite {
-    height: 110px;
-    flex: 1 0 50%;
-  }
-}
 /* ------------------------------ FOOTER ------------------------------ */
 
 footer {
@@ -733,4 +765,36 @@ footer {
 
 .hover-heart.liked {
   color: var(--logo-color)
+}
+
+/* ------------------------------ SKELETONS ------------------------------ */
+
+.skeleton {
+  background-color: #ddd;
+  border-radius: 4px;
+  animation: skeleton-loading 1.2s infinite ease-in-out;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #eee;
+  }
+  50% {
+    background-color: #ddd;
+  }
+  100% {
+    background-color: #eee;
+  }
+}
+
+.skeleton-text {
+  margin-top: 10px;
+  height: 20px;
+  width: 80%;
+}
+
+.skeleton-img {
+  height: 60px;
+  width: 100%;
+  margin-bottom: 10px;
 }

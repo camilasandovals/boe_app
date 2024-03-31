@@ -4,6 +4,8 @@ import { Row } from "react-bootstrap";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
+import MemberInfo from "../components/MemberInfo";
+import Error404 from "./Error404";
 
 export default function Account() {
     const [user, setUser] = useContext(UserContext)
@@ -19,8 +21,11 @@ export default function Account() {
     return (
         <AppLayout>
             <div className="account">
-                <h2>Update your profile</h2>
+                { user?.type == "user"? (
                 <UserInfo />
+                ) : (
+                <Error404 />
+                )}
             </div>
         </AppLayout>
     )

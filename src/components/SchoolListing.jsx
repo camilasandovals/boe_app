@@ -6,21 +6,36 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import "../styles/SchoolsModal.css"
 import Apply from "./Apply";
 import Favorites from "./Favorites";
+import Message from "./Message";
 
-
-export default function SchoolListing() {
+export default function ProgramListing() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [schools, setSchools] = useState('');
+  const [programs, setPrograms] = useState([]);
   const [showModal, setShowModal] = useState(false); 
-  const [selectedSchool, setSelectedSchool] = useState(null);
+  const [selectedProgram, setselectedProgram] = useState(null);
   const [selectedCity, setSelectedCity] = useState('');
   const [selectedType, setSelectedType] = useState('');
   const [selectedIndustry, setSelectedIndustry] = useState('');
+  const user = JSON.parse(localStorage.getItem('user'));
+  const isLoading = programs.length === 0;
 
+  const renderSkeletons = () => {
+    return Array.from({ length: 5 }).map((_, index) => (
+      <div key={index} className="skeleton-item">
+        <div className="skeleton-img"></div>
+        <div className="skeleton-text"></div>
+        <div className="skeleton-text"></div>
+      </div>
+    ));
+  };
   useEffect(() => {
-    fetch('https://boepartners-api.web.app/api/schools')
+    fetch('http://localhost:3001/api/programs', {
+      headers: {
+        'Authorization': `Bearer ${user?.token}`
+      }
+    })
       .then(response => response.json())
-      .then(data => setSchools(data))
+      .then(data => setPrograms(data))
       .catch(alert)
   }, []);
 
@@ -30,7 +45,6 @@ export default function SchoolListing() {
     setSelectedType('');
     setSelectedIndustry('');
   };
-  
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -48,43 +62,40 @@ export default function SchoolListing() {
     setSelectedIndustry(industry);
   };
 
-  const filterTabs = (tabs) => {
-    let filteredTabs = tabs;
+  const filterTabs = (programsList) => {
+    let filteredPrograms = programsList;
     if (searchTerm) {
-      filteredTabs = filteredTabs.filter((tab) => tab.name.toLowerCase().includes(searchTerm.toLowerCase()));
+      filteredPrograms = filteredPrograms.filter((program) => program?.name?.toLowerCase().includes(searchTerm.toLowerCase()));
     }
     if (selectedCity) {
-      filteredTabs = filteredTabs.filter((tab) => tab.location.city === selectedCity);
+      filteredPrograms = filteredPrograms.filter((program) => program?.school?.location?.city === selectedCity);
     }
     if (selectedType) {
-      filteredTabs = filteredTabs.filter((tab) => tab.type === selectedType);
+      filteredPrograms = filteredPrograms.filter((program) => program?.school?.type === selectedType);
     }
     if (selectedIndustry) {
-      filteredTabs = filteredTabs.filter((tab) => tab.industry === selectedIndustry);
+      filteredPrograms = filteredPrograms.filter((program) => program?.school?.industry === selectedIndustry);
     }
-
-    
-    return filteredTabs;
+    return filteredPrograms;
   };
   
   const tabRef = useRef(null);
 
-  const handleTabClick = (school) => {
-  if (window.innerWidth < 700) {
-    setSelectedSchool(school);
-    setShowModal(true);
-  }
-};
-
+  const handleTabClick = (program) => {
+    if (window.innerWidth < 700) {
+      setselectedProgram(program);
+      setShowModal(true);
+    }
+  };
 
   const handleClose = () => setShowModal(false);
-  const handleShow = (school) => {
-    setSelectedSchool(school);
+  const handleShow = (program) => {
+    setselectedProgram(program);
     setShowModal(true);
   };
 
   return (
-    <Tab.Container  defaultActiveKey='63c00d7afbff54dd5e32ef6e'>
+    <Tab.Container  defaultActiveKey='65e669834d31650e1ce5a2f4'>
       <Row className="schools-container">
         <Col className="p-0 overflow-auto" style={{ maxHeight: "704px" }} md={5} sm={12}>
           <ListGroup className="border-list-group">
@@ -106,9 +117,9 @@ export default function SchoolListing() {
               variant="secondary"
               title="Location"
               >
-              {(!schools)
+              {(!programs)
                 ? <p>Loading...</p>
-                : Array.from(new Set(schools.map((school) => school.location.city))).map((city) => (
+                : Array.from(new Set(programs?.map((program) => program?.school?.location?.city))).map((city) => (
                   <Dropdown.Item onClick={() => handleCitySelect(city)}>{city}</Dropdown.Item>
                 ))}
             </DropdownButton>
@@ -118,9 +129,9 @@ export default function SchoolListing() {
               variant="secondary"
               title="Type of program"
               >
-              {(!schools)
+              {(!programs)
                 ? <p>Loading...</p>
-                : Array.from(new Set(schools.map((school) => school.type))).map((type) => (
+                : Array.from(new Set(programs?.map((program) => program?.school?.type))).map((type) => (
                   <Dropdown.Item onClick={() => handleTypeSelect(type)}>{type}</Dropdown.Item>
                 ))}
             </DropdownButton>
@@ -130,9 +141,9 @@ export default function SchoolListing() {
               variant="secondary"
               title="Industry"
               >
-              {(!schools)
+              {(!programs)
                 ? <p>Loading...</p>
-                : Array.from(new Set(schools.map((school) => school.industry))).map((industry) => (
+                : Array.from(new Set(programs?.map((program) => program?.school?.industry))).map((industry) => (
                   <Dropdown.Item onClick={() => handleTypeIndustry(industry)}>{industry}</Dropdown.Item>
                 ))}
             </DropdownButton>
@@ -143,40 +154,40 @@ export default function SchoolListing() {
             </Stack>
 
             {
-              (!schools)
+              (!programs)
                 ? <p>Loading...</p>
-                : filterTabs(schools).length > 0
-                ? filterTabs(schools).map((tab) => (
-                  <ListGroup.Item className="tab"
+                : filterTabs(programs).length > 0
+                ? filterTabs(programs).map((tab) => (
+                  <ListGroup.Item className="tab?"
                     action
-                    eventKey={tab._id}
-                    key={tab._id}
+                    eventKey={tab?._id}
+                    key={tab?._id}
                     ref={(el) => {
-                      if (tab._id === '63c00d7afbff54dd5e32ef6e') {
+                      if (tab?._id === '63c00d7afbff54dd5e32ef6e') {
                         tabRef.current = el;
                       }
                     }}
-                    onClick={() => {if(window.innerWidth <= 767) {handleShow(tab)} else {handleTabClick(tab._id)}}}
+                    onClick={() => {if(window.innerWidth <= 767) {handleShow(tab)} else {handleTabClick(tab?._id)}}}
                   >
                     <div style={{display:"flex", justifyContent:"space-between"}}>
                       <div className="d-flex">
                         <div className="logo-wrapper" >
-                            <img src={tab.logoUrl} alt="School logo"/>
+                            <img src={tab?.school?.logoUrl} alt="program logo"/>
                         </div>
                         <div style={{textAlign:"left", marginLeft: 30}}>
-                          <strong>{tab.name}</strong>
-                          <div><small>{tab.type}</small></div>
-                          <div><small>{tab.program}</small></div>
-                          <div><small>{tab.location.city}</small></div>
+                          <strong>{tab?.school?.name}</strong>
+                          <div><small>{tab?.school?.type}</small></div>
+                          <div><small>{tab?.name}</small></div>
+                          <div><small>{tab?.school?.location?.city}</small></div>
                         </div>
                       </div>
                      
-                      {/* <Favorites school={tab.name} program={tab.program}/> */}
+                      {/* <Favorites program={tab?.name} program={tab?.program?}/> */}
                       
                     </div>
                   </ListGroup.Item>
                 ))
-                : <p className="m-5">No schools found for your criteria.</p>
+                : <p className="m-5">No programs found for your criteria.</p>
             }
 
           </ListGroup>
@@ -184,49 +195,45 @@ export default function SchoolListing() {
 
         <Col  className="depth-listing" style={{ maxHeight: "704px" }} md={7} sm={8}>
           <Tab.Content style={{padding:40, textAlign:"left"}}>
-            {(!schools)
+            {(!programs)
               ? <p>Loading...</p>
-              : schools.map((tab) => (
-                <Tab.Pane eventKey={tab._id} key={tab._id}>
+              : programs?.map((tab) => (
+                <Tab.Pane eventKey={tab?._id} key={tab?._id}>
                   <div style={{display:"flex" , justifyContent:"space-between"}}>
                   <div className="d-flex">
                     <div className="logo-wrapper-depth">
-                        <img src={tab.logoUrl} alt="School logo"/>
+                        <img src={tab?.school?.logoUrl} alt="program logo"/>
                     </div>
                     <div style={{textAlign:"left", marginLeft: 30}}>
-                      <h3> <strong>{tab.name}</strong></h3>
-                      <div><small>{tab.type}</small></div>
-                      <div><small>{tab.program}</small></div>
-                      <div><small>{tab.location.city}</small></div>
+                      <h3> <strong>{tab?.school?.name}</strong></h3>
+                      <div><small>{tab?.school?.type}</small></div>
+                      <div><small>{tab?.name}</small></div>
+                      <div><small>{tab?.school.location?.city}</small></div>
                     </div>
                     </div>
-                    <Favorites school = {tab.name} program={tab.program}/>
+                    <Favorites program={tab?._id} isLiked={tab?.isLiked}/>
                   </div>
                   <div style={{marginTop:30}}>
                     <div>
-                      <h4>Description</h4>
-                      <p>{tab.description}</p>
+                      <h4>Program Description</h4>
+                      <p>{tab?.description}</p>
                     </div>
                     <div>
-                      <h4>Program</h4>
-                      <p>{tab.type}</p>
+                      <h4>About {tab?.school?.name}</h4>
+                      <p>{tab?.school?.description}</p>
                     </div>
                     <div>
-                      <h4>Contact</h4>
-                      <p>{selectedSchool?.pointOfContact.number}</p>
-                    </div>
-                    <div>
-                      <h4>Cost</h4>
-                      <p>{selectedSchool?.cost}</p>
+                      <h4>Cost & Financing Options</h4>
+                      <p>{tab?.cost}</p>
+                      <p>{tab?.financing ? tab?.financing : "Contact us for more information"}</p>
                     </div>
                     <div>
                       <h4>Duration</h4>
-                      <p>{selectedSchool?.duration}</p>
-                      <p><a href={selectedSchool?.pointOfContact.contactUrl} target="_blank">Request information</a></p>
+                      <p>{tab?.duration ? tab?.duration : "Contact us for more information"}</p>
                     </div>
                     <div style={{textAlign:"center" , marginTop:35}}>
-                    <Apply school={tab.name} program={tab.program}/>
-                    
+                    <Apply program={tab?._id}/>
+                    <Message school={tab?.school?._id}/>
                     </div>
                   </div>
                 </Tab.Pane>
@@ -240,41 +247,34 @@ export default function SchoolListing() {
         <div style={{display:"flex" , justifyContent:"space-between"}}>
                   <div className="d-flex">
                     <div className="logo-wrapper-depth">
-                        <img src={selectedSchool?.logoUrl} alt="School logo"/>
+                        <img src={selectedProgram?.school?.logoUrl} alt="program logo"/>
                     </div>
                     
                     <div style={{textAlign:"left", marginLeft: 30}}>
-                      <h3> <strong>{selectedSchool?.name}</strong></h3>
-                      <div><small>{selectedSchool?.type}</small></div>
-                      <div><small>{selectedSchool?.program}</small></div>
-                      <div><small>{selectedSchool?.location.city}</small></div>
+                      <h3> <strong>{selectedProgram?.school?.name}</strong></h3>
+                      <div><small>{selectedProgram?.school?.type}</small></div>
+                      <div><small>{selectedProgram?.name}</small></div>
+                      <div><small>{selectedProgram?.school?.location?.city}</small></div>
                     </div>
                     </div>
-                  <Favorites />
+                    <Favorites program={selectedProgram?._id} isLiked={selectedProgram?.isLiked}/>
                   </div>
                   <div style={{marginTop:30}}>
                     <div>
                       <h4>Description</h4>
-                      <p>{selectedSchool?.description}</p>
+                      <p>{selectedProgram?.school?.description}</p>
                     </div>
                     <div>
                       <h4>Program</h4>
-                      <p>{selectedSchool?.type}</p>
+                      <p>{selectedProgram?.school?.type}</p>
                     </div>
                     <div>
                       <h4>Contact</h4>
-                      <p>{selectedSchool?.pointOfContact.number}</p>
+                      <p>{selectedProgram?.school?.pointOfContact.number}</p>
+                      <p><a href={selectedProgram?.school?.pointOfContact.contactUrl} target="_blank">Request information</a></p>
                     </div>
-                    <div>
-                      <h4>Cost</h4>
-                      <p>{selectedSchool?.cost}</p>
-                    </div>
-                    <div>
-                      <h4>Duration</h4>
-                      <p>{selectedSchool?.duration}</p>
-                      <p><a href={selectedSchool?.pointOfContact.contactUrl} target="_blank">Request information</a></p>
-                    </div>
-                    <Apply school={selectedSchool?.name} program={selectedSchool?.program}/>
+                    <Apply program={selectedProgram?._id}/>
+                    <Message school={selectedProgram?.school?._id}/>
                   </div>
                 </div>
       </Modal>
