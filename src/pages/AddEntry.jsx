@@ -9,23 +9,24 @@ import Error404 from "./Error404";
 
 export default function AddEntry() {
   const [user, setUser] = useContext(UserContext);
+  const [required, setRequired] = useState(false);
   const [programData, setProgramData] = useState({
-    name: '',
-    description: '',
-    duration: '',
-    location: '',
-    cost: '',
-    financing: ''
+    name: "",
+    description: "",
+    duration: "",
+    location: "",
+    cost: "",
+    financing: "",
   });
 
-  const navigate = useNavigate()
-    
+  const navigate = useNavigate();
+
   useEffect(() => {
-      if (!user) {
-          navigate('/');
-          return;
-      }
-  } , [user])
+    if (!user) {
+      navigate("/");
+      return;
+    }
+  }, [user]);
 
   const handleChange = (e) => {
     setProgramData({ ...programData, [e.target.name]: e.target.value });
@@ -33,50 +34,71 @@ export default function AddEntry() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`http://localhost:3001/api/programs`, {
-      method: 'POST',
+
+    if (!programData.name) {
+      alert("Please fill out all required fields");
+      setRequired(true);
+      return;
+    }
+
+    const response = await fetch(`http://localhost:3002/api/programs`, {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${user?.token}`
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user?.token}`,
       },
-      body: JSON.stringify(programData)
+      body: JSON.stringify(programData),
     })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.success) {
-        alert("Program successfully created");
-        navigate('/profile')
-        return;
-      }
-      else {
-        alert(data.message)
-      }
-    }).catch((error) => console.log(error));
-    
-  }
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          alert("Program successfully created");
+          navigate("/profile");
+          return;
+        } else {
+          alert(data.message);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
-      <AppLayout>
-          <div className="account">
-              { user?.type == "member"? (
-                <>
-              <h1>Add a new program</h1>
-              <Form onSubmit={handleFormSubmit}>
+    <AppLayout>
+      <div className="account">
+        {user?.type == "member" ? (
+          <>
+            <h1>Add a new program</h1>
+            <Form onSubmit={handleFormSubmit} className="form-account">
               <Form.Group className="mb-3">
-                <Form.Label>Name</Form.Label>
-                <Form.Control 
+                <div
+                  className={
+                    !programData.name && required ? "text-danger" : "text-muted"
+                  }
+                >
+                  Required*
+                </div>
+                <Form.Control
                   type="text"
                   name="name"
                   value={programData.name}
                   onChange={handleChange}
                   placeholder="Program Name"
                   required
+                  className="me-2 mb-2"
                 />
               </Form.Group>
-        
+
               <Form.Group className="mb-3">
-                <Form.Label>Description</Form.Label>
-                <Form.Control 
+                <div
+                  className={
+                    !programData.description && required
+                      ? "text-danger"
+                      : "text-muted"
+                  }
+                >
+                  Required*
+                </div>
+                <Form.Control
                   as="textarea"
                   name="description"
                   rows={3}
@@ -86,10 +108,9 @@ export default function AddEntry() {
                   required
                 />
               </Form.Group>
-        
+
               <Form.Group className="mb-3">
-                <Form.Label>Duration</Form.Label>
-                <Form.Control 
+                <Form.Control
                   type="text"
                   name="duration"
                   value={programData.duration}
@@ -98,23 +119,23 @@ export default function AddEntry() {
                   required
                 />
               </Form.Group>
-        
+
               <Form.Group className="mb-3">
-                <Form.Label>Location</Form.Label>
-                <Form.Select 
-                    aria-label="Default select example" 
-                    name="location"
-                    onChange={handleChange} 
-                    value={programData.location}>
-                        <option value="">Select location</option>
-                        <option value="Miami Dade">Miami Dade</option>
-                        <option value="Broward">Broward</option>
-                        <option value="Palm Beach">Palm Beach</option>
+                <Form.Select
+                  aria-label="Default select example"
+                  name="location"
+                  onChange={handleChange}
+                  value={programData.location}
+                  required
+                >
+                  <option value="">Select location</option>
+                  <option value="Miami Dade">Miami Dade</option>
+                  <option value="Broward">Broward</option>
+                  <option value="Palm Beach">Palm Beach</option>
                 </Form.Select>
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Cost (optional)</Form.Label>
-                <Form.Control 
+                <Form.Control
                   type="text"
                   name="cost"
                   value={programData.cost}
@@ -122,10 +143,9 @@ export default function AddEntry() {
                   placeholder="Cost"
                 />
               </Form.Group>
-        
+
               <Form.Group className="mb-3">
-                <Form.Label>Financing Options (optional)</Form.Label>
-                <Form.Control 
+                <Form.Control
                   type="text"
                   name="financing"
                   value={programData.financing}
@@ -133,16 +153,16 @@ export default function AddEntry() {
                   placeholder="Financing Options"
                 />
               </Form.Group>
-        
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
+
+              <button className="button-class" type="submit">
+                <strong>Submit</strong>
+              </button>
             </Form>
-            </>
-              ) : (
-              <Error404 />
-              )}
-          </div>
-      </AppLayout>
-  )
+          </>
+        ) : (
+          <Error404 />
+        )}
+      </div>
+    </AppLayout>
+  );
 }
