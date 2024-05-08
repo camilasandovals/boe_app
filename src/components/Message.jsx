@@ -28,7 +28,7 @@ export default function Message({ school }) {
     }
 
     try {
-      const response = await fetch("http://localhost:3002/messages", {
+      const response = await fetch("https://boepartners-api.web.app/messages", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

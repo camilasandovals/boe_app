@@ -33,13 +33,18 @@ export default function SignUpMemberForm({ endpoint, setUser }) {
     formData.append("organizationType", organizationType);
     formData.append("industry", industry);
     formData.append("description", description);
-    formData.append("logo", logo); // Ensure this is the file object
+    if (logo) {
+      formData.append("logo", logo);
+    }
 
     try {
-      const response = await fetch(`http://localhost:3002/${endpoint}`, {
-        method: "POST",
-        body: formData, // Use FormData directly without JSON.stringify
-      });
+      const response = await fetch(
+        `https://boepartners-api.web.app/${endpoint}`,
+        {
+          method: "POST",
+          body: formData, // Use FormData directly without JSON.stringify
+        }
+      );
 
       const data = await response.json();
 
@@ -49,7 +54,7 @@ export default function SignUpMemberForm({ endpoint, setUser }) {
       }
       navigate("/profile");
     } catch (err) {
-      alert(err);
+      console.error(err);
     }
   };
 
@@ -82,7 +87,10 @@ export default function SignUpMemberForm({ endpoint, setUser }) {
           }}
         />
       </Form.Group>
-      <Form.Group className="m-2" controlId="formBasiclogo">
+      <Form.Label className="text-start d-block">
+            <p>Upload School Logo</p>
+          </Form.Label>
+      <Form.Group className="mb-2" controlId="formBasiclogo">
         <Form.Control
           type="file"
           onChange={(e) => setLogo(e.target.files[0])}

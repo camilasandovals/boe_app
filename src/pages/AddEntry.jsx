@@ -41,14 +41,17 @@ export default function AddEntry() {
       return;
     }
 
-    const response = await fetch(`http://localhost:3002/api/programs`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user?.token}`,
-      },
-      body: JSON.stringify(programData),
-    })
+    const response = await fetch(
+      `https://boepartners-api.web.app/api/programs`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.token}`,
+        },
+        body: JSON.stringify(programData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
@@ -128,10 +131,11 @@ export default function AddEntry() {
                   value={programData.location}
                   required
                 >
-                  <option value="">Select location</option>
+                  <option value="">Select Location</option>
                   <option value="Miami Dade">Miami Dade</option>
                   <option value="Broward">Broward</option>
                   <option value="Palm Beach">Palm Beach</option>
+                  <option value="Online">Online</option>
                 </Form.Select>
               </Form.Group>
               <Form.Group className="mb-3">

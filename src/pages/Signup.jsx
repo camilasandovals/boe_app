@@ -11,9 +11,8 @@ export default function Login() {
   const [typeOfUser, setTypeOfUser] = useState(null);
 
   const TypeOfUserSelectionView = () => (
-    <Container
+    <seccion
       style={{
-        height: "50vh",
         textAlign: "center",
         alignContent: "center",
         justifyContent: "center",
@@ -23,38 +22,46 @@ export default function Login() {
       }}
     >
       <h1>Sign up</h1>
-      <Row
+      <div
         className="row-gap"
         style={{
           display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
           justifyContent: "center",
           alignItems: "center",
           marginTop: "4rem",
         }}
       >
-        <Col
+        <div
           onClick={() => setTypeOfUser("user")}
           style={{
             textAlign: "center",
           }}
         >
           <div className="icon-container">
-            <PersonFill color="lightgray" size={100} />
-            <p>I am a person looking for schools</p>
+            <div className="icon-signup">
+              <PersonFill color="lightgray" size={"100%"}/>
+            </div>
+            <p>I am a South Florida resident and looking for skilled trade career opportunities</p>
           </div>
-        </Col>
-        <Col
+        </div>
+
+        <div
           onClick={() => setTypeOfUser("member")}
           style={{ textAlign: "center" }}
           className="justify-content-center"
         >
           <div className="icon-container">
-            <PeopleFill color="lightgray" size={100} />
-            <p>I am a school looking to become a partner</p>
+            <div className="icon-signup">
+              <PeopleFill color="lightgray" size={"100%"}/>
+            </div>
+            <p>I am a trade school or vocational training program based in South Florida looking to
+              partner with BOE and connect with future students</p>
           </div>
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </div>
+    </seccion>
   );
 
   const SignUpUsers = () => (

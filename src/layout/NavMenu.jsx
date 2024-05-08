@@ -44,36 +44,6 @@ export default function NavMenu() {
               <div>About</div>
             </Nav.Link>
 
-            {/* <NavDropdown
-              title={
-                <span onClick={() => navigate("/about")}>
-                  <PeopleFill />
-                  <div>About Us</div>
-                </span>
-              }
-              id="about-us-dropdown"
-              show={showDropdown}
-              onMouseEnter={() => setShowDropdown(true)}
-              onMouseLeave={() => setShowDropdown(false)}
-            > */}
-            {/* <NavDropdown.Item
-                className="about-us-dropdown"
-                as={Link}
-                to="/about#who-we-are"
-              >
-                Who we are
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/about#what-we-do">
-                What we do
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/about#get-involved">
-                Get involved
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/about#resources">
-                Resources
-              </NavDropdown.Item> 
-            </NavDropdown>*/}
-
             {user ? (
               <Nav.Link as={Link} to="/profile">
                 <PersonFill size={19} />

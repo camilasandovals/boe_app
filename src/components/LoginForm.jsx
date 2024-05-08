@@ -10,13 +10,16 @@ export default function Login({ endpoint, setUser }) {
   const handleGetUser = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:3002/${endpoint}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        `https://boepartners-api.web.app/${endpoint}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       const data = await response.json();
 
@@ -27,7 +30,8 @@ export default function Login({ endpoint, setUser }) {
 
       setUser(data);
       localStorage.setItem("user", JSON.stringify(data));
-      if (endpoint === "signup") {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (!user.name && data.type === "user") {
         navigate("/account");
         return;
       }
@@ -36,6 +40,7 @@ export default function Login({ endpoint, setUser }) {
         return;
       }
       navigate("/");
+
     } catch (err) {
       alert(err);
     }

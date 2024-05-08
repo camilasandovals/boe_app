@@ -97,6 +97,20 @@ small {
   margin-top: 15px;
 }
 
+.update-file-button {
+  padding: 0.8em 1.3em;
+  color: var(--logo-color);
+  background-color: rgb(225, 255, 236);
+  box-shadow: rgba(67, 126, 88, 1);
+  border: none;
+  border-radius: 45px;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 15px;
+}
+
+
 .button-class:hover {
   background-color: var(--logo-color);
   color: #fff;
@@ -152,46 +166,29 @@ button:active {
 }
 /* ------------------------------ ABOUT ------------------------------ */
 
-.about {
-  width: 80%;
-}
 
-.subscribe-container {
-  margin-bottom: 30px;
-  height: 200px;
-  width: 750px;
-  padding: 20px;
+.row-about {
   display: flex;
-  flex-direction: column;
   justify-content: space-evenly;
-  text-align: center;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    136deg,
-    rgba(127, 185, 147, 0.368) 40%,
-    rgba(170, 245, 196, 0.368) 50%,
-    rgba(124, 184, 145, 0.368) 75%
-  );
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  border-radius: 20px;
-  align-items: center;
-  margin-bottom: 70px;
+  padding-inline: 15%;
+  width: 100%;
+  gap: 3rem;
+  margin-bottom: 2.5rem;
 }
 
-.subscribe-container p {
+.about-content {
+  padding: 1rem;
+}
+
+.about-statistics{
+  text-align: center;
   margin-bottom: 30px;
 }
 
-.subscribe-container input {
-  width: 300px;
+.about-us-text{
+  font-size: 1.2rem;
 }
 
-.subscribe-container .subscription-container button {
-  padding: 15px;
-  margin-bottom: 0;
-  /* background-color: var(--white);
-  color: var(--logo-color); */
-}
 
 .about-image {
   width: 100%;
@@ -201,22 +198,39 @@ button:active {
 }
 
 .about-image-container {
-  height: 28rem;
-  width: 28rem;
+  width: 30rem;
+}
+
+.about-main-image {
+  height: 30rem;
+  width: 30rem;
 }
 
 @media (max-width: 900px) {
-  .subscribe-container {
-    width: 300px;
-    height: 280px;
+  .about-main-image {
+    width: 21rem;
+    height: 21rem;
   }
 
-  .subscribe-container input {
-    width: 200px;
+  .row-about {
+    flex-wrap: wrap;
+    padding-inline: 4%;
   }
 
-  .about {
-    width: 95%;
+  .about-image-container {
+    width: 21rem;
+  }
+  
+}
+
+@media only screen and (min-width: 768px) {
+  .row-about {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .row-about.reverse-order {
+    flex-direction: row-reverse;
   }
 }
 /* ------------------------------ RESOURCES ------------------------------ */
@@ -254,15 +268,6 @@ button:active {
   margin-left: 30px;
 }
 
-.dropdown-menu {
-  background-color: var(--logo-color);
-  border: none;
-}
-
-.dropdown-menu a:hover {
-  background-color: transparent;
-  color: var(--logo-color-hover);
-}
 
 .dropdown-toggle::after {
   display: none;
@@ -338,8 +343,8 @@ button:active {
 }
 
 .icon-container {
-  height: 12rem; /* Remove quotes */
-  width: 12rem; /* Remove quotes */
+  height: 17rem; /* Remove quotes */
+  width: 17rem; /* Remove quotes */
   background-color: #eeeeee; /* Correct: hash for colors */
   display: flex;
   border-radius: 5%; /* Remove quotes */
@@ -358,15 +363,30 @@ button:active {
   }
 }
 
-@media (min-width: 768px) {
+.icon-signup {
+  height: 5rem;
+  width: 5rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 1108px) {
   .row-gap {
     gap: 12rem;
   }
+
 }
 
 @media (max-width: 800px) {
   .login {
     margin-inline: 5%;
+  }
+  .icon-container {
+    height: 13rem;
+    width: 13rem;
+  }
+
+  .icon-signup {
+    display: none;
   }
 }
 /* ------------------------------ VIDEO CONTAINER ------------------------------ */
@@ -434,13 +454,6 @@ button:active {
 .responsive-stack .btn {
   padding: 0.5rem 0.5rem; /* decrease button size */
   font-size: 0.8rem; /* decrease font size */
-}
-
-.dropdown-item:focus {
-  color: #495057;
-  text-decoration: none;
-  background-color: rgba(113, 204, 145, 0.5);
-  outline: 0;
 }
 
 .list-group {

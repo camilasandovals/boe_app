@@ -31,25 +31,17 @@ export default function ProgramListing() {
   const [loading, setLoading] = useState(true);
   const user = JSON.parse(localStorage.getItem("user"));
 
-  const renderSkeletons = () => {
-    return Array.from({ length: 5 }).map((_, index) => (
-      <div key={index} className="skeleton-item">
-        <div className="skeleton-img"></div>
-        <div className="skeleton-text"></div>
-        <div className="skeleton-text"></div>
-      </div>
-    ));
-  };
+
 
   useEffect(() => {
-    fetch("http://localhost:3002/api/programs", {
+    fetch("https://boepartners-api.web.app/api/programs", {
       headers: {
         Authorization: `Bearer ${user?.token}`,
       },
     })
       .then((response) => response.json())
       .then((data) => setPrograms(data), setLoading(false))
-      .catch(alert);
+      .catch((error) => console.error(error));
   }, []);
 
   const handleClearFilters = () => {
@@ -79,7 +71,7 @@ export default function ProgramListing() {
     let filteredPrograms = programsList;
     if (searchTerm) {
       filteredPrograms = filteredPrograms.filter((program) =>
-        program?.name?.toLowerCase().includes(searchTerm.toLowerCase())
+        program?.school?.name?.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
     if (selectedCity) {
@@ -128,6 +120,7 @@ export default function ProgramListing() {
             <ListGroup.Item>
               <h3>Find South Florida Training Programs</h3>
             </ListGroup.Item>
+            <div style={{ padding: '10px' }}>
             <InputGroup>
               <InputGroup.Text>
                 <Search />
@@ -139,6 +132,7 @@ export default function ProgramListing() {
                 onChange={handleSearch}
               />
             </InputGroup>
+            </div>
             <Stack
               direction="horizontal"
               gap={2}
@@ -147,9 +141,9 @@ export default function ProgramListing() {
               <DropdownButton
                 id="dropdown-button-dark-example1"
                 variant="secondary"
-                title="Location"
+                title={selectedCity ? selectedCity : "Location"}
               >
-                {!programs ? (
+                {loading ? (
                   <p>Loading...</p>
                 ) : (
                   Array.from(
@@ -169,9 +163,9 @@ export default function ProgramListing() {
               <DropdownButton
                 id="dropdown-button-dark-example1"
                 variant="secondary"
-                title="Type of program"
+                title={selectedType ? selectedType : "Type of program"}
               >
-                {!programs ? (
+                {loading ? (
                   <p>Loading...</p>
                 ) : (
                   Array.from(
@@ -187,9 +181,9 @@ export default function ProgramListing() {
               <DropdownButton
                 id="dropdown-button-dark-example1"
                 variant="secondary"
-                title="Industry"
+                title={selectedIndustry ? selectedIndustry : "Industry"}
               >
-                {!programs ? (
+                {loading? (
                   <p>Loading...</p>
                 ) : (
                   Array.from(
@@ -222,7 +216,7 @@ export default function ProgramListing() {
                   <span className="visually-hidden">Loading...</span>
                 </Spinner>
               </div>
-            ) : filterTabs(programs).length > 0 ? (
+            ) : 
               filterTabs(programs).map((tab) => (
                 <ListGroup.Item
                   className="tab?"
@@ -251,7 +245,7 @@ export default function ProgramListing() {
                           src={
                             tab?.school?.logoUrl
                               ? tab.school.logoUrl.startsWith("logo")
-                                ? `http://localhost:3002/${tab.school.logoUrl}`
+                                ? `https://boepartners-api.web.app/${tab.school.logoUrl}`
                                 : tab.school.logoUrl
                               : "/images/user-avatar.png"
                           }
@@ -267,7 +261,9 @@ export default function ProgramListing() {
                           <small>{tab?.name}</small>
                         </div>
                         <div>
-                          <small>{tab?.school?.location?.city}</small>
+                          {tab?.location? (
+                          <small>{tab?.location}</small>) :
+                          <small>{tab?.school?.location?.city}</small>}
                         </div>
                       </div>
                     </div>
@@ -276,9 +272,8 @@ export default function ProgramListing() {
                   </div>
                 </ListGroup.Item>
               ))
-            ) : (
-              <p className="m-5">No programs found for your criteria.</p>
-            )}
+            }
+            
           </ListGroup>
         </Col>
 
@@ -317,7 +312,7 @@ export default function ProgramListing() {
                           src={
                             tab?.school?.logoUrl
                               ? tab.school.logoUrl.startsWith("logo")
-                                ? `http://localhost:3002/${tab.school.logoUrl}`
+                                ? `https://boepartners-api.web.app/${tab.school.logoUrl}`
                                 : tab.school.logoUrl
                               : "/images/user-avatar.png"
                           }
@@ -395,7 +390,7 @@ export default function ProgramListing() {
                   src={
                     selectedProgram?.school?.logoUrl
                       ? selectedProgram.school.logoUrl.startsWith("logo")
-                        ? `http://localhost:3002/${selectedProgram.school.logoUrl}`
+                        ? `https://boepartners-api.web.app/${selectedProgram.school.logoUrl}`
                         : selectedProgram.school.logoUrl
                       : "/images/user-avatar.png"
                   }
@@ -433,7 +428,7 @@ export default function ProgramListing() {
             </div>
             <div>
               <h4>About {selectedProgram?.school?.name}</h4>
-              <p>{selectedProgram?.school?.type}</p>
+              <p>{selectedProgram?.school?.description}</p>
             </div>
             <div>
               <h4>Cost & Financing Options</h4>

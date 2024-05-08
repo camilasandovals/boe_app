@@ -24,25 +24,27 @@ export default function Apply({ program }) {
 
     const formData = new FormData();
 
-    formData.append("programId", program);
-    formData.append("userId", user.id);
-    formData.append("resume", resume);
 
+    formData.append("resume", resume);
+    
     try {
-      const response = await fetch("http://localhost:3002/premiumApplication", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${user?.token}`,
-        },
-        body: formData, // no 'Content-Type' header
-      });
+      const response = await fetch(
+        "https://boepartners-api.web.app/premiumApplication",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+          },
+          body: formData,
+        }
+      );
 
       const data = await response.json();
+      console.log(data);
       if (data.message) {
         alert(data.message);
         return;
       }
-      alert("Application submitted");
     } catch (error) {
       console.error(error);
       alert("An error occurred while submitting the application.");
@@ -58,7 +60,7 @@ export default function Apply({ program }) {
               className="me-2"
               type="text"
               value={name}
-              placeholder={user && user?.name ? user.name : "name"}
+              placeholder={user && user?.name ? user.name : "First Name"}
               onChange={(e) => {
                 setname(e.target.value);
               }}
@@ -66,7 +68,7 @@ export default function Apply({ program }) {
             <Form.Control
               type="text"
               value={lastName}
-              placeholder={user && user.lastName ? user.lastName : "Lastname"}
+              placeholder={user && user.lastName ? user.lastName : "Last Name"}
               onChange={(e) => {
                 setLastName(e.target.value);
               }}

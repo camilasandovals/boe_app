@@ -45,8 +45,10 @@ export default function Profile() {
 
       setIsLoading(true);
       Promise.all([
-        fetch(`http://localhost:3002/userlikes`, { headers }),
-        fetch(`http://localhost:3002/premiumApplication`, { headers }),
+        fetch(`https://boepartners-api.web.app/userlikes`, { headers }),
+        fetch(`https://boepartners-api.web.app/premiumApplication`, {
+          headers,
+        }),
       ])
         .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
         .then(([data1, data2]) => {
@@ -63,10 +65,12 @@ export default function Profile() {
     if (user?.type == "member") {
       setIsLoading(true);
       Promise.all([
-        fetch(`http://localhost:3002/memberPrograms`, { headers }),
-        fetch(`http://localhost:3002/memberlikes`, { headers }),
-        fetch(`http://localhost:3002/memberApplications`, { headers }),
-        fetch(`http://localhost:3002/messages`, { headers }),
+        fetch(`https://boepartners-api.web.app/memberPrograms`, { headers }),
+        fetch(`https://boepartners-api.web.app/memberlikes`, { headers }),
+        fetch(`https://boepartners-api.web.app/memberApplications`, {
+          headers,
+        }),
+        fetch(`https://boepartners-api.web.app/messages`, { headers }),
       ])
         .then(([res1, res2, res3, res4]) =>
           Promise.all([res1.json(), res2.json(), res3.json(), res4.json()])
@@ -134,7 +138,7 @@ export default function Profile() {
       "Content-Type": "application/json",
     };
 
-    fetch(`http://localhost:3002/api/programs/${id}`, {
+    fetch(`https://boepartners-api.web.app/api/programs/${id}`, {
       method: "DELETE",
       headers,
     })
@@ -198,7 +202,7 @@ export default function Profile() {
                     <img
                       src={
                         user?.avatar
-                          ? `http://localhost:3002/${user.avatar}`
+                          ? `https://boepartners-api.web.app/${user.avatar}`
                           : "/images/user-avatar.png"
                       }
                       alt="User profile"
@@ -264,7 +268,7 @@ export default function Profile() {
                                     ? favorite?.schoolDetails?.logoUrl.startsWith(
                                         "logo"
                                       )
-                                      ? `http://localhost:3002/${favorite?.schoolDetails.logoUrl}`
+                                      ? `https://boepartners-api.web.app/${favorite?.schoolDetails.logoUrl}`
                                       : favorite?.schoolDetails.logoUrl
                                     : "/images/school-logo.png"
                                 }
@@ -327,7 +331,7 @@ export default function Profile() {
                                   ? application?.schoolDetails?.logoUrl.startsWith(
                                       "logo"
                                     )
-                                    ? `http://localhost:3002/${application?.schoolDetails.logoUrl}`
+                                    ? `https://boepartners-api.web.app/${application?.schoolDetails.logoUrl}`
                                     : application?.schoolDetails.logoUrl
                                   : "/images/school-logo.png"
                               }
@@ -443,7 +447,7 @@ export default function Profile() {
                               <div className="logo-wrapper">
                                 {favorite?.userDetails?.avatar ? (
                                   <img
-                                    src={`http://localhost:3002/${favorite?.userDetails?.avatar}`}
+                                    src={`https://boepartners-api.web.app/${favorite?.userDetails?.avatar}`}
                                     alt="User profile"
                                   />
                                 ) : (
@@ -507,7 +511,7 @@ export default function Profile() {
                             <div className="logo-wrapper">
                               {application?.userDetails?.avatar ? (
                                 <img
-                                  src={`http://localhost:3002/${application?.userDetails?.avatar}`}
+                                  src={`https://boepartners-api.web.app/${application?.userDetails?.avatar}`}
                                   alt="User profile"
                                 />
                               ) : (
@@ -539,7 +543,7 @@ export default function Profile() {
                                 <small>{date.toLocaleDateString()}</small>
                               </p>
                               <a
-                                href={`http://localhost:3002/${application?.resumePath}`}
+                                href={`https://boepartners-api.web.app/${application?.resumePath}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
@@ -571,7 +575,7 @@ export default function Profile() {
                             <div className="logo-wrapper">
                               {message.userDetails.avatar ? (
                                 <img
-                                  src={`http://localhost:3002/${message?.userDetails?.avatar}`}
+                                  src={`https://boepartners-api.web.app/${message?.userDetails?.avatar}`}
                                   alt="User profile"
                                 />
                               ) : (

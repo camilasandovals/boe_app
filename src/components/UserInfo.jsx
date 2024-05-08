@@ -59,7 +59,7 @@ export default function UserInfo() {
       formData.append("avatar", avatar);
     }
 
-    fetch(`http://localhost:3002/api/users`, {
+    fetch(`https://boepartners-api.web.app/api/users`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${user?.token}`,
@@ -102,7 +102,7 @@ export default function UserInfo() {
           <Form.Control
             type="text"
             value={name}
-            placeholder="Name"
+            placeholder="First Name"
             onChange={(e) => {
               setname(e.target.value);
             }}
@@ -114,18 +114,42 @@ export default function UserInfo() {
           <Form.Control
             type="text"
             value={lastName}
-            placeholder="Lastname"
+            placeholder="Last Name"
             onChange={(e) => {
               setLastName(e.target.value);
             }}
-            className="mb-2"
+            className="mb-3"
           />
+          {/* <Form.Group controlId="formBasicAvatar">
+            <Form.Control
+              type="file"
+              id="fileUpload"
+              style={{ display: 'none' }}
+              onChange={(e) => setAvatar(e.target.files[0].name)}
+              className="mb-2"
+            />
+
+            <button className="update-file-button">
+              Select an Avatar
+            </button>
+
+            <span style={{ marginLeft: '10px', color: 'lightgray' }}>
+              {avatar ? avatar : 'No avatar selected'}
+            </span>
+          </Form.Group> */}
+
+          
+          <Form.Label className="text-start d-block">
+            <p>Profile Picture</p>
+          </Form.Label>
           <Form.Group className="m-2" controlId="formBasicAvatar">
             <Form.Control
               type="file"
               onChange={(e) => setAvatar(e.target.files[0])}
             />
+            
           </Form.Group>
+
           <div className={!bio && required ? "text-danger" : "text-muted"}>
             Required*
           </div>
@@ -142,17 +166,21 @@ export default function UserInfo() {
           </div>
           <Form.Select
             aria-label="Default select example"
-            className="mb-5"
+            className="mb-3"
             onChange={(e) => setLocation(e.target.value)}
             value={location}
           >
-            <option value="">Select location</option>
+            <option value="">Select Location</option>
             <option value="Miami Dade">Miami Dade</option>
             <option value="Broward">Broward</option>
             <option value="Palm Beach">Palm Beach</option>
           </Form.Select>
-          Select the reason that best describes why you're creating a BOE
-          account:
+
+
+          <Form.Label className="d-block">
+            <p>Select the reason that best describes why you're creating a BOE
+          account:</p>
+          </Form.Label>
           <div className={!category && required ? "text-danger" : "text-muted"}>
             Required*
           </div>
