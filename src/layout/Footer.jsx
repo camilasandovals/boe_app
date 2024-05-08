@@ -14,9 +14,6 @@ export default function Footer() {
             <a href="https://www.instagram.com/boepartners/" target="_blank" rel="noreferrer">
                 <Instagram size={20} style={{marginRight:20}}/>
             </a>
-            <a href="https://www.facebook.com/boepartners" target="_blank" rel="noreferrer">
-                <Facebook size={20} style={{marginRight:20}}/> 
-            </a>
             <a href="https://www.linkedin.com/company/bringing-opportunities-everywhere/about/" target="_blank" rel="noreferrer">
                 <Linkedin size={20} />
             </a>

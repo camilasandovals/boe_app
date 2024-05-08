@@ -1,53 +1,42 @@
-import { useContext, useState, useEffect } from 'react';
-import { HeartFill } from 'react-bootstrap-icons';
-import { UserContext } from '../App';
-import SignModal from './SignModal';
-import { useNavigate } from 'react-router-dom';
+import { useContext, useState } from "react";
+import { HeartFill } from "react-bootstrap-icons";
+import { UserContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
-export default function Favorites({school, program}) {
-const [user, setUser] = useContext(UserContext)
-const [isLiked, setIsLiked] = useState(false)
+export default function Favorites({ program, isLiked }) {
+  const [user] = useContext(UserContext);
+  const [liked, setIsLiked] = useState(isLiked);
+  const navigate = useNavigate();
 
-const navigate = useNavigate()
-
-useEffect(() => {
-    if (user) {
-        fetch(`https://boepartners-api.web.app/userlikes?user=${user.email}`)
-            .then((response) => response.json())
-            .then((data) => {
-                const liked = data.some(like => like.school === school && like.program === program && like.is_liked === true);
-
-                setIsLiked(liked);
-            })
-            .catch(console.error);
-    }
-}, [user, school, program]);
-
-const handleFavorites = () => {
+  const handleFavorites = () => {
     if (!user) {
-        navigate('/signup');
-        return;
+      navigate("/signup");
+      return;
     }
-    setIsLiked(!isLiked);
+
+    // Toggle the liked status
+    setIsLiked(!liked);
 
     fetch("https://boepartners-api.web.app/userlikes", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},   
-        body: JSON.stringify({ user: user.email, school, program, is_liked: !isLiked })
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user?.token}`,
+      },
+      body: JSON.stringify({ program, isLiked: !liked }),
     })
-    .then((response) => response.json())
-    .then((data) => {
-        if (data.message) {
-            alert(data.message);
-            return;
-        }
-    })
-    .catch(console.error);
-};
+      .then((response) => response.json())
+      .catch(console.error);
+  };
 
-    return(
-        <div className='hover'>
-                <HeartFill className={`hover-heart ${isLiked===true ? "liked" : ""}`} onClick={handleFavorites} size={20} style={{marginTop: 30}}/>  
-        </div>
-    )
+  return (
+    <div className="hover">
+      <HeartFill
+        className={`hover-heart ${liked ? "liked" : ""}`}
+        onClick={handleFavorites}
+        size={20}
+        style={{ marginTop: 30 }}
+      />
+    </div>
+  );
 }
