@@ -118,7 +118,7 @@ export default function UserInfo() {
         updatedFields.avatarUrl = avatarUrl;
       }
 
-    const response = await fetch(`https://api.boepartners/api/users`, {
+    const response = await fetch(`https://boepartners-api.web.app/api/users`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${user?.token}`,

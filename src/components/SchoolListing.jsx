@@ -34,7 +34,7 @@ export default function ProgramListing() {
 
 
   useEffect(() => {
-    fetch("https://api.boepartners/api/programs", {
+    fetch("https://boepartners-api.web.app/api/programs", {
       headers: {
         Authorization: `Bearer ${user?.token}`,
       },
@@ -245,7 +245,7 @@ export default function ProgramListing() {
                           src={
                             tab?.school?.logoUrl
                               ? tab.school.logoUrl.startsWith("logo")
-                                ? `https://api.boepartners/${tab.school.logoUrl}`
+                                ? `https://boepartners-api.web.app/${tab.school.logoUrl}`
                                 : tab.school.logoUrl
                               : "/images/user-avatar.png"
                           }
@@ -312,7 +312,7 @@ export default function ProgramListing() {
                           src={
                             tab?.school?.logoUrl
                               ? tab.school.logoUrl.startsWith("logo")
-                                ? `https://api.boepartners/${tab.school.logoUrl}`
+                                ? `https://boepartners-api.web.app/${tab.school.logoUrl}`
                                 : tab.school.logoUrl
                               : "/images/user-avatar.png"
                           }
@@ -390,7 +390,7 @@ export default function ProgramListing() {
                   src={
                     selectedProgram?.school?.logoUrl
                       ? selectedProgram.school.logoUrl.startsWith("logo")
-                        ? `https://api.boepartners/${selectedProgram.school.logoUrl}`
+                        ? `https://boepartners-api.web.app/${selectedProgram.school.logoUrl}`
                         : selectedProgram.school.logoUrl
                       : "/images/user-avatar.png"
                   }

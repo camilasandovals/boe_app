@@ -69,7 +69,7 @@ export default function Apply({ program }) {
       
   
       const response = await fetch(
-        "https://api.boepartners/premiumApplication",
+        "https://boepartners-api.web.app/premiumApplication",
         {
           method: "POST",
           headers: {

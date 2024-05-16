@@ -45,8 +45,8 @@ export default function Profile() {
 
       setIsLoading(true);
       Promise.all([
-        fetch(`https://api.boepartners/userlikes`, { headers }),
-        fetch(`https://api.boepartners/premiumApplication`, {
+        fetch(`https://boepartners-api.web.app/userlikes`, { headers }),
+        fetch(`https://boepartners-api.web.app/premiumApplication`, {
           headers,
         }),
       ])
@@ -65,12 +65,12 @@ export default function Profile() {
     if (user?.type == "member") {
       setIsLoading(true);
       Promise.all([
-        fetch(`https://api.boepartners/memberPrograms`, { headers }),
-        fetch(`https://api.boepartners/memberlikes`, { headers }),
-        fetch(`https://api.boepartners/memberApplications`, {
+        fetch(`https://boepartners-api.web.app/memberPrograms`, { headers }),
+        fetch(`https://boepartners-api.web.app/memberlikes`, { headers }),
+        fetch(`https://boepartners-api.web.app/memberApplications`, {
           headers,
         }),
-        fetch(`https://api.boepartners/messages`, { headers }),
+        fetch(`https://boepartners-api.web.app/messages`, { headers }),
       ])
         .then(([res1, res2, res3, res4]) =>
           Promise.all([res1.json(), res2.json(), res3.json(), res4.json()])
@@ -138,7 +138,7 @@ export default function Profile() {
       "Content-Type": "application/json",
     };
 
-    fetch(`https://api.boepartners/api/programs/${id}`, {
+    fetch(`https://boepartners-api.web.app/api/programs/${id}`, {
       method: "DELETE",
       headers,
     })

@@ -26,7 +26,7 @@ function VerificationPage() {
   const verifyToken = async (token) => {
     try {
       const response = await fetch(
-        `https://api.boepartners/verify?token=${token}`,
+        `https://boepartners-api.web.app/verify?token=${token}`,
         {
           method: "POST",
         }
