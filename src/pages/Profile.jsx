@@ -45,8 +45,8 @@ export default function Profile() {
 
       setIsLoading(true);
       Promise.all([
-        fetch(`https://boepartners-api.web.app/userlikes`, { headers }),
-        fetch(`https://boepartners-api.web.app/premiumApplication`, {
+        fetch(`https://api.boepartners/userlikes`, { headers }),
+        fetch(`https://api.boepartners/premiumApplication`, {
           headers,
         }),
       ])
@@ -65,12 +65,12 @@ export default function Profile() {
     if (user?.type == "member") {
       setIsLoading(true);
       Promise.all([
-        fetch(`https://boepartners-api.web.app/memberPrograms`, { headers }),
-        fetch(`https://boepartners-api.web.app/memberlikes`, { headers }),
-        fetch(`https://boepartners-api.web.app/memberApplications`, {
+        fetch(`https://api.boepartners/memberPrograms`, { headers }),
+        fetch(`https://api.boepartners/memberlikes`, { headers }),
+        fetch(`https://api.boepartners/memberApplications`, {
           headers,
         }),
-        fetch(`https://boepartners-api.web.app/messages`, { headers }),
+        fetch(`https://api.boepartners/messages`, { headers }),
       ])
         .then(([res1, res2, res3, res4]) =>
           Promise.all([res1.json(), res2.json(), res3.json(), res4.json()])
@@ -138,7 +138,7 @@ export default function Profile() {
       "Content-Type": "application/json",
     };
 
-    fetch(`https://boepartners-api.web.app/api/programs/${id}`, {
+    fetch(`https://api.boepartners/api/programs/${id}`, {
       method: "DELETE",
       headers,
     })
@@ -201,8 +201,8 @@ export default function Profile() {
                   <div className="image-container" onClick={handleImageClick}>
                     <img
                       src={
-                        user?.avatar
-                          ? `https://boepartners-api.web.app/${user.avatar}`
+                        user?.avatarUrl
+                          ? `${user.avatarUrl}`
                           : "/images/user-avatar.png"
                       }
                       alt="User profile"
@@ -264,12 +264,7 @@ export default function Profile() {
                             <div className="logo-wrapper">
                               <img
                                 src={
-                                  favorite?.schoolDetails?.logoUrl
-                                    ? favorite?.schoolDetails?.logoUrl.startsWith(
-                                        "logo"
-                                      )
-                                      ? `https://boepartners-api.web.app/${favorite?.schoolDetails.logoUrl}`
-                                      : favorite?.schoolDetails.logoUrl
+                                  favorite?.schoolDetails?.logoUrl? `${favorite?.schoolDetails.logoUrl}`
                                     : "/images/school-logo.png"
                                 }
                                 alt="program logo"
@@ -328,11 +323,7 @@ export default function Profile() {
                             <img
                               src={
                                 application?.schoolDetails?.logoUrl
-                                  ? application?.schoolDetails?.logoUrl.startsWith(
-                                      "logo"
-                                    )
-                                    ? `https://boepartners-api.web.app/${application?.schoolDetails.logoUrl}`
-                                    : application?.schoolDetails.logoUrl
+                                  ? `${application?.schoolDetails.logoUrl}`
                                   : "/images/school-logo.png"
                               }
                               alt="program logo"
@@ -370,6 +361,61 @@ export default function Profile() {
                 )}
               </div>
             </Col>
+            {/* <Col sm={12} md={12} lg={4}>
+              <div className="profile-container">
+                <h3>Messages</h3>
+                {isLoading ? (
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                ) : applications?.length > 0 ? (
+                  applications?.map((application, index) => {
+                    const date = new Date(application?.date);
+                    return (
+                      <div key={index} className="favorite">
+                        <div style={{ display: "flex" }}>
+                        <div className="logo-wrapper">
+                            <img
+                              src={
+                                application?.schoolDetails?.logoUrl
+                                  ? `${application?.schoolDetails.logoUrl}`
+                                  : "/images/school-logo.png"
+                              }
+                              alt="program logo"
+                            />
+                          </div>
+                          <div style={{ textAlign: "left", marginLeft: 30 }}>
+                            <p>
+                              <strong>
+                                {application?.schoolDetails?.name}
+                              </strong>
+                            </p>
+                            <p>
+                              <small>{application?.programDetails?.name}</small>
+                            </p>
+                            <p>
+                              <small>{date.toLocaleDateString()}</small>
+                            </p>
+                          </div>
+                        </div>
+                        {!showMessage ? (
+                          <button
+                            className="button-class m-3"
+                            onClick={handleShowMessage}
+                          >
+                            Message School
+                          </button>
+                        ) : (
+                          <Message school={application.schoolDetails?._id} />
+                        )}
+                      </div>
+                    );
+                  })
+                ) : (
+                  <p>No messages yet</p>
+                )}
+              </div>
+            </Col> */}
           </Row>
         ) : (
           // -------------------------------------------------------------- MEMBERS --------------------------------------------------------------------
@@ -395,6 +441,16 @@ export default function Profile() {
                             >
                               <XCircleFill color="pink" size={25} />
                             </div>
+                            <div style={{ display: "flex" }}>
+                            <div className="logo-wrapper">
+                            <img
+                              src={
+                                program?.schoolDetails?.logoUrl
+                                  ? `${program?.schoolDetails.logoUrl}`
+                                  : "/images/school-logo.png"
+                              }
+                            />
+                          </div>
                             <div style={{ textAlign: "left", marginLeft: 30 }}>
                               <p>
                                 <strong>{program?.name}</strong>
@@ -414,6 +470,7 @@ export default function Profile() {
                               <p>
                                 <small>{program?.financing}</small>
                               </p>
+                            </div>
                             </div>
                           </div>
                         );
@@ -445,9 +502,9 @@ export default function Profile() {
                           <div key={index} className="favorite">
                             <div style={{ display: "flex" }}>
                               <div className="logo-wrapper">
-                                {favorite?.userDetails?.avatar ? (
+                                {favorite?.userDetails?.avatarUrl ? (
                                   <img
-                                    src={`https://boepartners-api.web.app/${favorite?.userDetails?.avatar}`}
+                                    src={`${favorite?.userDetails?.avatarUrl}`}
                                     alt="User profile"
                                   />
                                 ) : (
@@ -509,9 +566,9 @@ export default function Profile() {
                         <div key={index} className="favorite">
                           <div style={{ display: "flex" }}>
                             <div className="logo-wrapper">
-                              {application?.userDetails?.avatar ? (
+                              {application?.userDetails?.avatarUrl ? (
                                 <img
-                                  src={`https://boepartners-api.web.app/${application?.userDetails?.avatar}`}
+                                  src={`${application?.userDetails?.avatarUrl}`}
                                   alt="User profile"
                                 />
                               ) : (
@@ -543,7 +600,7 @@ export default function Profile() {
                                 <small>{date.toLocaleDateString()}</small>
                               </p>
                               <a
-                                href={`https://boepartners-api.web.app/${application?.resumePath}`}
+                                href={`${application?.resumePath}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
@@ -573,9 +630,9 @@ export default function Profile() {
                         <div key={index} className="favorite">
                           <div style={{ display: "flex" }}>
                             <div className="logo-wrapper">
-                              {message.userDetails.avatar ? (
+                              {message.userDetails.avatarUrl ? (
                                 <img
-                                  src={`https://boepartners-api.web.app/${message?.userDetails?.avatar}`}
+                                  src={`${message?.userDetails?.avatarUrl}`}
                                   alt="User profile"
                                 />
                               ) : (

@@ -50,7 +50,7 @@ export default function MemberInfo() {
   //     if (skills) {
   //       updatedFields.skills = skills;
   //     }
-  //     fetch(`https://boepartners-api.web.app/api/users`, {
+  //     fetch(`https://api.boepartners/api/users`, {
   //       method: "PATCH",
   //       headers: {
   //         'Authorization': `Bearer ${user?.token}`,

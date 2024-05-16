@@ -14,6 +14,7 @@ import NavMenu from "./layout/NavMenu";
 import VerificationPage from "./pages/Verification";
 import AddEntry from "./pages/AddEntry";
 
+
 export const UserContext = createContext(null);
 
 function App() {

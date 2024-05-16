@@ -1,6 +1,8 @@
 import { Form } from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from "../Firebase.js";
 
 export default function SignUpMemberForm({ endpoint, setUser }) {
   const navigate = useNavigate();
@@ -11,9 +13,8 @@ export default function SignUpMemberForm({ endpoint, setUser }) {
   const [industry, setIndustry] = useState("");
   const [organizationType, setOrganizationType] = useState("");
   const [description, setDescription] = useState("");
-  const [logo, setLogo] = useState("");
-
-  const array = [
+  const [fileObj, setFileObj] = useState(null);
+  const array = [ 
     "Technology",
     "Contruction",
     "Healthcare",
@@ -22,27 +23,68 @@ export default function SignUpMemberForm({ endpoint, setUser }) {
     "Automotive",
   ];
 
-  const handleGetUser = async (e) => {
+  const handleChange = (e) => {
+    let file = e.target.files[0];
+    setFileObj(file);
+  };
+
+  const handleUpload = async (processedName) => {
+    return new Promise((resolve, reject) => {
+      const storageRef = ref(storage, `logos/${processedName}`);
+      const uploadTask = uploadBytesResumable(storageRef, fileObj);
+  
+      uploadTask.on('state_changed', 
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+        }, 
+        (error) => {
+          console.error("Upload failed:", error);
+          reject(error);
+        }, 
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+            resolve(downloadURL);
+          });
+        }
+      );
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("website", website);
-    formData.append("email", email);
-    formData.append("password", password);
-    formData.append("organizationType", organizationType);
-    formData.append("industry", industry);
-    formData.append("description", description);
-    if (logo) {
-      formData.append("logo", logo);
+    try {
+    if (!fileObj) {
+      alert("Please upload a logo.");
+      return;
     }
 
+    const toCorrectFormat = fileObj.name.replace(/\s/g, "_").toLowerCase();
+    const randomIdentifier = Math.random().toString(36).substring(2, 15);
+    const processedName = `${randomIdentifier}_${toCorrectFormat}`;
+    
     try {
+
+      const logoUrl = await handleUpload(processedName);
       const response = await fetch(
-        `https://boepartners-api.web.app/${endpoint}`,
+        `https://api.boepartners/${endpoint}`,
         {
           method: "POST",
-          body: formData, // Use FormData directly without JSON.stringify
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+            website,
+            industry,
+            organizationType,
+            description,
+            logoUrl,
+          }),
         }
       );
 
@@ -56,12 +98,16 @@ export default function SignUpMemberForm({ endpoint, setUser }) {
     } catch (err) {
       console.error(err);
     }
-  };
+  }
+  catch (error) {
+    console.error(error);
+  }
+}
 
   return (
     <Form
       className="form"
-      onSubmit={handleGetUser}
+      onSubmit={handleSubmit}
       encType="multipart/form-data"
     >
       <Form.Group className="m-2" controlId="formBasicName">
@@ -93,7 +139,8 @@ export default function SignUpMemberForm({ endpoint, setUser }) {
       <Form.Group className="mb-2" controlId="formBasiclogo">
         <Form.Control
           type="file"
-          onChange={(e) => setLogo(e.target.files[0])}
+          accept="image/*"
+          onChange={handleChange}
         />
       </Form.Group>
 

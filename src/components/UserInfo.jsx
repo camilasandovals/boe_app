@@ -2,7 +2,8 @@ import { Form, Col, Row } from "react-bootstrap";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../App";
 import { useNavigate } from "react-router-dom";
-
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from "../Firebase.js";
 export default function UserInfo() {
   const [user, setUser] = useContext(UserContext);
   const [name, setname] = useState(user?.name || "");
@@ -12,8 +13,7 @@ export default function UserInfo() {
   const [category, setCategory] = useState(user?.category || "");
   const [skills, setSkills] = useState(user?.skills || []);
   const [required, setRequired] = useState(false);
-  const [avatar, setAvatar] = useState(null);
-
+  const [fileObj, setFileObj] = useState(null);
   const navigate = useNavigate();
 
   const array = [
@@ -24,6 +24,44 @@ export default function UserInfo() {
     "Fashion",
     "Automotive",
   ];
+  const handleChange = (e) => {
+    let file = e.target.files[0];
+    setFileObj(file);
+  };
+
+  const handleUpload = async () => {
+    if (!fileObj) {
+      alert("Please select a file to upload.");
+      throw new Error("No file selected.");
+    }
+    
+    const toCorrectFormat = fileObj.name.replace(/\s/g, "_").toLowerCase();
+    const randomIdentifier = Math.random().toString(36).substring(2, 15);
+    const processedName = `${randomIdentifier}_${toCorrectFormat}`;
+    
+    const storageRef = ref(storage, `avatars/${processedName}`);
+    const uploadTask = uploadBytesResumable(storageRef, fileObj);
+  
+    return new Promise((resolve, reject) => {
+      uploadTask.on('state_changed', 
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+        }, 
+        (error) => {
+          console.error("Upload failed:", error);
+          reject(error);
+        }, 
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("Avatar URL:", downloadURL);
+            resolve(downloadURL);
+          });
+        }
+      );
+    });
+  };
+  
 
   const handleBioChange = (event) => {
     const words = event.target.value.split(" ");
@@ -36,7 +74,7 @@ export default function UserInfo() {
     }
   };
 
-  const handleUpdateUser = (e) => {
+  const handleUpdateUser = async (e) => {
     e.preventDefault();
     if (!name || !lastName || !bio || !location || !category) {
       alert("Please fill out all required fields");
@@ -44,39 +82,61 @@ export default function UserInfo() {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("lastName", lastName);
-    formData.append("bio", bio);
-    formData.append("location", location);
-    formData.append("category", category);
+    try {
+      let avatarUrl = "";
+      if (fileObj) {
+        avatarUrl = await handleUpload();
+      }
+  
 
-    skills.forEach((skill) => {
-      formData.append("skills[]", skill);
-    });
+      const updatedFields = {};
+  
+      if (name) {
+        updatedFields.name = name;
+      }
+      if (lastName) {
+        updatedFields.lastName = lastName;
+      }
+      
+      if (bio) {
+        updatedFields.bio = bio;
+      }
+      
+      if (location) {
+        updatedFields.location = location;
+      }
+  
+      if (category) {
+        updatedFields.category = category;
+      }
+  
+      if (skills) {
+        updatedFields.skills = skills;
+      }
 
-    if (avatar) {
-      formData.append("avatar", avatar);
-    }
+      if (avatarUrl) {
+        updatedFields.avatarUrl = avatarUrl;
+      }
 
-    fetch(`https://boepartners-api.web.app/api/users`, {
+    const response = await fetch(`https://api.boepartners/api/users`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${user?.token}`,
+        "Content-Type": "application/json",
       },
-      body: formData,
+      body: JSON.stringify(updatedFields),
     })
-      .then((resp) => resp.json())
-      .then((data) => {
-        if (data.message) {
-          alert(data.message);
-          setUser(data.user);
-          localStorage.setItem("user", JSON.stringify(data.user));
-          navigate("/profile");
-          return;
-        }
-      })
-      .catch(alert);
+    const data = await response.json();
+    if (data.message) {
+      alert(data.message);
+      setUser(data.user);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      navigate("/profile");
+    } 
+  } catch (error) {
+    console.error("Error:", error);
+    alert("An error occurred. Please try again.");
+  }
   };
 
   const handleCheckboxChange = (event) => {
@@ -145,7 +205,8 @@ export default function UserInfo() {
           <Form.Group className="m-2" controlId="formBasicAvatar">
             <Form.Control
               type="file"
-              onChange={(e) => setAvatar(e.target.files[0])}
+              accept="image/*"
+              onChange={handleChange}
             />
             
           </Form.Group>
