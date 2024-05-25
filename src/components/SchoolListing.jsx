@@ -331,7 +331,10 @@ export default function ProgramListing() {
                           <small>{tab?.name}</small>
                         </div>
                         <div>
-                          <small>{tab?.school.location?.city}</small>
+                          {tab.location? (
+                            <small>{tab?.location}</small>) :
+                            <small>{tab?.school?.location?.city}</small>
+                          }
                         </div>
                       </div>
                     </div>
@@ -350,10 +353,10 @@ export default function ProgramListing() {
                     </div>
                     <div>
                       <h4>Cost & Financing Options</h4>
-                      <p>{tab?.cost}</p>
+                     
                       <p>
                         {tab?.financing
-                          ? tab?.financing
+                          ?  (<p>{parseFloat(tab?.cost).toLocaleString('en-US')} USD</p>)
                           : "Contact us for more information"}
                       </p>
                     </div>
@@ -410,7 +413,9 @@ export default function ProgramListing() {
                   <small>{selectedProgram?.name}</small>
                 </div>
                 <div>
-                  <small>{selectedProgram?.school?.location?.city}</small>
+                  <small>{selectedProgram?.location?
+                   selectedProgram?.location:
+                  selectedProgram?.school?.location?.city}</small>
                 </div>
               </div>
             </div>
@@ -432,18 +437,17 @@ export default function ProgramListing() {
             </div>
             <div>
               <h4>Cost & Financing Options</h4>
-              <p>{selectedProgram?.school?.cost}</p>
               <p>
-                {selectedProgram?.school?.financing
-                  ? selectedProgram?.school?.financing
+                {selectedProgram?.financing
+                  ? ( <p>{parseFloat(selectedProgram?.cost).toLocaleString('en-US')} USD</p>)
                   : "Contact us for more information"}
               </p>
             </div>
             <div>
               <h4>Duration</h4>
               <p>
-                {selectedProgram?.school?.duration
-                  ? selectedProgram?.school?.duration
+                {selectedProgram?.duration
+                  ? selectedProgram?.duration
                   : "Contact us for more information"}
               </p>
             </div>

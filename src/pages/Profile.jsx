@@ -187,7 +187,6 @@ export default function Profile() {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-evenly",
-                    height: "100%",
                     alignItems: "center",
                   }}
                 >
@@ -425,6 +424,7 @@ export default function Profile() {
                 <div className="profile-container-member">
                   <h3>Entries</h3>
                   <div>
+                    
                     {isLoading ? (
                       <Spinner animation="border" role="status">
                         <span className="visually-hidden">Loading...</span>
@@ -456,19 +456,19 @@ export default function Profile() {
                                 <strong>{program?.name}</strong>
                               </p>
                               <p>
-                                <small>{program?.description}</small>
+                                <small><strong>Description:</strong> {program?.description}</small>
                               </p>
                               <p>
-                                <small>{program?.location}</small>
+                                <small><strong>Location:</strong> {program?.location}</small>
                               </p>
                               <p>
-                                <small>{program?.duration}</small>
+                                <small><strong>Duration:</strong> {program?.duration}</small>
                               </p>
                               <p>
-                                <small>{program?.cost}</small>
+                                <small><strong>Cost:</strong> {parseFloat(program.cost).toLocaleString('en-US')} USD</small>
                               </p>
                               <p>
-                                <small>{program?.financing}</small>
+                                <small><strong>Financing:</strong> {program?.financing}</small>
                               </p>
                             </div>
                             </div>
@@ -658,6 +658,11 @@ export default function Profile() {
                               <p>
                                 <small>
                                   Sent on {date.toLocaleDateString()}
+                                </small>
+                              </p>
+                              <p>
+                                <small>
+                                  <a href={`mailto:${message?.userDetails?.email}`}>{message?.userDetails?.name? `Email ${message?.userDetails?.name}` : `Email User`} </a>
                                 </small>
                               </p>
                             </div>

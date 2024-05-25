@@ -140,7 +140,7 @@ export default function AddEntry() {
               </Form.Group>
               <Form.Group className="mb-3">
                 <Form.Control
-                  type="text"
+                  type="number"
                   name="cost"
                   value={programData.cost}
                   onChange={handleChange}
@@ -149,13 +149,15 @@ export default function AddEntry() {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Control
-                  type="text"
+                <Form.Select
                   name="financing"
                   value={programData.financing}
                   onChange={handleChange}
-                  placeholder="Financing Options"
-                />
+                >
+                  <option value="">Select Financing Options</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </Form.Select>
               </Form.Group>
 
               <button className="button-class" type="submit">
