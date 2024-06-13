@@ -16,10 +16,10 @@ export default function SignUpMemberForm({ endpoint, setUser }) {
   const [fileObj, setFileObj] = useState(null);
   const array = [ 
     "Technology",
-    "Contruction",
+    "Construction",
     "Healthcare",
     "Aviation",
-    "Fashion",
+    "Cosmetology",
     "Automotive",
   ];
 

@@ -3,9 +3,10 @@ import AppLayout from "../layout/AppLayout";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
-import { PencilFill, XCircle, XCircleFill } from "react-bootstrap-icons";
+import { PencilFill, XCircle, XCircleFill, ReplyFill } from "react-bootstrap-icons";
 import { Spinner } from "react-bootstrap";
 import { useRef } from "react";
+import { Helmet } from "react-helmet";
 import Account from "./Account";
 import Apply from "../components/Apply";
 import Message from "../components/Message";
@@ -155,6 +156,10 @@ export default function Profile() {
 
   return (
     <AppLayout>
+      <Helmet>
+        <title>Account Verification - BOE</title>
+        <meta name="description" content="Verify your account at Bringing Opportunities Everywhere (BOE). Complete your registration to access more features and opportunities in vocational schools and skilled trades in South Florida." />
+      </Helmet>
       <Container className="profile">
         <h1>
           {user?.name ? user.name : "Name"}{" "}
@@ -204,7 +209,7 @@ export default function Profile() {
                           ? `${user.avatarUrl}`
                           : "/images/user-avatar.png"
                       }
-                      alt="User profile"
+                      alt="BOE South Florida User"
                     />
                   </div>
                   <div className="favorite">
@@ -266,7 +271,7 @@ export default function Profile() {
                                   favorite?.schoolDetails?.logoUrl? `${favorite?.schoolDetails.logoUrl}`
                                     : "/images/school-logo.png"
                                 }
-                                alt="program logo"
+                                alt="BOE South Florida Vocational School"
                               />
                             </div>
                             <div style={{ textAlign: "left", marginLeft: 30 }}>
@@ -275,11 +280,6 @@ export default function Profile() {
                               </p>
                               <p>
                                 <small>{favorite?.programDetails?.name}</small>
-                              </p>
-                              <p>
-                                <small>
-                                  {favorite?.schoolDetails?.industry}
-                                </small>
                               </p>
                               <p>
                                 <small>{date.toLocaleDateString()}</small>
@@ -325,7 +325,7 @@ export default function Profile() {
                                   ? `${application?.schoolDetails.logoUrl}`
                                   : "/images/school-logo.png"
                               }
-                              alt="program logo"
+                              alt="BOE South Florida Vocational School"
                             />
                           </div>
                           <div style={{ textAlign: "left", marginLeft: 30 }}>
@@ -380,7 +380,7 @@ export default function Profile() {
                                   ? `${application?.schoolDetails.logoUrl}`
                                   : "/images/school-logo.png"
                               }
-                              alt="program logo"
+                              alt="BOE South Florida Vocational School"
                             />
                           </div>
                           <div style={{ textAlign: "left", marginLeft: 30 }}>
@@ -444,6 +444,7 @@ export default function Profile() {
                             <div style={{ display: "flex" }}>
                             <div className="logo-wrapper">
                             <img
+                              alt="BOE South Florida Vocational School"
                               src={
                                 program?.schoolDetails?.logoUrl
                                   ? `${program?.schoolDetails.logoUrl}`
@@ -456,7 +457,7 @@ export default function Profile() {
                                 <strong>{program?.name}</strong>
                               </p>
                               <p>
-                                <small><strong>Description:</strong> {program?.description}</small>
+                                <small><strong>Program Description:</strong> {program?.description}</small>
                               </p>
                               <p>
                                 <small><strong>Location:</strong> {program?.location}</small>
@@ -505,12 +506,12 @@ export default function Profile() {
                                 {favorite?.userDetails?.avatarUrl ? (
                                   <img
                                     src={`${favorite?.userDetails?.avatarUrl}`}
-                                    alt="User profile"
+                                    alt="BOE South Florida User"
                                   />
                                 ) : (
                                   <img
                                     src="/images/user-avatar.png"
-                                    alt="Default user image"
+                                    alt="BOE South Florida User"
                                   />
                                 )}
                               </div>
@@ -569,12 +570,12 @@ export default function Profile() {
                               {application?.userDetails?.avatarUrl ? (
                                 <img
                                   src={`${application?.userDetails?.avatarUrl}`}
-                                  alt="User profile"
+                                  alt="BOE South Florida User"
                                 />
                               ) : (
                                 <img
                                   src="/images/user-avatar.png"
-                                  alt="Default user image"
+                                  alt="BOE South Florida User"
                                 />
                               )}
                             </div>
@@ -633,7 +634,7 @@ export default function Profile() {
                               {message.userDetails.avatarUrl ? (
                                 <img
                                   src={`${message?.userDetails?.avatarUrl}`}
-                                  alt="User profile"
+                                  alt="BOE South Florida User"
                                 />
                               ) : (
                                 <img
@@ -662,7 +663,7 @@ export default function Profile() {
                               </p>
                               <p>
                                 <small>
-                                  <a href={`mailto:${message?.userDetails?.email}`}>{message?.userDetails?.name? `Email ${message?.userDetails?.name}` : `Email User`} </a>
+                                  <a href={`mailto:${message?.userDetails?.email}`}><ReplyFill />{message?.userDetails?.name? ` Reply to ${message?.userDetails?.name}` : ` Reply to User`} </a>
                                 </small>
                               </p>
                             </div>

@@ -21,7 +21,7 @@ export default function UserInfo() {
     "Construction",
     "Healthcare",
     "Aviation",
-    "Fashion",
+    "Cosmetology",
     "Automotive",
   ];
   const handleChange = (e) => {

@@ -26,7 +26,7 @@ export default function NavMenu() {
     <Navbar fixed="top" className="p-0 nav" variant="dark" expand="md">
       <Container>
         <Navbar.Brand href="/">
-          <img src="/images/boe.png" alt="BOE logo" height="50" />
+          <img src="/images/boe.png" alt="BOE Logo" height="50" />
           <span className="company-name">
             Bringing Opportunities Everywhere
           </span>

@@ -20,7 +20,7 @@ function CarouselEvents() {
               <img
                 className="d-block w-100"
                 src={event.image}
-                alt="First slide"
+                alt="BOE Vocational School"
               />
               <div className="carousel-content">
                 <p>

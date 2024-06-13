@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { App } from "react-bootstrap-icons";
-import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import { useLocation, useNavigate } from "react-router-dom";
 import AppLayout from "../layout/AppLayout";
 import { Container } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 
 function VerificationPage() {
@@ -48,8 +47,12 @@ function VerificationPage() {
 
   return (
     <AppLayout>
+      <Helmet>
+        <title>Account Verification - BOE</title>
+        <meta name="description" content="Verify your account at Bringing Opportunities Everywhere (BOE). Complete your registration to access more features and opportunities in vocational schools and skilled trades in South Florida." />
+      </Helmet>
       <Container className="text-center">
-        <h2>Account Verification</h2>
+        <h1>Account Verification</h1>
         <p>{verificationStatus}</p>
       </Container>
     </AppLayout>

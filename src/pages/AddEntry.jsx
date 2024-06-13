@@ -1,8 +1,9 @@
+import React, { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
+import { Form, Col, Row, Button, FormGroup } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import UserInfo from "../components/UserInfo";
 import AppLayout from "../layout/AppLayout";
-import { Form, Col, Row, Button, FormGroup } from "react-bootstrap";
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 import MemberInfo from "../components/MemberInfo";
 import Error404 from "./Error404";
@@ -67,8 +68,12 @@ export default function AddEntry() {
 
   return (
     <AppLayout>
+      <Helmet>
+        <title>Add Program - BOE</title>
+        <meta name="description" content="Add a new program to the Bringing Opportunities Everywhere (BOE) platform." />
+      </Helmet>
       <div className="account">
-        {user?.type == "member" ? (
+        {user?.type === "member" ? (
           <>
             <h1>Add a new program</h1>
             <Form onSubmit={handleFormSubmit} className="form-account">
@@ -149,15 +154,13 @@ export default function AddEntry() {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Select
+                <Form.Control
+                  type="text"
                   name="financing"
                   value={programData.financing}
                   onChange={handleChange}
-                >
-                  <option value="">Select Financing Options</option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </Form.Select>
+                  placeholder="Financing"
+                />
               </Form.Group>
 
               <button className="button-class" type="submit">

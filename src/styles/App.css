@@ -24,6 +24,7 @@ html {
 
 h1 {
   color: var(--logo-color2);
+  font-size: 2rem;
   font-weight: 700;
   text-shadow: 1px 3px 4px rgba(0, 0, 0, 0.015);
   margin-top: 1em;
@@ -32,6 +33,7 @@ h1 {
 
 h2 {
   color: var(--logo-color2);
+  font-size: 1.7rem;
   font-weight: 600;
   text-shadow: 1px 2px 2px rgba(30, 30, 30, 0.066);
   margin-bottom: 0.5em;
@@ -166,11 +168,21 @@ button:active {
 }
 /* ------------------------------ ABOUT ------------------------------ */
 
+.about{
+  padding-top: 2rem;
+  padding-inline: 15%;
+  text-align: center;
+}
 
+.about h1 {
+  margin-bottom: 3rem;
+  font-size: 2.1rem;
+}
 .row-about {
   display: flex;
   justify-content: space-evenly;
-  padding-inline: 15%;
+  text-align: left;
+
   width: 100%;
   gap: 3rem;
   margin-bottom: 2.5rem;
@@ -199,10 +211,11 @@ button:active {
 
 .about-image-container {
   width: 30rem;
+  height: 20rem
 }
 
 .about-main-image {
-  height: 30rem;
+  height: 20rem;
   width: 30rem;
 }
 
@@ -423,7 +436,7 @@ button:active {
   padding: 1rem;
 }
 
-.video-content h1 {
+.video-content h2 {
   margin-top: 20px;
   margin-bottom: 20px;
   color: rgb(255, 255, 255);

@@ -29,7 +29,7 @@ function renderSlides() {
 
   return slides.map((slide, index) => (
     <div key={index} className="slide" id="resources">
-      <img src={slide} height="100" width="100" alt="" />
+      <img src={slide} height="100" width="100" alt="BOE Vocational School Member" />
     </div>
   ));
 }
