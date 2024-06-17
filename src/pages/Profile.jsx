@@ -46,15 +46,17 @@ export default function Profile() {
 
       setIsLoading(true);
       Promise.all([
-        fetch(`https://boepartners-api.web.app/userlikes`, { headers }),
-        fetch(`https://boepartners-api.web.app/premiumApplication`, {
+        fetch(`http://localhost:3004/userlikes`, { headers }),
+        fetch(`http://localhost:3004/premiumApplication`, {
           headers,
         }),
+        fetch(`http://localhost:3004/userMessages`, { headers }),
       ])
-        .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
-        .then(([data1, data2]) => {
+        .then(([res1, res2, res3]) => Promise.all([res1.json(), res2.json(), res3.json()]))
+        .then(([data1, data2, data3]) => {
           setFavorites(data1);
           setApplications(data2);
+          setMessages(data3);
           setIsLoading(false);
         })
         .catch((err) => {
@@ -66,12 +68,12 @@ export default function Profile() {
     if (user?.type == "member") {
       setIsLoading(true);
       Promise.all([
-        fetch(`https://boepartners-api.web.app/memberPrograms`, { headers }),
-        fetch(`https://boepartners-api.web.app/memberlikes`, { headers }),
-        fetch(`https://boepartners-api.web.app/memberApplications`, {
+        fetch(`http://localhost:3004/memberPrograms`, { headers }),
+        fetch(`http://localhost:3004/memberlikes`, { headers }),
+        fetch(`http://localhost:3004/memberApplications`, {
           headers,
         }),
-        fetch(`https://boepartners-api.web.app/messages`, { headers }),
+        fetch(`http://localhost:3004/messages`, { headers }),
       ])
         .then(([res1, res2, res3, res4]) =>
           Promise.all([res1.json(), res2.json(), res3.json(), res4.json()])
@@ -139,7 +141,7 @@ export default function Profile() {
       "Content-Type": "application/json",
     };
 
-    fetch(`https://boepartners-api.web.app/api/programs/${id}`, {
+    fetch(`http://localhost:3004/api/programs/${id}`, {
       method: "DELETE",
       headers,
     })
@@ -162,13 +164,14 @@ export default function Profile() {
       </Helmet>
       <Container className="profile">
         <h1>
-          {user?.name ? user.name : "Name"}{" "}
-          {user?.lastName ? `${user.lastName}'s BOE Account` : ""}
+          Account Information
         </h1>
         {user?.type == "user" ? (
-          <Row>
+          <Row className="profile-row">
             <Col sm={12} md={12} lg={4}>
               <div className="profile-container">
+                <h3>{user?.name ? user.name : "Name"}{" "}
+                {user?.lastName ? `${user.lastName}` : ""}</h3>
                 <div
                   style={{
                     alignSelf: "flex-end",
@@ -282,7 +285,7 @@ export default function Profile() {
                                 <small>{favorite?.programDetails?.name}</small>
                               </p>
                               <p>
-                                <small>{date.toLocaleDateString()}</small>
+                                <small>Liked on {date.toLocaleDateString()}</small>
                               </p>
                             </div>
                           </div>
@@ -338,7 +341,7 @@ export default function Profile() {
                               <small>{application?.programDetails?.name}</small>
                             </p>
                             <p>
-                              <small>{date.toLocaleDateString()}</small>
+                              <small>Applied on {date.toLocaleDateString()}</small>
                             </p>
                           </div>
                         </div>
@@ -360,24 +363,24 @@ export default function Profile() {
                 )}
               </div>
             </Col>
-            {/* <Col sm={12} md={12} lg={4}>
+            <Col sm={12} md={12} lg={4}>
               <div className="profile-container">
                 <h3>Messages</h3>
                 {isLoading ? (
                   <Spinner animation="border" role="status">
                     <span className="visually-hidden">Loading...</span>
                   </Spinner>
-                ) : applications?.length > 0 ? (
-                  applications?.map((application, index) => {
-                    const date = new Date(application?.date);
+                ) : messages?.length > 0 ? (
+                  messages?.map((message, index) => {
+                    const date = new Date(message?.date);
                     return (
                       <div key={index} className="favorite">
                         <div style={{ display: "flex" }}>
                         <div className="logo-wrapper">
                             <img
                               src={
-                                application?.schoolDetails?.logoUrl
-                                  ? `${application?.schoolDetails.logoUrl}`
+                                message?.schoolDetails?.logoUrl
+                                  ? `${message?.schoolDetails.logoUrl}`
                                   : "/images/school-logo.png"
                               }
                               alt="BOE South Florida Vocational School"
@@ -386,27 +389,17 @@ export default function Profile() {
                           <div style={{ textAlign: "left", marginLeft: 30 }}>
                             <p>
                               <strong>
-                                {application?.schoolDetails?.name}
+                                {message?.schoolDetails?.name}
                               </strong>
                             </p>
                             <p>
-                              <small>{application?.programDetails?.name}</small>
+                              <small>{message?.message}</small>
                             </p>
                             <p>
-                              <small>{date.toLocaleDateString()}</small>
+                              <small>Sent on {date.toLocaleDateString()}</small>
                             </p>
                           </div>
                         </div>
-                        {!showMessage ? (
-                          <button
-                            className="button-class m-3"
-                            onClick={handleShowMessage}
-                          >
-                            Message School
-                          </button>
-                        ) : (
-                          <Message school={application.schoolDetails?._id} />
-                        )}
                       </div>
                     );
                   })
@@ -414,14 +407,92 @@ export default function Profile() {
                   <p>No messages yet</p>
                 )}
               </div>
-            </Col> */}
+            </Col>
           </Row>
         ) : (
           // -------------------------------------------------------------- MEMBERS --------------------------------------------------------------------
           <>
             <Row>
-              <Col sm={12} md={12} lg={6}>
-                <div className="profile-container-member">
+            <Col sm={12} md={12} lg={4}>
+              <div className="profile-container">
+                <h3>{user?.name ? user.name : "Name"}{" "}
+                {user?.lastName ? `${user.lastName}'s BOE Account` : ""}</h3>
+                <div
+                  style={{
+                    alignSelf: "flex-end",
+                    cursor: "pointer",
+                    position: "absolute",
+                  }}
+                  onClick={() => {
+                    navigate("/account");
+                  }}
+                >
+                  <PencilFill
+                    color="grey"
+                    size={20}
+                    onClick={() => {
+                      navigate("/account");
+                    }}
+                  />
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-evenly",
+                    alignItems: "center",
+                  }}
+                >
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    style={{ display: "none" }}
+                    onChange={handleFileChange}
+                  />
+
+                  <div className="image-container" onClick={handleImageClick}>
+                    <img
+                      src={
+                        user?.avatarUrl
+                          ? `${user.avatarUrl}`
+                          : "/images/user-avatar.png"
+                      }
+                      alt="BOE South Florida User"
+                    />
+                  </div>
+                  <div className="favorite">
+                    <p onClick={() => setIsBioExpanded(!isBioExpanded)}>
+                      <strong>School Description: </strong>
+                      {isBioExpanded ? fullBio : shortBio}
+                      {wordCount > 40 && (
+                        <span style={{ color: "green", cursor: "pointer" }}>
+                          {" "}
+                          {isBioExpanded ? "Read Less" : "Read More"}
+                        </span>
+                      )}
+                    </p>
+                    <p>
+                      <strong>Industry: </strong>
+                      {user?.industry ? user.industry : "Industry"}
+                    </p>
+                    <p>
+                      <strong>Email: </strong>
+                      {user?.email ? user?.email : "Email"}
+                    </p>
+                    <p>
+                      <strong>Type: </strong>
+                      {user?.typeOf ? user.typeOf : "Type"}
+                    </p>
+                    <p>
+                      <strong>Website: </strong>
+                      {user?.website ? user.website : "Website"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Col>
+              <Col sm={12} md={12} lg={4}>
+                <div className="profile-container">
                   <h3>Entries</h3>
                   <div>
                     
@@ -441,21 +512,12 @@ export default function Profile() {
                             >
                               <XCircleFill color="pink" size={25} />
                             </div>
-                            <div style={{ display: "flex" }}>
-                            <div className="logo-wrapper">
-                            <img
-                              alt="BOE South Florida Vocational School"
-                              src={
-                                program?.schoolDetails?.logoUrl
-                                  ? `${program?.schoolDetails.logoUrl}`
-                                  : "/images/school-logo.png"
-                              }
-                            />
-                          </div>
-                            <div style={{ textAlign: "left", marginLeft: 30 }}>
+
+                            <div style={{ textAlign: "left", margin: '0.6rem' }}>
                               <p>
                                 <strong>{program?.name}</strong>
                               </p>
+                              
                               <p>
                                 <small><strong>Program Description:</strong> {program?.description}</small>
                               </p>
@@ -472,7 +534,6 @@ export default function Profile() {
                                 <small><strong>Financing:</strong> {program?.financing}</small>
                               </p>
                             </div>
-                            </div>
                           </div>
                         );
                       })
@@ -484,12 +545,12 @@ export default function Profile() {
                     className="button-class m-3"
                     onClick={() => navigate("/programs")}
                   >
-                    Add program
+                    Add Program
                   </button>
                 </div>
               </Col>
-              <Col sm={12} md={12} lg={6}>
-                <div className="profile-container-member">
+              <Col sm={12} md={4} lg={4}>
+                <div className="profile-container">
                   <h3>Likes</h3>
                   <div>
                     {isLoading ? (

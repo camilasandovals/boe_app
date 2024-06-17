@@ -69,7 +69,7 @@ export default function SignUpMemberForm({ endpoint, setUser }) {
 
       const logoUrl = await handleUpload(processedName);
       const response = await fetch(
-        `https://boepartners-api.web.app/${endpoint}`,
+        `http://localhost:3004/${endpoint}`,
         {
           method: "POST",
           headers: {

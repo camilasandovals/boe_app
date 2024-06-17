@@ -118,7 +118,7 @@ export default function UserInfo() {
         updatedFields.avatarUrl = avatarUrl;
       }
 
-    const response = await fetch(`https://boepartners-api.web.app/api/users`, {
+    const response = await fetch(`http://localhost:3004/api/users`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${user?.token}`,
@@ -149,7 +149,7 @@ export default function UserInfo() {
 
   return (
     <>
-      <h1>Update your profile</h1>
+      <h1>Update your Profile</h1>
       <Form
         className="form-account"
         onSubmit={handleUpdateUser}
@@ -180,25 +180,6 @@ export default function UserInfo() {
             }}
             className="mb-3"
           />
-          {/* <Form.Group controlId="formBasicAvatar">
-            <Form.Control
-              type="file"
-              id="fileUpload"
-              style={{ display: 'none' }}
-              onChange={(e) => setAvatar(e.target.files[0].name)}
-              className="mb-2"
-            />
-
-            <button className="update-file-button">
-              Select an Avatar
-            </button>
-
-            <span style={{ marginLeft: '10px', color: 'lightgray' }}>
-              {avatar ? avatar : 'No avatar selected'}
-            </span>
-          </Form.Group> */}
-
-          
           <Form.Label className="text-start d-block">
             <p>Profile Picture</p>
           </Form.Label>

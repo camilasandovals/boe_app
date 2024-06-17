@@ -29,7 +29,7 @@ export default function Account() {
         {user?.type === "user" ? (
           <UserInfo />
         ) : (
-          <Error404 />
+          <MemberInfo />
         )}
       </div>
     </AppLayout>

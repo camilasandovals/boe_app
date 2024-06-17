@@ -17,7 +17,7 @@ export default function Favorites({ program, isLiked }) {
     // Toggle the liked status
     setIsLiked(!liked);
 
-    fetch("https://boepartners-api.web.app/userlikes", {
+    fetch("http://localhost:3004/userlikes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
