@@ -1,3 +1,4 @@
+
 # BOE Site 3.0
 
 A modern web application for BOE (Board of Education) built with React and Firebase, providing a platform for educational resources, school listings, and member management.
@@ -87,3 +88,6 @@ REACT_APP_FIREBASE_APP_ID=your_app_id
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+
+<img width="1299" alt="Screenshot 2023-07-19 at 7 30 11 PM" src="https://github.com/camilasandovals/boe_app/assets/83136741/9eb9dd95-d2a3-41b7-877f-33d25e158d42">
