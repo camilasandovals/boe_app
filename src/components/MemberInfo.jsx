@@ -91,7 +91,7 @@ export default function MemberInfo() {
         updatedFields.logoUrl = logoUrl;
       }
 
-      const response = await fetch(`http://localhost:3004/api/users`, {
+      const response = await fetch(`https://boepartners-api.web.app/api/users`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${user?.token}`,

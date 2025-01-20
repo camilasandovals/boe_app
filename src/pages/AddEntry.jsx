@@ -43,7 +43,7 @@ export default function AddEntry() {
     }
 
     const response = await fetch(
-      `http://localhost:3004/api/programs`,
+      `https://boepartners-api.web.app/api/programs`,
       {
         method: "POST",
         headers: {

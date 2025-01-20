@@ -9,7 +9,7 @@ function Subscribe({ subscribeMessage }) {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:3004/subscribe`,
+        `https://boepartners-api.web.app/subscribe`,
         {
           method: "POST",
           headers: {

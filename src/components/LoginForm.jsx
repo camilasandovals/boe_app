@@ -11,7 +11,7 @@ export default function Login({ endpoint, setUser }) {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:3004/${endpoint}`,
+        `https://boepartners-api.web.app/${endpoint}`,
         {
           method: "POST",
           headers: {

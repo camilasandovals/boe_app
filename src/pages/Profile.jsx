@@ -46,11 +46,11 @@ export default function Profile() {
 
       setIsLoading(true);
       Promise.all([
-        fetch(`http://localhost:3004/userlikes`, { headers }),
-        fetch(`http://localhost:3004/premiumApplication`, {
+        fetch(`https://boepartners-api.web.app/userlikes`, { headers }),
+        fetch(`https://boepartners-api.web.app/premiumApplication`, {
           headers,
         }),
-        fetch(`http://localhost:3004/userMessages`, { headers }),
+        fetch(`https://boepartners-api.web.app/userMessages`, { headers }),
       ])
         .then(([res1, res2, res3]) => Promise.all([res1.json(), res2.json(), res3.json()]))
         .then(([data1, data2, data3]) => {
@@ -68,12 +68,12 @@ export default function Profile() {
     if (user?.type == "member") {
       setIsLoading(true);
       Promise.all([
-        fetch(`http://localhost:3004/memberPrograms`, { headers }),
-        fetch(`http://localhost:3004/memberlikes`, { headers }),
-        fetch(`http://localhost:3004/memberApplications`, {
+        fetch(`https://boepartners-api.web.app/memberPrograms`, { headers }),
+        fetch(`https://boepartners-api.web.app/memberlikes`, { headers }),
+        fetch(`https://boepartners-api.web.app/memberApplications`, {
           headers,
         }),
-        fetch(`http://localhost:3004/messages`, { headers }),
+        fetch(`https://boepartners-api.web.app/messages`, { headers }),
       ])
         .then(([res1, res2, res3, res4]) =>
           Promise.all([res1.json(), res2.json(), res3.json(), res4.json()])
@@ -141,7 +141,7 @@ export default function Profile() {
       "Content-Type": "application/json",
     };
 
-    fetch(`http://localhost:3004/api/programs/${id}`, {
+    fetch(`https://boepartners-api.web.app/api/programs/${id}`, {
       method: "DELETE",
       headers,
     })
