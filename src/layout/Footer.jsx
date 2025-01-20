@@ -19,7 +19,7 @@ export default function Footer() {
             </a>
             </div>
             <div style={{paddingLeft: 20}}>
-                <small><strong>Contact us</strong></small>
+                <small><strong>Contact Us</strong></small>
                 <small>305-903-2980</small>
                 <small>786-281-8944</small>
                 <small>info@boepartners.com</small>

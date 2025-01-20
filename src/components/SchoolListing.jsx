@@ -118,7 +118,7 @@ export default function ProgramListing() {
         >
           <ListGroup className="border-list-group">
             <ListGroup.Item>
-              <h3>Find South Florida Training Programs</h3>
+              <h1>Find South Florida Training Programs</h1>
             </ListGroup.Item>
             <div style={{ padding: '10px' }}>
             <InputGroup>
@@ -249,7 +249,7 @@ export default function ProgramListing() {
                                 : tab.school.logoUrl
                               : "/images/user-avatar.png"
                           }
-                          alt="program logo"
+                          alt="BOE Vocational School"
                         />
                       </div>
                       <div style={{ textAlign: "left", marginLeft: 30 }}>
@@ -316,7 +316,7 @@ export default function ProgramListing() {
                                 : tab.school.logoUrl
                               : "/images/user-avatar.png"
                           }
-                          alt="program logo"
+                          alt="BOE Vocational School"
                         />
                       </div>
                       <div style={{ textAlign: "left", marginLeft: 30 }}>
@@ -331,7 +331,10 @@ export default function ProgramListing() {
                           <small>{tab?.name}</small>
                         </div>
                         <div>
-                          <small>{tab?.school.location?.city}</small>
+                          {tab.location? (
+                            <small>{tab?.location}</small>) :
+                            <small>{tab?.school?.location?.city}</small>
+                          }
                         </div>
                       </div>
                     </div>
@@ -349,14 +352,22 @@ export default function ProgramListing() {
                       <p>{tab?.school?.description}</p>
                     </div>
                     <div>
-                      <h4>Cost & Financing Options</h4>
-                      <p>{tab?.cost}</p>
+                      <h4>Cost</h4>
+                      <p>
+                        {tab?.cost
+                          ?  (<p>{parseFloat(tab?.cost).toLocaleString('en-US')} USD</p>)
+                          : "Contact us for more information"}
+                      </p>
+                    </div>
+                    <div>
+                      <h4>Financing Options</h4>
                       <p>
                         {tab?.financing
                           ? tab?.financing
                           : "Contact us for more information"}
                       </p>
-                    </div>
+                      </div>
+              
                     <div>
                       <h4>Duration</h4>
                       <p>
@@ -394,7 +405,7 @@ export default function ProgramListing() {
                         : selectedProgram.school.logoUrl
                       : "/images/user-avatar.png"
                   }
-                  alt="program logo"
+                  alt="BOE Vocational School"
                 />
               </div>
 
@@ -410,7 +421,9 @@ export default function ProgramListing() {
                   <small>{selectedProgram?.name}</small>
                 </div>
                 <div>
-                  <small>{selectedProgram?.school?.location?.city}</small>
+                  <small>{selectedProgram?.location?
+                   selectedProgram?.location:
+                  selectedProgram?.school?.location?.city}</small>
                 </div>
               </div>
             </div>
@@ -424,26 +437,33 @@ export default function ProgramListing() {
           <div style={{ marginTop: 30 }}>
             <div>
               <h4>Program Description</h4>
-              <p>{selectedProgram?.school?.description}</p>
+              <p>{selectedProgram?.description}</p>
             </div>
             <div>
               <h4>About {selectedProgram?.school?.name}</h4>
               <p>{selectedProgram?.school?.description}</p>
             </div>
             <div>
-              <h4>Cost & Financing Options</h4>
-              <p>{selectedProgram?.school?.cost}</p>
+              <h4>Cost</h4>
               <p>
-                {selectedProgram?.school?.financing
-                  ? selectedProgram?.school?.financing
+                {selectedProgram?.cost
+                  ? ( <p>{parseFloat(selectedProgram?.cost).toLocaleString('en-US')} USD</p>)
+                  : "Contact us for more information"}
+              </p>
+            </div>
+            <div>
+              <h4>Financing Options</h4>
+              <p>
+                {selectedProgram?.financing
+                  ? selectedProgram?.financing
                   : "Contact us for more information"}
               </p>
             </div>
             <div>
               <h4>Duration</h4>
               <p>
-                {selectedProgram?.school?.duration
-                  ? selectedProgram?.school?.duration
+                {selectedProgram?.duration
+                  ? selectedProgram?.duration
                   : "Contact us for more information"}
               </p>
             </div>

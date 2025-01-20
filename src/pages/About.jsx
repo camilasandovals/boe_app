@@ -1,12 +1,22 @@
+import React from "react";
+import { Helmet } from "react-helmet";
 import AppLayout from "../layout/AppLayout";
 import Carousel from "../components/CarouselSchools";
+
 export default function About() {
   return (
     <AppLayout>
-      <seccion className="about">
+      <Helmet>
+        <title>About Us - BOE</title>
+        <meta name="description" content="Learn about BOE, connecting people to careers in skilled trades in South Florida. Discover information and resources for jobs in construction, technology, aviation, and healthcare." />
+      </Helmet>
+      <section className="about">
+      <h1>Connecting People to Careers in the Skilled Trades</h1>
         <div className="row-about">
+          
           <div className="about-content">
-            <h1>Connecting people to careers in the skilled trades</h1>
+            
+            <h2>Discover Opportunities in South Florida</h2>
             <p className="about-us-text">
               You don't need a 4-year college degree in order to have a
               successful career. Bringing Opportunities Everywhere (BOE) gives
@@ -14,8 +24,7 @@ export default function About() {
               <strong>jobs</strong> near you in{" "}
               <strong>
                 construction, technology, aviation, and healthcare
-              </strong>
-              .
+              </strong>.
             </p>
           </div>
           <div className="about-content">
@@ -23,16 +32,15 @@ export default function About() {
               <img
                 className="about-image"
                 src="/images/Guidecover.png"
-                alt="Guide Cover"
+                alt="A Guide To Careers in the Skilled Trades in South Florida from BOE"
               />
             </div>
           </div>
         </div>
 
-
         <div className="row-about reverse-order">
           <div className="about-content">
-            <h1>Can't afford college? No problem.</h1>
+            <h2>Can't Afford College? No Problem.</h2>
             <p className="about-us-text">
               Students enrolled in <strong>vocational schools</strong> and{" "}
               <strong>apprenticeship</strong> programs are finding financial
@@ -44,7 +52,7 @@ export default function About() {
               <img
                 className="about-image"
                 src="/images/salaries.png"
-                alt="Salary information"
+                alt="Average Salary for Skilled Trades in South Florida"
               />
             </div>
           </div>
@@ -73,7 +81,7 @@ export default function About() {
 
         <div className="row-about">
           <div className="about-content">
-            <h2>Who we are</h2>
+            <h2>Who We Are</h2>
             <p className="about-us-text">
               Bringing Opportunities Everywhere (BOE) was founded on the idea
               that not everyone needs a college degree in order to have a
@@ -81,20 +89,20 @@ export default function About() {
               goal is to connect people with the information and resources they
               need for a path to success. Get started in an industry of your
               choice such as construction, aviation, technology, or healthcare
-              and earn a 6 figure salary before age 30, without the student loan
+              and earn a 6-figure salary before age 30, without the student loan
               debt.
             </p>
           </div>
           <div className="about-content">
             <div className="about-image-container">
-              <img className="about-image" src="/images/img1.jpg" alt="BOE members" />
+              <img className="about-image" src="/images/img1.jpg" alt="BOE Academy Member" />
             </div>
           </div>
         </div>
 
         <div className="row-about reverse-order">
           <div className="about-content">
-            <h2>What we do</h2>
+            <h2>What We Do</h2>
             <p className="about-us-text">
               BOE is your one-stop shop for becoming a skilled trade employee.
               We connect people with incredible training programs by partnering
@@ -107,7 +115,7 @@ export default function About() {
               <img
                 className="about-image"
                 src="/images/img2.JPEG"
-                alt="Boca code members"
+                alt="Construction Spending and Employment Forecast in South Florida"
               />
             </div>
           </div>
@@ -115,7 +123,7 @@ export default function About() {
 
         <div className="row-about">
           <div className="about-content">
-            <h2>Get involved</h2>
+            <h2>Get Involved</h2>
             <p className="about-us-text">
               Create a free user account for access to exclusive BOE content
               including interviews with our partner schools, up-to-date cost
@@ -126,12 +134,12 @@ export default function About() {
           </div>
           <div className="about-content">
             <div className="about-image-container">
-              <img className="about-image" src="/images/img3.JPEG" alt="Jimmie" />
+              <img className="about-image" src="/images/img3.JPEG" alt="Bootcamp Grads Salary in South Florida" />
             </div>
           </div>
         </div>
         <Carousel />
-       </seccion>
+      </section>
     </AppLayout>
   );
 }
